@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bmxt51056n46p" path="res://Sprites/Menu/Background-teste.png" id="1_7jtkx"]
 [ext_resource type="Texture2D" uid="uid://c6482ht5r64cl" path="res://Sprites/Menu/Nuvem.png" id="1_bkwd7"]
 [ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/Kenney Pixel Square.ttf" id="2_tself"]
+[ext_resource type="Texture2D" uid="uid://cfunvwghgwy67" path="res://Sprites/Menu/NuvemEscura.png" id="3_vmek6"]
 
 [node name="MainMenu" type="Control" unique_id=2039632068]
 layout_mode = 3
@@ -27,6 +28,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -50.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 50
@@ -34,8 +37,8 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="VB" type="VBoxContainer" parent="M" unique_id=767674558]
-custom_minimum_size = Vector2(500, 900)
+[node name="MenuOptions" type="VBoxContainer" parent="M" unique_id=767674558]
+custom_minimum_size = Vector2(500, 720)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -43,15 +46,17 @@ localize_numeral_system = false
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="NovoJogo" type="TextureButton" parent="M/VB" unique_id=512670231]
+[node name="NovoJogo" type="TextureButton" parent="M/MenuOptions" unique_id=512670231]
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 8
 texture_normal = ExtResource("1_bkwd7")
+texture_pressed = ExtResource("3_vmek6")
+texture_hover = ExtResource("3_vmek6")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="M/VB/NovoJogo" unique_id=425152334]
+[node name="Label" type="Label" parent="M/MenuOptions/NovoJogo" unique_id=425152334]
 modulate = Color(0.019607844, 0.019607844, 0.019607844, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -66,15 +71,17 @@ text = "Novo Jogo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sobre" type="TextureButton" parent="M/VB" unique_id=1562181116]
+[node name="Sobre" type="TextureButton" parent="M/MenuOptions" unique_id=1562181116]
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 8
 texture_normal = ExtResource("1_bkwd7")
+texture_pressed = ExtResource("3_vmek6")
+texture_hover = ExtResource("3_vmek6")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="M/VB/Sobre" unique_id=1412133510]
+[node name="Label" type="Label" parent="M/MenuOptions/Sobre" unique_id=1412133510]
 modulate = Color(0.019607844, 0.019607844, 0.019607844, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -89,19 +96,21 @@ text = "Sobre"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control" type="Control" parent="M/VB" unique_id=1243665131]
+[node name="Control" type="Control" parent="M/MenuOptions" unique_id=1243665131]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="Sair" type="TextureButton" parent="M/VB" unique_id=971721603]
+[node name="Sair" type="TextureButton" parent="M/MenuOptions" unique_id=971721603]
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 8
 texture_normal = ExtResource("1_bkwd7")
+texture_pressed = ExtResource("3_vmek6")
+texture_hover = ExtResource("3_vmek6")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="M/VB/Sair" unique_id=1973217043]
+[node name="Label" type="Label" parent="M/MenuOptions/Sair" unique_id=1973217043]
 modulate = Color(0.019607844, 0.019607844, 0.019607844, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -113,5 +122,40 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_tself")
 theme_override_font_sizes/font_size = 40
 text = "Sair"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MatchMaking" type="VBoxContainer" parent="M" unique_id=1011241916]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Control" type="Control" parent="M/MatchMaking" unique_id=1478458200]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="LanMode" type="TextureButton" parent="M/MatchMaking" unique_id=165214300]
+custom_minimum_size = Vector2(320, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("1_bkwd7")
+texture_pressed = ExtResource("3_vmek6")
+texture_hover = ExtResource("3_vmek6")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="M/MatchMaking/LanMode" unique_id=121615608]
+modulate = Color(0.019607844, 0.019607844, 0.019607844, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_tself")
+theme_override_font_sizes/font_size = 40
+text = "Offline"
 horizontal_alignment = 1
 vertical_alignment = 1
