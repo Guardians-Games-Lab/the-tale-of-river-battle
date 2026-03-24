@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cw0d65ygi0anc"]
 
-[ext_resource type="Script" uid="uid://iy83dv6jbbus" path="res://Codes/enemy.gd" id="1_38mpv"]
+[ext_resource type="Script" uid="uid://iy83dv6jbbus" path="res://Codes/enemyPath.gd" id="1_38mpv"]
 [ext_resource type="Texture2D" uid="uid://dyqtiiihdi6po" path="res://Sprites/Towers/lenhador.png" id="1_c3fr5"]
+[ext_resource type="Script" uid="uid://b1ws47pplwgqa" path="res://Assets/Enemy/enemySystem.gd" id="2_ds4r4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c3fr5"]
 radius = 15.0
@@ -11,9 +12,13 @@ loop = false
 script = ExtResource("1_38mpv")
 
 [node name="Enemy" type="CharacterBody2D" parent="." unique_id=275135912]
+collision_mask = 0
+script = ExtResource("2_ds4r4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=329369587]
 shape = SubResource("CircleShape2D_c3fr5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy" unique_id=1044231898]
 texture = ExtResource("1_c3fr5")
+
+[connection signal="died" from="Enemy" to="." method="_on_enemy_died"]

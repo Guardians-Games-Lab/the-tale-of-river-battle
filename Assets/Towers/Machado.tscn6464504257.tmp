@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dmfxkxxa6286k"]
+
+[ext_resource type="Texture2D" uid="uid://dyqtiiihdi6po" path="res://Sprites/Towers/lenhador.png" id="1_k2qqf"]
+[ext_resource type="Script" uid="uid://btj3erlpfhqfq" path="res://Codes/machado.gd" id="2_yi7u8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yi7u8"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_44mcw"]
+radius = 8.0
+
+[node name="Machado" type="CharacterBody2D" unique_id=1982021574]
+script = ExtResource("2_yi7u8")
+speed = null
+
+[node name="Machado" type="Sprite2D" parent="." unique_id=1235384635]
+position = Vector2(0, -1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_k2qqf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=897447881]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_yi7u8")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=107072802]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=460143114]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_44mcw")
+
+[connection signal="body_entered" from="Area2D" to="." method="body_entered "]

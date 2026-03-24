@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://3k02aa0vretn" path="res://Scenes/Maps/map_1.tscn" id="1_akvmk"]
 [ext_resource type="Script" uid="uid://b8wyf2dwkaaeh" path="res://Codes/path_spawner.gd" id="2_sewvy"]
 [ext_resource type="PackedScene" uid="uid://cw0d65ygi0anc" path="res://Assets/Enemy/enemy.tscn" id="3_8pq0b"]
-[ext_resource type="PackedScene" uid="uid://dsnrll5o5350l" path="res://Assets/Towers/lenhador.tscn" id="4_3x1ga"]
 
 [sub_resource type="Curve2D" id="Curve2D_8pq0b"]
 _data = {
@@ -36,9 +35,6 @@ autostart = true
 
 [node name="Path2D" type="Path2D" parent="PathSpawner" unique_id=160163846]
 curve = SubResource("Curve2D_8pq0b")
-
-[node name="Lenhador" parent="." unique_id=1076769759 instance=ExtResource("4_3x1ga")]
-position = Vector2(355, 37)
 
 [connection signal="timeout" from="PathSpawner/WaveTimer" to="PathSpawner" method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="PathSpawner/SpawnTimer" to="PathSpawner" method="_on_spawn_timer_timeout"]
