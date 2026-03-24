@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://drnq1ggmrocee"]
+
+[ext_resource type="PackedScene" uid="uid://3k02aa0vretn" path="res://Scenes/Maps/map_1.tscn" id="1_akvmk"]
+[ext_resource type="PackedScene" uid="uid://cw0d65ygi0anc" path="res://Assets/Enemy/enemy.tscn" id="2_sewvy"]
+
+[sub_resource type="Curve2D" id="Curve2D_8pq0b"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -673, -8, 0, 0, 0, 0, -200, -10, 0, 0, 0, 0, -194, 173, 0, 0, 0, 0, 184, 177, 0, 0, 0, 0, 189, -6, 0, 0, 0, 0, 183, -193, 0, 0, 0, 0, -192, -191, 0, 0, 0, 0, -200, 16, 0, 0, 0, 0, -190, 186, 0, 0, 0, 0, 186, 187, 0, 0, 0, 0, 192, -2, 0, 0, 0, 0, 662, -6)
+}
+point_count = 12
+
+[node name="GameScene" type="Node2D" unique_id=629731469]
+
+[node name="Map 1" parent="." unique_id=1311482498 instance=ExtResource("1_akvmk")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=607622918]
+position = Vector2(548, 231)
+ignore_rotation = false
+zoom = Vector2(0.96, 0.96)
+limit_enabled = false
+
+[node name="PathSpawner" type="Node2D" parent="." unique_id=452600707]
+position = Vector2(548, 231)
+
+[node name="Path2D" type="Path2D" parent="." unique_id=783588333]
+position = Vector2(548, 231)
+curve = SubResource("Curve2D_8pq0b")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=151594131]
+position = Vector2(-673, -8)
+rotation = -0.0042283046
+
+[node name="Enemy" parent="Path2D/PathFollow2D" unique_id=275135912 instance=ExtResource("2_sewvy")]
+speed = null

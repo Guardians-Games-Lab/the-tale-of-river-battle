@@ -1,18 +1,19 @@
 [gd_scene format=3 uid="uid://cw0d65ygi0anc"]
 
+[ext_resource type="Script" uid="uid://iy83dv6jbbus" path="res://Codes/enemy.gd" id="1_38mpv"]
 [ext_resource type="Texture2D" uid="uid://dyqtiiihdi6po" path="res://Sprites/Towers/lenhador.png" id="1_c3fr5"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_38mpv"]
-radius = 17.117243
+[sub_resource type="CircleShape2D" id="CircleShape2D_c3fr5"]
+radius = 15.0
 
-[node name="Enemy" type="PathFollow2D" unique_id=2025561012]
+[node name="PathFollow2D" type="PathFollow2D" unique_id=2024003822]
+loop = false
+script = ExtResource("1_38mpv")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=2059670251]
+[node name="Enemy" type="CharacterBody2D" parent="." unique_id=275135912]
 
-[node name="Lenhador" type="Sprite2D" parent="CharacterBody2D" unique_id=1120041608]
-position = Vector2(0, -5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=329369587]
+shape = SubResource("CircleShape2D_c3fr5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy" unique_id=1044231898]
 texture = ExtResource("1_c3fr5")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=387520228]
-position = Vector2(0, -2)
-shape = SubResource("CircleShape2D_38mpv")

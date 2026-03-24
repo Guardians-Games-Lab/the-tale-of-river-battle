@@ -1,9 +1,12 @@
 extends PathFollow2D
 
-@export var speed = 150
+@export var speed = 100.0
+
+
 
 func _process(delta):
 	progress += speed * delta
-	
-	if progress_ratio >= 1:
+	if progress_ratio >= 1.0:
+		
 		queue_free()
+		

@@ -1,95 +1,40 @@
 [gd_scene format=3 uid="uid://drnq1ggmrocee"]
 
 [ext_resource type="PackedScene" uid="uid://3k02aa0vretn" path="res://Scenes/Maps/map_1.tscn" id="1_akvmk"]
-[ext_resource type="Texture2D" uid="uid://c6482ht5r64cl" path="res://Sprites/Menu/Nuvem.png" id="2_sewvy"]
-[ext_resource type="Texture2D" uid="uid://dyqtiiihdi6po" path="res://Sprites/Towers/lenhador.png" id="3_8pq0b"]
-[ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/Kenney Pixel Square.ttf" id="4_3x1ga"]
+[ext_resource type="Script" uid="uid://b8wyf2dwkaaeh" path="res://Codes/path_spawner.gd" id="2_sewvy"]
+[ext_resource type="PackedScene" uid="uid://cw0d65ygi0anc" path="res://Assets/Enemy/enemy.tscn" id="3_8pq0b"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8pq0b"]
-texture = ExtResource("2_sewvy")
+[sub_resource type="Curve2D" id="Curve2D_8pq0b"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -548, -229, 0, 0, 0, 0, -311, -233, 0, 0, 0, 0, -68, -230, 0, 0, 0, 0, -61, -49, 0, 0, 0, 0, 311, -52, 0, 0, 0, 0, 317, -230, 0, 0, 0, 0, 309, -415, 0, 0, 0, 0, -55, -418, 0, 0, 0, 0, -69, -233, 0, 0, 0, 0, -61, -48, 0, 0, 0, 0, 309, -53, 0, 0, 0, 0, 317, -232, 0, 0, 0, 0, 570, -233, 0, 0, 0, 0, 795, -231)
+}
+point_count = 14
 
 [node name="GameScene" type="Node2D" unique_id=629731469]
 
 [node name="Map 1" parent="." unique_id=1311482498 instance=ExtResource("1_akvmk")]
-
-[node name="UI" type="CanvasLayer" parent="." unique_id=83348977]
-follow_viewport_enabled = true
-
-[node name="Control" type="Control" parent="UI" unique_id=578747487]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -122.0
-offset_top = -152.0
-offset_right = -122.0
-offset_bottom = -152.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-
-[node name="Panel" type="Panel" parent="UI/Control" unique_id=719386595]
-custom_minimum_size = Vector2(72, 0)
-layout_mode = 0
-offset_left = 1208.0
-offset_right = 1280.0
-offset_bottom = 720.0
-grow_horizontal = 0
-grow_vertical = 2
-size_flags_horizontal = 8
-theme_override_styles/panel = SubResource("StyleBoxTexture_8pq0b")
-
-[node name="Towers" type="VBoxContainer" parent="UI/Control/Panel" unique_id=787978615]
-custom_minimum_size = Vector2(72, 0)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -72.0
-offset_top = -220.0
-offset_bottom = 296.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="Lenhador" type="TextureButton" parent="UI/Control/Panel/Towers" unique_id=779408508]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource("3_8pq0b")
-stretch_mode = 0
-
-[node name="Nome" type="Label" parent="UI/Control/Panel/Towers/Lenhador" unique_id=817248920]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.34600002
-anchor_bottom = 0.080000006
-offset_left = -4.0
-offset_top = -5.0
-offset_right = 38.699997
-offset_bottom = 13.0
-theme_override_colors/font_color = Color(0.017732391, 0.017732391, 0.01773239, 1)
-theme_override_fonts/font = ExtResource("4_3x1ga")
-theme_override_font_sizes/font_size = 10
-text = "Lenhador"
-
-[node name="Nome" type="Label" parent="UI/Control/Panel/Towers/Lenhador/Nome" unique_id=240426030]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.34600002
-anchor_bottom = 0.080000006
-offset_left = 6.0
-offset_top = 53.0
-offset_right = 31.24
-offset_bottom = 73.24
-theme_override_colors/font_color = Color(0.017732391, 0.017732391, 0.01773239, 1)
-theme_override_fonts/font = ExtResource("4_3x1ga")
-theme_override_font_sizes/font_size = 10
-text = "20 GOLD"
+position = Vector2(129, -223)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=607622918]
-position = Vector2(517, 208)
+position = Vector2(673, 0)
 ignore_rotation = false
+zoom = Vector2(0.96, 0.96)
 limit_enabled = false
+
+[node name="PathSpawner" type="Node2D" parent="." unique_id=452600707]
+position = Vector2(548, 231)
+script = ExtResource("2_sewvy")
+enemy_scene = ExtResource("3_8pq0b")
+
+[node name="WaveTimer" type="Timer" parent="PathSpawner" unique_id=857998322]
+wait_time = 3.0
+one_shot = true
+
+[node name="SpawnTimer" type="Timer" parent="PathSpawner" unique_id=765213645]
+autostart = true
+
+[node name="Path2D" type="Path2D" parent="PathSpawner" unique_id=160163846]
+curve = SubResource("Curve2D_8pq0b")
+
+[connection signal="timeout" from="PathSpawner/WaveTimer" to="PathSpawner" method="_on_wave_timer_timeout"]
+[connection signal="timeout" from="PathSpawner/SpawnTimer" to="PathSpawner" method="_on_spawn_timer_timeout"]
