@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://yivcuhtgykd6"]
+
+[ext_resource type="PackedScene" uid="uid://c54d4cjqay5sf" path="res://Scenes/Menu/lenhador_panel.tscn" id="2_gqecr"]
+
+[node name="UI" type="CanvasLayer" unique_id=102162964]
+
+[node name="Panel" type="Panel" parent="." unique_id=138107769]
+offset_left = 1140.0
+offset_top = -1.0
+offset_right = 1277.533
+offset_bottom = 744.1084
+scale = Vector2(1.0266448, 1.0221647)
+
+[node name="FlowContainer" type="FlowContainer" parent="Panel" unique_id=1561468020]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -334.3999
+offset_right = 40.0
+offset_bottom = 351.39954
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 40
+alignment = 1
+
+[node name="Panel" parent="Panel/FlowContainer" unique_id=1163742910 instance=ExtResource("2_gqecr")]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Panel2" parent="Panel/FlowContainer" unique_id=501821506 instance=ExtResource("2_gqecr")]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Panel3" parent="Panel/FlowContainer" unique_id=2039560348 instance=ExtResource("2_gqecr")]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2

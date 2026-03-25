@@ -52,7 +52,8 @@ func _on_enemy_removed():
 	enemies_alive -= 1
 	print("Inimigos vivos:", enemies_alive)
 
-	if enemies_alive <= 0:
+	# só vai para a próxima wave se todos os inimigos foram spawnados E não houver mais vivos
+	if enemies_alive == 0 and enemies_spawned >= waves[current_wave]["quantity"]:
 		next_wave()
 
 

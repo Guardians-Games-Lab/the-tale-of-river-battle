@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c54d4cjqay5sf"]
+
+[ext_resource type="Texture2D" uid="uid://dyqtiiihdi6po" path="res://Sprites/Towers/lenhador.png" id="1_8me8n"]
+
+[node name="LenhadorPanel" type="Panel" unique_id=1163742910]
+offset_right = 80.0
+offset_bottom = 80.0
+scale = Vector2(1.0192724, 1)
+
+[node name="Lenhador" type="Sprite2D" parent="." unique_id=1999762887]
+position = Vector2(39.243675, 36)
+scale = Vector2(2.345, 2)
+texture = ExtResource("1_8me8n")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

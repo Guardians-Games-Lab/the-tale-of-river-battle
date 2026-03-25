@@ -13,19 +13,23 @@ radius = 161.95
 script = ExtResource("1_u318i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=114037299]
-position = Vector2(-0.5, 4.5)
+visible = false
+position = Vector2(-6, 0)
+rotation = 1.5707964
 shape = SubResource("RectangleShape2D_6pgoe")
 
 [node name="Aim" type="Marker2D" parent="." unique_id=1667162422]
-position = Vector2(0, -11)
+position = Vector2(14, 0)
 
 [node name="Lenhador" type="Sprite2D" parent="." unique_id=2069918443]
+rotation = 1.5707964
 texture = ExtResource("1_6pgoe")
 
 [node name="TowerRange" type="Area2D" parent="." unique_id=686264121]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TowerRange" unique_id=902288085]
 shape = SubResource("CircleShape2D_u318i")
+debug_color = Color(0, 0.0040804003, 0.005905705, 0.41960785)
 
 [node name="Node" type="Node" parent="." unique_id=1773901836]
 
