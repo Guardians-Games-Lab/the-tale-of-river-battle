@@ -70,7 +70,5 @@ last_wrap_alignment = 2
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 
-[node name="Towers" type="Node2D" parent="." unique_id=346713245]
-
 [connection signal="timeout" from="PathSpawner/WaveTimer" to="PathSpawner" method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="PathSpawner/SpawnTimer" to="PathSpawner" method="_on_spawn_timer_timeout"]
