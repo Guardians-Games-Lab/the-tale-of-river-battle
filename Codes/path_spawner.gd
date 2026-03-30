@@ -6,6 +6,9 @@ extends Node2D
 	{"quantity": 3, "interval": 1.5},
 	{"quantity": 5, "interval": 1.0},
 	{"quantity": 8, "interval": 0.7},
+	{"quantity": 3, "interval": 1.5},
+	{"quantity": 5, "interval": 1.0},
+	{"quantity": 8, "interval": 0.7},
 ]
 
 var current_wave := 0
@@ -20,6 +23,9 @@ func _ready():
 	start_wave()
 
 
+# =========================
+# 🚀 COMEÇA WAVE
+# =========================
 func start_wave():
 	if current_wave >= waves.size():
 		print("Fim das ondas!")
@@ -32,6 +38,9 @@ func start_wave():
 	spawn_timer.start()
 
 
+# =========================
+# 👾 SPAWN INIMIGO
+# =========================
 func _on_spawn_timer_timeout():
 	var enemy = enemy_scene.instantiate()
 	path.add_child(enemy)
@@ -40,25 +49,32 @@ func _on_spawn_timer_timeout():
 	enemies_alive += 1
 
 	var body = enemy.get_node("Enemy")
-	
-	body.connect("died", _on_enemy_removed)
-	body.connect("escaped", _on_enemy_removed)
+
+	# 🔥 conexão correta (Godot 4)
+	body.died.connect(_on_enemy_removed)
+	body.escaped.connect(_on_enemy_removed)
 
 	if enemies_spawned >= waves[current_wave]["quantity"]:
 		spawn_timer.stop()
 
-#Chega no Final
+
+# =========================
+# 💀 REMOÇÃO DE INIMIGO
+# =========================
 func _on_enemy_removed():
+	if enemies_alive <= 0:
+		return
+
 	enemies_alive -= 1
 	print("Inimigos vivos:", enemies_alive)
 
-	# só vai para a próxima wave se todos os inimigos foram spawnados E não houver mais vivos
 	if enemies_alive == 0 and enemies_spawned >= waves[current_wave]["quantity"]:
 		next_wave()
 
 
-#Inimigos mortos
-
+# =========================
+# 🔁 PRÓXIMA WAVE
+# =========================
 func next_wave():
 	current_wave += 1
 
