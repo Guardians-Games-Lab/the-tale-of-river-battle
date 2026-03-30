@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dsnrll5o5350l"]
+
+[ext_resource type="Texture2D" uid="uid://dyqtiiihdi6po" path="res://Sprites/Towers/lenhador.png" id="1_6pgoe"]
+[ext_resource type="Script" uid="uid://bewnd5e26orwl" path="res://Codes/lenhador.gd" id="1_u318i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6pgoe"]
+size = Vector2(29, 19)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u318i"]
+radius = 161.95
+
+[node name="Lenhador" type="StaticBody2D" unique_id=1076769759]
+script = ExtResource("1_u318i")
+fire_rate = null
+bullet_damage = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=114037299]
+position = Vector2(-0.5, 4.5)
+shape = SubResource("RectangleShape2D_6pgoe")
+
+[node name="Aim" type="Marker2D" parent="." unique_id=1667162422]
+position = Vector2(0, -11)
+
+[node name="Lenhador" type="Sprite2D" parent="." unique_id=2069918443]
+texture = ExtResource("1_6pgoe")
+
+[node name="TowerRange" type="Area2D" parent="." unique_id=686264121]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TowerRange" unique_id=902288085]
+shape = SubResource("CircleShape2D_u318i")
+
+[node name="Node" type="Node" parent="." unique_id=1773901836]
+
+[connection signal="body_entered" from="TowerRange" to="." method="_on_tower_range_body_entered"]
+[connection signal="body_exited" from="TowerRange" to="." method="_on_tower_range_body_exited"]

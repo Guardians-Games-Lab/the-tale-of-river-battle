@@ -11,12 +11,20 @@ config_version=5
 [application]
 
 config/name="The Tale of River Battle"
+run/main_scene="uid://m8q6e7fc2d8c"
 config/features=PackedStringArray("4.6", "Mobile")
-config/icon="res://icon.svg"
 
 [display]
 
-window/stretch/aspect="ignore"
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/resizable=false
+window/size/borderless=true
+window/stretch/mode="canvas_items"
+
+[editor]
+
+version_control/autoload_on_startup=true
 
 [physics]
 
@@ -24,5 +32,6 @@ window/stretch/aspect="ignore"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"

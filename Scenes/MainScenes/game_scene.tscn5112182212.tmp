@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://drnq1ggmrocee"]
+
+[ext_resource type="PackedScene" uid="uid://3k02aa0vretn" path="res://Scenes/Maps/map_1.tscn" id="1_akvmk"]
+[ext_resource type="Script" uid="uid://b8wyf2dwkaaeh" path="res://Codes/path_spawner.gd" id="2_sewvy"]
+[ext_resource type="PackedScene" uid="uid://cw0d65ygi0anc" path="res://Assets/Enemy/enemy.tscn" id="3_8pq0b"]
+
+[sub_resource type="Curve2D" id="Curve2D_8pq0b"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -548, -229, 0, 0, 0, 0, -311, -233, 0, 0, 0, 0, -68, -230, 0, 0, 0, 0, -61, -49, 0, 0, 0, 0, 311, -52, 0, 0, 0, 0, 317, -230, 0, 0, 0, 0, 309, -415, 0, 0, 0, 0, -55, -418, 0, 0, 0, 0, -69, -233, 0, 0, 0, 0, -61, -48, 0, 0, 0, 0, 309, -53, 0, 0, 0, 0, 317, -232, 0, 0, 0, 0, 570, -233, 0, 0, 0, 0, 795, -231)
+}
+point_count = 14
+
+[node name="GameScene" type="Node2D" unique_id=629731469]
+
+[node name="Map 1" parent="." unique_id=1311482498 instance=ExtResource("1_akvmk")]
+position = Vector2(129, -223)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=607622918]
+position = Vector2(673, 0)
+ignore_rotation = false
+zoom = Vector2(0.96, 0.96)
+limit_enabled = false
+
+[node name="PathSpawner" type="Node2D" parent="." unique_id=452600707]
+position = Vector2(548, 231)
+script = ExtResource("2_sewvy")
+enemy_scene = ExtResource("3_8pq0b")
+
+[node name="WaveTimer" type="Timer" parent="PathSpawner" unique_id=857998322]
+wait_time = 3.0
+one_shot = true
+
+[node name="SpawnTimer" type="Timer" parent="PathSpawner" unique_id=765213645]
+autostart = true
+
+[node name="Path2D" type="Path2D" parent="PathSpawner" unique_id=160163846]
+curve = SubResource("Curve2D_8pq0b")
+
+[connection signal="timeout" from="PathSpawner/WaveTimer" to="PathSpawner" method="_on_wave_timer_timeout"]
+[connection signal="timeout" from="PathSpawner/SpawnTimer" to="PathSpawner" method="_on_spawn_timer_timeout"]

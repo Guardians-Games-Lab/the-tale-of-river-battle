@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c54d4cjqay5sf"]
+
+[ext_resource type="Texture2D" uid="uid://dyqtiiihdi6po" path="res://Sprites/Towers/lenhador.png" id="1_8me8n"]
+[ext_resource type="Script" uid="uid://otg5d7bnfqvc" path="res://Codes/lenhador_panel.gd" id="1_mqrgk"]
+[ext_resource type="PackedScene" uid="uid://dsnrll5o5350l" path="res://Assets/Towers/lenhador.tscn" id="2_bugkg"]
+
+[node name="LenhadorPanel" type="Panel" unique_id=1163742910]
+offset_right = 80.0
+offset_bottom = 80.0
+scale = Vector2(1.0192724, 1)
+script = ExtResource("1_mqrgk")
+tower_scene = ExtResource("2_bugkg")
+
+[node name="Lenhador" type="Sprite2D" parent="." unique_id=1999762887]
+position = Vector2(41.205864, 39)
+scale = Vector2(2.3, 2.3)
+texture = ExtResource("1_8me8n")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
