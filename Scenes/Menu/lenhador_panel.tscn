@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dyqtiiihdi6po" path="res://Sprites/Towers/lenhador.png" id="1_8me8n"]
 [ext_resource type="Script" uid="uid://otg5d7bnfqvc" path="res://Codes/lenhador_panel.gd" id="1_mqrgk"]
 [ext_resource type="PackedScene" uid="uid://dsnrll5o5350l" path="res://Assets/Towers/lenhador.tscn" id="2_bugkg"]
+[ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/Kenney Pixel Square.ttf" id="4_8770l"]
 
 [node name="LenhadorPanel" type="Panel" unique_id=1163742910]
 offset_right = 80.0
@@ -15,5 +16,25 @@ tower_scene = ExtResource("2_bugkg")
 position = Vector2(41.205864, 39)
 scale = Vector2(2.3, 2.3)
 texture = ExtResource("1_8me8n")
+
+[node name="Nome" type="Label" parent="." unique_id=925353605]
+layout_mode = 0
+offset_left = -4.90546
+offset_right = 89.09454
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource("4_8770l")
+theme_override_font_sizes/font_size = 12
+text = "Lenhador"
+horizontal_alignment = 1
+
+[node name="Valor" type="Label" parent="." unique_id=536444523]
+layout_mode = 0
+offset_left = 18.640747
+offset_top = 79.0
+offset_right = 63.640747
+offset_bottom = 109.0
+theme_override_fonts/font = ExtResource("4_8770l")
+theme_override_font_sizes/font_size = 20
+text = "$20"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

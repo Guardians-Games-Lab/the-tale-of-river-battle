@@ -19,7 +19,14 @@ func die():
 	if removed:
 		return
 	
+	
+	
 	removed = true
+	
+	Game.add_gold(5)
+	Game.add_score(10)
+	print(Game.Score)
+	
 	died.emit()
 	queue_free()
 	
@@ -28,5 +35,8 @@ func escape():
 		return
 	
 	removed = true
+	
+	Game.add_score(-20)
+	
 	escaped.emit()
 	queue_free()

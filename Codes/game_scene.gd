@@ -107,7 +107,7 @@ func _input(event):
 		if get_viewport().gui_get_hovered_control():
 			return
 		
-		if is_valid_tile():
+		if is_valid_tile() and Game.spend_gold(20):
 			place_tower()
 		else:
 			cancel_tower()
@@ -144,3 +144,4 @@ func cancel_tower():
 	if preview:
 		preview.queue_free()
 	preview = null
+	
