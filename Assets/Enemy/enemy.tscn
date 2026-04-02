@@ -1,11 +1,50 @@
 [gd_scene format=3 uid="uid://cw0d65ygi0anc"]
 
 [ext_resource type="Script" uid="uid://iy83dv6jbbus" path="res://Codes/enemyPath.gd" id="1_38mpv"]
-[ext_resource type="Texture2D" uid="uid://dyqtiiihdi6po" path="res://Sprites/Towers/lenhador.png" id="1_c3fr5"]
 [ext_resource type="Script" uid="uid://b1ws47pplwgqa" path="res://Codes/enemySystem.gd" id="2_ds4r4"]
+[ext_resource type="Texture2D" uid="uid://qpy3qjlhmber" path="res://Sprites/Enemy/inimigo1.png" id="3_ds4r4"]
+[ext_resource type="Texture2D" uid="uid://bqu15jqgttdh7" path="res://Sprites/Enemy/inimigo2.png" id="3_oqe0u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c3fr5"]
-radius = 15.0
+radius = 17.029387
+
+[sub_resource type="Animation" id="Animation_driln"]
+resource_name = "EnemyAnimation"
+length = 0.93333334
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [ExtResource("3_oqe0u"), ExtResource("3_ds4r4")]
+}
+
+[sub_resource type="Animation" id="Animation_gvkay"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_oqe0u")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jw16w"]
+_data = {
+&"EnemyAnimation": SubResource("Animation_driln"),
+&"RESET": SubResource("Animation_gvkay")
+}
 
 [node name="PathFollow2D" type="PathFollow2D" unique_id=2024003822]
 loop = false
@@ -18,7 +57,11 @@ script = ExtResource("2_ds4r4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=329369587]
 shape = SubResource("CircleShape2D_c3fr5")
 
-[node name="Sprite2D" type="Sprite2D" parent="Enemy" unique_id=1044231898]
-texture = ExtResource("1_c3fr5")
+[node name="Sprite2D" type="Sprite2D" parent="Enemy" unique_id=329506573]
+texture = ExtResource("3_oqe0u")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy" unique_id=1695780053]
+libraries/ = SubResource("AnimationLibrary_jw16w")
+autoplay = &"EnemyAnimation"
 
 [connection signal="died" from="Enemy" to="." method="_on_enemy_died"]
