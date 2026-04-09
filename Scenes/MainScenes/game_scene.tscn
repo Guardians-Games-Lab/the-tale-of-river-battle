@@ -7,12 +7,19 @@
 [ext_resource type="PackedScene" uid="uid://c54d4cjqay5sf" path="res://Scenes/Menu/lenhador_panel.tscn" id="4_3x1ga"]
 [ext_resource type="Script" uid="uid://dvlm5n3gpewsm" path="res://Codes/gui.gd" id="5_ibdpl"]
 [ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/Kenney Pixel Square.ttf" id="6_g2kuy"]
+[ext_resource type="FontFile" uid="uid://bf57fsyphqmqm" path="res://Assets/Fonts/Kenney Pixel.ttf" id="8_2usgn"]
 
 [sub_resource type="Curve2D" id="Curve2D_8pq0b"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -548, -229, 0, 0, 0, 0, -311, -233, 0, 0, 0, 0, -68, -230, 0, 0, 0, 0, -61, -49, 0, 0, 0, 0, 311, -52, 0, 0, 0, 0, 317, -230, 0, 0, 0, 0, 309, -415, 0, 0, 0, 0, -55, -418, 0, 0, 0, 0, -69, -233, 0, 0, 0, 0, -61, -48, 0, 0, 0, 0, 309, -53, 0, 0, 0, 0, 317, -232, 0, 0, 0, 0, 570, -233, 0, 0, 0, 0, 795, -231)
 }
 point_count = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2usgn"]
+bg_color = Color(0.6, 0.6, 0.6, 0.84313726)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_674w2"]
+bg_color = Color(0.9088105, 0, 0.108250044, 1)
 
 [node name="GameScene" type="Node2D" unique_id=629731469 groups=["game"]]
 script = ExtResource("1_2u2le")
@@ -45,15 +52,14 @@ curve = SubResource("Curve2D_8pq0b")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1454958501]
 follow_viewport_enabled = true
+script = ExtResource("5_ibdpl")
 
 [node name="Gui" type="Panel" parent="CanvasLayer" unique_id=1635158854]
 offset_left = 1204.0
-offset_top = -385.0
+offset_top = -375.00003
 offset_right = 1341.533
-offset_bottom = 350.69354
+offset_bottom = 357.75858
 scale = Vector2(1.0266448, 1.0221647)
-script = ExtResource("5_ibdpl")
-metadata/_edit_lock_ = true
 
 [node name="PainelDeCompra" type="FlowContainer" parent="CanvasLayer/Gui" unique_id=1066825035]
 layout_mode = 1
@@ -136,6 +142,25 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("6_g2kuy")
 theme_override_font_sizes/font_size = 16
 text = "0 "
+
+[node name="VidaProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=1901477901]
+offset_left = 8.0
+offset_top = -338.0
+offset_right = 124.0
+offset_bottom = -311.0
+theme_override_styles/background = SubResource("StyleBoxFlat_2usgn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_674w2")
+show_percentage = false
+
+[node name="TextoVida" type="Label" parent="CanvasLayer/VidaProgressBar" unique_id=2066834750]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -3.0
+offset_right = 81.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("8_2usgn")
+theme_override_font_sizes/font_size = 40
+text = "Life: 0"
 
 [node name="Towers" type="Node2D" parent="." unique_id=346713245 groups=["exclusion"]]
 

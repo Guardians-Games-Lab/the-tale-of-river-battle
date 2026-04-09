@@ -37,6 +37,6 @@ func escape():
 	removed = true
 	
 	Game.add_score(-20)
-	
+	Game.take_damage(hp)
 	escaped.emit()
 	queue_free()
