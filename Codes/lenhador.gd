@@ -20,8 +20,8 @@ var nivel_velocidade: int = 0
 var nivel_range: int = 0
 const MAX_UPGRADES: int = 3
 
-var custo_velocidade_base: int = 15
-var custo_range_base: int = 10
+var custo_velocidade_base: int = 25
+var custo_range_base: int = 20
 
 @onready var range_area: Area2D = $TowerRange
 @onready var aim: Node2D = $Aim
