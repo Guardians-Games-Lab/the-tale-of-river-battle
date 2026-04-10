@@ -37,7 +37,9 @@ limit_enabled = false
 [node name="PathSpawner" type="Node2D" parent="." unique_id=452600707]
 position = Vector2(548, 231)
 script = ExtResource("2_sewvy")
-enemy_scene = ExtResource("3_8pq0b")
+enemy_types = Dictionary[String, PackedScene]({
+"base": ExtResource("3_8pq0b")
+})
 metadata/_edit_lock_ = true
 
 [node name="WaveTimer" type="Timer" parent="PathSpawner" unique_id=857998322]
@@ -111,7 +113,7 @@ custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="TextoPontos" type="VBoxContainer" parent="CanvasLayer/Gui" unique_id=1570886802]
+[node name="TextoPontosEWaves" type="VBoxContainer" parent="CanvasLayer/Gui" unique_id=1570886802]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -127,21 +129,26 @@ grow_vertical = 0
 theme_override_constants/separation = 1
 alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Gui/TextoPontos" unique_id=740416405]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Gui/TextoPontosEWaves" unique_id=740416405]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="TextoPontos" type="Label" parent="CanvasLayer/Gui/TextoPontos" unique_id=1008474700]
+[node name="TextoPontos" type="Label" parent="CanvasLayer/Gui/TextoPontosEWaves" unique_id=1008474700]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_g2kuy")
 text = "Pontos:"
 
-[node name="PontosTotal" type="Label" parent="CanvasLayer/Gui/TextoPontos" unique_id=1363654504]
+[node name="PontosTotal" type="Label" parent="CanvasLayer/Gui/TextoPontosEWaves" unique_id=1363654504]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_g2kuy")
 theme_override_font_sizes/font_size = 16
 text = "0 "
+
+[node name="WaveAtual" type="Label" parent="CanvasLayer/Gui/TextoPontosEWaves" unique_id=32400261]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_g2kuy")
+text = "Wave: 1"
 
 [node name="VidaProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=1901477901]
 offset_left = 8.0

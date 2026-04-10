@@ -75,14 +75,40 @@ size_flags_stretch_ratio = 0.0
 mouse_filter = 2
 alignment = 2
 
+[node name="Control2" type="Control" parent="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes" unique_id=399731608]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="BotaoVelocidade" type="Button" parent="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes" unique_id=1911355468]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 10
+text = "$15"
+
+[node name="BotaoRange" type="Button" parent="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes" unique_id=1082213196]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 10
+text = "Range"
+
+[node name="Control" type="Control" parent="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes" unique_id=894645117]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
 [node name="BotaoVender" type="Button" parent="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes" unique_id=122773440]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 10
-text = "Deletar"
+text = "Vender"
 
 [connection signal="body_entered" from="TowerRange" to="." method="_on_tower_range_body_entered"]
 [connection signal="body_exited" from="TowerRange" to="." method="_on_tower_range_body_exited"]
+[connection signal="pressed" from="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes/BotaoVelocidade" to="." method="_on_btn_velocidade_pressed"]
+[connection signal="pressed" from="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes/BotaoRange" to="." method="_on_btn_range_pressed"]
 [connection signal="pressed" from="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes/BotaoVender" to="." method="_on_btn_vender_pressed"]

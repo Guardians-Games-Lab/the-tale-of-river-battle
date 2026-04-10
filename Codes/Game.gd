@@ -103,3 +103,14 @@ func load_highscore():
 				print("📂 Highscore carregado com sucesso: ", Highscore)
 	else:
 		print("⚠️ Nenhum save encontrado. Criando um novo perfil de jogador.")
+		
+		
+# =========================
+# 🌊 SISTEMA DE WAVES
+# =========================
+var Wave: int = 1
+signal wave_changed
+
+func set_wave(nova_wave: int):
+	Wave = nova_wave
+	wave_changed.emit()

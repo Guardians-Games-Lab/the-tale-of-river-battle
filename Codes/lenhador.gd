@@ -3,7 +3,7 @@ extends StaticBody2D
 var Bullet = preload("res://Assets/Towers/Machado.tscn")
 
 @export var fire_rate: float = 1.0
-@export var bullet_damage: int = 10
+@export var bullet_damage: int = 5
 @export var base_cost: int = 20
 
 var targets: Array = []
@@ -13,11 +13,24 @@ var show_range := false
 var sell_value: int = 0
 var mouse_na_torre := false
 
+# =========================
+# ⬆️ SISTEMA DE UPGRADES
+# =========================
+var nivel_velocidade: int = 0
+var nivel_range: int = 0
+const MAX_UPGRADES: int = 3
+
+var custo_velocidade_base: int = 15
+var custo_range_base: int = 10
 
 @onready var range_area: Area2D = $TowerRange
 @onready var aim: Node2D = $Aim
 @onready var menu_upgrade = $Upgrade
 @onready var btn_vender: Button = $Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes/BotaoVender
+# 👇 Caminho atualizado! Lembre de renomear o nó no Godot para BotaoVelocidade
+@onready var btn_velocidade: Button = $Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes/BotaoVelocidade
+@onready var btn_range: Button = $Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes/BotaoRange
+
 
 func _ready():
 	range_area.body_entered.connect(_on_tower_range_body_entered)
@@ -29,13 +42,19 @@ func _ready():
 	mouse_exited.connect(func(): mouse_na_torre = false)
 	add_to_group("tower")
 	
-	# 👇 CÁLCULO DE VENDA E CONEXÃO DO BOTÃO
-	# Usa int() para garantir que não teremos moedas quebradas (ex: 20 / 2 = 10)
+	# CÁLCULO DE VENDA
 	sell_value = int(base_cost / 2.0) 
 	
-	# Conecta o clique do botão à nossa nova função
+	# O SEGREDO DO RANGE: Torna o círculo desta torre único!
+	$TowerRange/CollisionShape2D.shape = $TowerRange/CollisionShape2D.shape.duplicate()
+	
+	# Conecta os cliques aos botões
 	btn_vender.pressed.connect(_on_btn_vender_pressed)
-
+	btn_velocidade.pressed.connect(_on_btn_velocidade_pressed)
+	btn_range.pressed.connect(_on_btn_range_pressed)
+	
+	# Atualiza o texto dos botões logo que a torre nasce
+	atualizar_textos_upgrade()
 
 func _process(_delta):
 	queue_redraw()
@@ -71,7 +90,6 @@ func _process(_delta):
 # 🖱️ CLIQUE NA TORRE (ABRIR MENU)
 # =========================
 func _input_event(viewport, event, shape_idx):
-	# Mudamos para 'event.pressed' (quando o dedo TOCA na tela)
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		get_viewport().set_input_as_handled()
 		
@@ -82,15 +100,16 @@ func _input_event(viewport, event, shape_idx):
 			selecionar_torre()
 			print("🌲 Lenhador: Abriu o menu (Toggle)")
 
+
 # =========================
 # 🌍 CLIQUE FORA (FECHAR TUDO)
 # =========================
 func _unhandled_input(event):
 	if event is InputEventMouseButton and event.pressed:
-		
 		if menu_upgrade.visible and not mouse_na_torre:
 			deselecionar()
 			print("❌ Toque fora da torre detectado. Fechando Upgrade.")
+
 
 # =========================
 # 🎨 RANGE (FIXO)
@@ -116,7 +135,6 @@ func set_preview_valid(is_valid: bool) -> void:
 		if child is Sprite2D:
 			child.modulate = color
 
-
 func clear_preview_state() -> void:
 	for child in get_children():
 		if child is Sprite2D:
@@ -136,37 +154,46 @@ func shoot(target):
 	can_shoot = true
 
 func selecionar_torre():
-	# 1. Avisa todas as outras torres para fecharem seus menus de upgrade
 	get_tree().call_group("tower", "deselecionar")
-	
-	# 2. Abre o menu DESTA torre
 	menu_upgrade.show()
-	
-	# 3. Liga o desenho do range
 	show_range = true 
 	queue_redraw()
-	
 	print("🌲 Lenhador selecionado! Abrindo menu de Upgrade.")
 
 func deselecionar():
-	# Só tenta esconder se estiver aberto
 	if menu_upgrade.visible:
 		menu_upgrade.hide()
 		show_range = false
 		queue_redraw()
 
+
+# =========================
+# 📝 ATUALIZAR UI DOS UPGRADES
+# =========================
+func atualizar_textos_upgrade():
+	if nivel_velocidade < MAX_UPGRADES:
+		var proximo_custo = custo_velocidade_base * (nivel_velocidade + 1)
+		btn_velocidade.text = "Speed: $" + str(proximo_custo)
+	else:
+		btn_velocidade.text = "Speed MÁX"
+		btn_velocidade.disabled = true
+
+	if nivel_range < MAX_UPGRADES:
+		var proximo_custo = custo_range_base * (nivel_range + 1)
+		btn_range.text = "Range: $" + str(proximo_custo)
+	else:
+		btn_range.text = "Range MÁX"
+		btn_range.disabled = true
+
+
 # =========================
 # 💰 VENDER TORRE
 # =========================
 func _on_btn_vender_pressed():
-	# 1. Devolve o dinheiro usando o Autoload
 	Game.add_gold(sell_value)
-	
-	# 2. Print de segurança para o Console
 	print("💸 Torre vendida! Dinheiro recuperado: $", sell_value, " | Dinheiro Total: $", Game.Gold)
-	
-	# 3. Deleta a torre do mapa
 	queue_free()
+
 
 func _on_tower_range_body_entered(body: Node2D) -> void:
 	if not can_attack:
@@ -179,3 +206,50 @@ func _on_tower_range_body_entered(body: Node2D) -> void:
 func _on_tower_range_body_exited(body: Node2D) -> void:
 	if body in targets:
 		targets.erase(body)
+
+
+# =========================
+# ⚡ UPGRADE DE VELOCIDADE
+# =========================
+func _on_btn_velocidade_pressed():
+	if nivel_velocidade >= MAX_UPGRADES: return
+	
+	var custo_atual = custo_velocidade_base * (nivel_velocidade + 1)
+	
+	if Game.spend_gold(custo_atual):
+		nivel_velocidade += 1
+		
+		# Reduz o tempo de recarga em 0.2 segundos
+		fire_rate -= 0.2 
+		
+		# Trava de segurança para não atirar rápido demais e bugar a física
+		if fire_rate < 0.1:
+			fire_rate = 0.1
+		
+		base_cost += custo_atual
+		sell_value = int(base_cost / 2.0)
+		
+		atualizar_textos_upgrade()
+		print("⚡ Upgrade de Velocidade! Nível: ", nivel_velocidade, " | Novo Fire Rate: ", fire_rate)
+
+
+# =========================
+# 🔭 UPGRADE DE RANGE
+# =========================
+func _on_btn_range_pressed():
+	if nivel_range >= MAX_UPGRADES: return
+	
+	var custo_atual = custo_range_base * (nivel_range + 1)
+	
+	if Game.spend_gold(custo_atual):
+		nivel_range += 1
+		
+		var shape = $TowerRange/CollisionShape2D.shape as CircleShape2D
+		shape.radius += 30.0 
+		
+		base_cost += custo_atual
+		sell_value = int(base_cost / 2.0)
+		
+		atualizar_textos_upgrade()
+		queue_redraw()
+		print("🔭 Upgrade de Range! Nível: ", nivel_range, " | Novo Raio: ", shape.radius)
