@@ -9,7 +9,22 @@ size = Vector2(29, 19)
 [sub_resource type="CircleShape2D" id="CircleShape2D_u318i"]
 radius = 161.95
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u318i"]
+bg_color = Color(0.78418857, 0.41091183, 0.10613922, 0.58431375)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.43577427, 0.26420802, 0.12539, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 14
+
 [node name="Lenhador" type="StaticBody2D" unique_id=1076769759]
+collision_layer = 2
+input_pickable = true
 script = ExtResource("1_u318i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=114037299]
@@ -28,10 +43,73 @@ texture = ExtResource("1_6pgoe")
 [node name="TowerRange" type="Area2D" parent="." unique_id=686264121]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TowerRange" unique_id=902288085]
+visible = false
 shape = SubResource("CircleShape2D_u318i")
 debug_color = Color(0, 0.0040804003, 0.005905705, 0.41960785)
 
-[node name="Node" type="Node" parent="." unique_id=1773901836]
+[node name="Upgrade" type="Node2D" parent="." unique_id=1761453057]
+
+[node name="PainelDeUpgrade" type="PanelContainer" parent="Upgrade" unique_id=1952921080]
+z_index = 10
+offset_left = -162.0
+offset_top = 30.000002
+offset_right = 60.0
+offset_bottom = 91.0
+scale = Vector2(1.5, 1.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_u318i")
+
+[node name="MargemDoPainel" type="MarginContainer" parent="Upgrade/PainelDeUpgrade" unique_id=538453515]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ContainerDosButoes" type="HBoxContainer" parent="Upgrade/PainelDeUpgrade/MargemDoPainel" unique_id=259614033]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+mouse_filter = 2
+alignment = 2
+
+[node name="Control2" type="Control" parent="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes" unique_id=399731608]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="BotaoVelocidade" type="Button" parent="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes" unique_id=1911355468]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 10
+text = "$15"
+
+[node name="BotaoRange" type="Button" parent="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes" unique_id=1082213196]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 10
+text = "Range"
+
+[node name="Control" type="Control" parent="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes" unique_id=894645117]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="BotaoVender" type="Button" parent="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes" unique_id=122773440]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 10
+text = "Vender"
 
 [connection signal="body_entered" from="TowerRange" to="." method="_on_tower_range_body_entered"]
 [connection signal="body_exited" from="TowerRange" to="." method="_on_tower_range_body_exited"]
+[connection signal="pressed" from="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes/BotaoVelocidade" to="." method="_on_btn_velocidade_pressed"]
+[connection signal="pressed" from="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes/BotaoRange" to="." method="_on_btn_range_pressed"]
+[connection signal="pressed" from="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes/BotaoVender" to="." method="_on_btn_vender_pressed"]

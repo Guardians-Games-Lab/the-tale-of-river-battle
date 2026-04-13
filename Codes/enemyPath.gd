@@ -14,5 +14,5 @@ func _process(delta):
 	if progress_ratio >= 1.0:
 		# 🔥 só dispara se ainda existir
 		if is_instance_valid(body):
-			body.escaped.emit()
+			body.escape()
 		queue_free()

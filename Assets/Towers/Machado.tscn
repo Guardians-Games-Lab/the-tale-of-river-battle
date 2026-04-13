@@ -1,7 +1,14 @@
 [gd_scene format=3 uid="uid://dmfxkxxa6286k"]
 
-[ext_resource type="Texture2D" uid="uid://dyqtiiihdi6po" path="res://Sprites/Towers/lenhador.png" id="1_k2qqf"]
+[ext_resource type="Texture2D" uid="uid://37i6bpiihj6p" path="res://Sprites/Machado/machado1.png" id="2_ebxgp"]
 [ext_resource type="Script" uid="uid://btj3erlpfhqfq" path="res://Codes/machado.gd" id="2_yi7u8"]
+[ext_resource type="Texture2D" uid="uid://cwfpei1g0we1x" path="res://Sprites/Machado/machado2.png" id="3_31hip"]
+[ext_resource type="Texture2D" uid="uid://dl38n1f4slce" path="res://Sprites/Machado/machado3.png" id="4_votex"]
+[ext_resource type="Texture2D" uid="uid://dl3iui0c2fwsa" path="res://Sprites/Machado/machado4.png" id="5_2lua1"]
+[ext_resource type="Texture2D" uid="uid://2l1pu7lp6vnu" path="res://Sprites/Machado/machado5.png" id="6_ohfj1"]
+[ext_resource type="Texture2D" uid="uid://m34nj2kchdd3" path="res://Sprites/Machado/machado6.png" id="7_2p2h7"]
+[ext_resource type="Texture2D" uid="uid://bjksdjchmc7be" path="res://Sprites/Machado/machado7.png" id="8_jxjxs"]
+[ext_resource type="Texture2D" uid="uid://l7u6dcq1cjjb" path="res://Sprites/Machado/machado8.png" id="9_vxo1a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yi7u8"]
 radius = 6.0
@@ -9,13 +16,50 @@ radius = 6.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_44mcw"]
 radius = 8.0
 
+[sub_resource type="Animation" id="Animation_b2oe5"]
+resource_name = "MachadoAnimation"
+length = 0.8333333
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Machado:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.23333333, 0.33333334, 0.43333334, 0.53333336, 0.6333333, 0.73333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_ebxgp"), ExtResource("3_31hip"), ExtResource("4_votex"), ExtResource("5_2lua1"), ExtResource("6_ohfj1"), ExtResource("7_2p2h7"), ExtResource("8_jxjxs"), ExtResource("9_vxo1a")]
+}
+
+[sub_resource type="Animation" id="Animation_3o6cs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Machado:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_ebxgp")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oa7mh"]
+_data = {
+&"MachadoAnimation": SubResource("Animation_b2oe5"),
+&"RESET": SubResource("Animation_3o6cs")
+}
+
 [node name="Machado" type="CharacterBody2D" unique_id=1982021574]
 script = ExtResource("2_yi7u8")
 
 [node name="Machado" type="Sprite2D" parent="." unique_id=1235384635]
 position = Vector2(0, -1)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_k2qqf")
+texture = ExtResource("2_ebxgp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=897447881]
 position = Vector2(0, 1)
@@ -26,3 +70,8 @@ shape = SubResource("CircleShape2D_yi7u8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=460143114]
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_44mcw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=580148631]
+libraries/ = SubResource("AnimationLibrary_oa7mh")
+autoplay = &"MachadoAnimation"
+speed_scale = 3.0
