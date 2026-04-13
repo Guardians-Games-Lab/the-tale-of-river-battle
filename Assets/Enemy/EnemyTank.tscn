@@ -61,6 +61,7 @@ collision_mask = 0
 script = ExtResource("1_5hdnl")
 hp = 100
 deathPoints = 50
+gold_dropped = 40
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=2025367617]
 scale = Vector2(2, 2)

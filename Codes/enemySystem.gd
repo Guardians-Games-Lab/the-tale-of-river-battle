@@ -9,7 +9,6 @@ signal escaped
 # =========================
 # ❤️ ATRIBUTOS DO INIMIGO
 # =========================
-@export var hp: int = 10
 var max_hp: int # Guarda a vida total inicial
 var removed := false # Trava de segurança para não processar morte/fuga duas vezes
 
@@ -19,7 +18,9 @@ var removed := false # Trava de segurança para não processar morte/fuga duas v
 @onready var barra_vida: ProgressBar = $BarraDeVida
 @onready var texto_vida: Label = $BarraDeVida/TextoVida
 
-@export var deathPoints: int;
+@export var hp: int = 10
+@export var deathPoints: int = 10
+@export var gold_dropped: int = 5
 
 # =========================
 # ⚙️ INICIALIZAÇÃO
@@ -74,7 +75,8 @@ func die():
 	removed = true
 	
 	# Recompensas para o jogador! 💰📈
-	Game.add_gold(5) 
+	
+	Game.add_gold(gold_dropped) 
 	Game.add_score(deathPoints) 
 	
 	died.emit()
