@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://q2ctnxhbqhv3"]
+
+[ext_resource type="Script" uid="uid://c3u4x1nchfws" path="res://Codes/menu_pause.gd" id="1_bt4rq"]
+[ext_resource type="Texture2D" uid="uid://c6482ht5r64cl" path="res://Sprites/Menu/Nuvem.png" id="1_n1b7x"]
+[ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/Kenney Pixel Square.ttf" id="2_bt4rq"]
+
+[node name="MenuPause" type="CanvasLayer" unique_id=663674318]
+process_mode = 3
+script = ExtResource("1_bt4rq")
+
+[node name="MenuPause" type="TextureRect" parent="." unique_id=485351505]
+process_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.78516
+offset_top = -84.82587
+offset_right = 144.78516
+offset_bottom = 84.82587
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.4380941, 2.4167156)
+pivot_offset = Vector2(147.1452, 84.11328)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_n1b7x")
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuPause" unique_id=1047900341]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Itens" type="HBoxContainer" parent="MenuPause/MarginContainer" unique_id=222510657]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Mute" type="Button" parent="MenuPause/MarginContainer/Itens" unique_id=912917389]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
+text = "MUTAR"
+
+[node name="Continue" type="Button" parent="MenuPause/MarginContainer/Itens" unique_id=2104944407]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
+text = "CONTINUE"
+
+[node name="Sair" type="Button" parent="MenuPause/MarginContainer/Itens" unique_id=1748968298]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
+text = "SAIR"
+
+[node name="PontuacaoMaxima" type="HBoxContainer" parent="MenuPause/MarginContainer" unique_id=1800200855]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="TextoPontuacaoMaxima" type="Label" parent="MenuPause/MarginContainer/PontuacaoMaxima" unique_id=285435904]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.056291588, 0.056291603, 0.056291595, 1)
+theme_override_fonts/font = ExtResource("2_bt4rq")
+text = "PONTUAÇÃO MáxIMA"
+
+[connection signal="pressed" from="MenuPause/MarginContainer/Itens/Continue" to="." method="_on_btn_continuar_pressed"]
+[connection signal="pressed" from="MenuPause/MarginContainer/Itens/Sair" to="." method="_on_btn_sair_pressed"]

@@ -7,3 +7,4 @@
 script = ExtResource("1_2l8oy")
 
 [node name="MainMenu" parent="." unique_id=2039632068 instance=ExtResource("2_60mib")]
+mouse_filter = 2
