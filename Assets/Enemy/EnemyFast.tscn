@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://bpihe5o3sj5jr"]
+
+[ext_resource type="Script" uid="uid://iy83dv6jbbus" path="res://Codes/enemyPath.gd" id="1_1kvtj"]
+[ext_resource type="Script" uid="uid://b1ws47pplwgqa" path="res://Codes/enemySystem.gd" id="2_vx6v1"]
+[ext_resource type="Texture2D" uid="uid://bqu15jqgttdh7" path="res://Sprites/Enemy/inimigo2.png" id="3_ds1vs"]
+[ext_resource type="Texture2D" uid="uid://qpy3qjlhmber" path="res://Sprites/Enemy/inimigo1.png" id="4_on6pi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1kvtj"]
+radius = 17.029387
+
+[sub_resource type="Animation" id="Animation_driln"]
+resource_name = "EnemyAnimation"
+length = 0.93333334
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [ExtResource("3_ds1vs"), ExtResource("4_on6pi")]
+}
+
+[sub_resource type="Animation" id="Animation_gvkay"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_ds1vs")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vx6v1"]
+_data = {
+&"EnemyAnimation": SubResource("Animation_driln"),
+&"RESET": SubResource("Animation_gvkay")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds1vs"]
+bg_color = Color(0.7868436, 0, 0.03929279, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_on6pi"]
+bg_color = Color(0.059109785, 0.7251424, 0.16311216, 1)
+
+[node name="EnemyFast" type="PathFollow2D" unique_id=567044815]
+script = ExtResource("1_1kvtj")
+speed = 200.0
+
+[node name="Enemy" type="CharacterBody2D" parent="." unique_id=2006047485]
+scale = Vector2(0.8, 0.8)
+collision_mask = 0
+script = ExtResource("2_vx6v1")
+gold_dropped = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=284150286]
+shape = SubResource("CircleShape2D_1kvtj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy" unique_id=1695778298]
+texture = ExtResource("3_ds1vs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy" unique_id=399997332]
+libraries/ = SubResource("AnimationLibrary_vx6v1")
+autoplay = &"EnemyAnimation"
+
+[node name="BarraDeVida" type="ProgressBar" parent="Enemy" unique_id=1533559804]
+offset_left = -15.0
+offset_top = -27.0
+offset_right = 15.0
+offset_bottom = -17.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ds1vs")
+theme_override_styles/fill = SubResource("StyleBoxFlat_on6pi")
+value = 100.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="TextoVida" type="Label" parent="Enemy/BarraDeVida" unique_id=916156539]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -1.0
+offset_right = 26.0
+offset_bottom = 11.0
+theme_override_font_sizes/font_size = 8
+text = "0/0"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true

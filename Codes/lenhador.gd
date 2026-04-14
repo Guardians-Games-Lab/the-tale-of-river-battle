@@ -141,6 +141,12 @@ func clear_preview_state() -> void:
 			child.modulate = Color(1, 1, 1, 1)
 
 func shoot(target):
+
+	# 🛡️ Verifica se o alvo ainda existe no momento do disparo
+	if not is_instance_valid(target):
+		return
+
+
 	can_shoot = false
 
 	var bullet = Bullet.instantiate()

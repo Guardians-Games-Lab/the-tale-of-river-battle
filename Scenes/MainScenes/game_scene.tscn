@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cw0d65ygi0anc" path="res://Assets/Enemy/Enemy.tscn" id="3_8pq0b"]
 [ext_resource type="PackedScene" uid="uid://c54d4cjqay5sf" path="res://Scenes/Menu/lenhador_panel.tscn" id="4_3x1ga"]
 [ext_resource type="PackedScene" uid="uid://bpx2l8gb5u24" path="res://Assets/Enemy/EnemyTank.tscn" id="5_674w2"]
+[ext_resource type="PackedScene" uid="uid://bpihe5o3sj5jr" path="res://Assets/Enemy/EnemyFast.tscn" id="5_clpeu"]
 [ext_resource type="Script" uid="uid://dvlm5n3gpewsm" path="res://Codes/gui.gd" id="5_ibdpl"]
 [ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/Kenney Pixel Square.ttf" id="6_g2kuy"]
 [ext_resource type="FontFile" uid="uid://bf57fsyphqmqm" path="res://Assets/Fonts/Kenney Pixel.ttf" id="8_2usgn"]
@@ -41,7 +42,7 @@ position = Vector2(548, 231)
 script = ExtResource("2_sewvy")
 enemy_types = Dictionary[String, PackedScene]({
 "base": ExtResource("3_8pq0b"),
-"fast": ExtResource("3_8pq0b"),
+"fast": ExtResource("5_clpeu"),
 "tank": ExtResource("5_674w2")
 })
 metadata/_edit_lock_ = true
@@ -185,6 +186,7 @@ text = "Cleber"
 [node name="Towers" type="Node2D" parent="." unique_id=346713245 groups=["exclusion"]]
 
 [node name="MenuPause" parent="." unique_id=663674318 instance=ExtResource("10_a0jnf")]
+visible = false
 
 [connection signal="timeout" from="PathSpawner/WaveTimer" to="PathSpawner" method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="PathSpawner/SpawnTimer" to="PathSpawner" method="_on_spawn_timer_timeout"]
