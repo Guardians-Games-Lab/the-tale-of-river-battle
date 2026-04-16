@@ -16,3 +16,8 @@ func _process(delta):
 		if is_instance_valid(body):
 			body.escape()
 		queue_free()
+
+
+
+
+

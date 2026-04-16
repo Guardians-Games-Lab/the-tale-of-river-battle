@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c3i8u0oco26u2"
-path="res://.godot/imported/crateMetal.png-874e61ebc939c0a93c09f5217bc3781b.ctex"
+path="res://.godot/imported/crate_metal.png-9f0e22ebc54e5bb5e4585ae02f887a2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Assets/crateMetal.png"
-dest_files=["res://.godot/imported/crateMetal.png-874e61ebc939c0a93c09f5217bc3781b.ctex"]
+source_file="res://Sprites/Assets/crate_metal.png"
+dest_files=["res://.godot/imported/crate_metal.png-9f0e22ebc54e5bb5e4585ae02f887a2e.ctex"]
 
 [params]
 

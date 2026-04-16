@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eyj8pmssx7yt"
-path="res://.godot/imported/iconeDinheiro.png-2015a1aed32628907fa78306ac4804d2.ctex"
+uid="uid://b616v8cebsi4e"
+path="res://.godot/imported/crate_wood.png-aca10a453016c58eb0e68dce9f73e729.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Assets/iconeDinheiro.png"
-dest_files=["res://.godot/imported/iconeDinheiro.png-2015a1aed32628907fa78306ac4804d2.ctex"]
+source_file="res://Sprites/Assets/crate_wood.png"
+dest_files=["res://.godot/imported/crate_wood.png-aca10a453016c58eb0e68dce9f73e729.ctex"]
 
 [params]
 

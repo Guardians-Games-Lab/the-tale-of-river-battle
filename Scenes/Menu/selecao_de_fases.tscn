@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://52iata75lant"]
+
+[ext_resource type="Texture2D" uid="uid://bmxt51056n46p" path="res://Sprites/Menu/Background-teste.png" id="1_b686k"]
+[ext_resource type="Script" uid="uid://bu8a8dbref70" path="res://Codes/seletor_de_fases.gd" id="1_oxl5e"]
+[ext_resource type="Texture2D" uid="uid://cuj1fkv0qldm5" path="res://Sprites/Menu/buttom_template.png" id="2_oxl5e"]
+[ext_resource type="Texture2D" uid="uid://52hl0dcjofpr" path="res://Sprites/Menu/shadow_buttom_template.png" id="3_wecd4"]
+[ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/kenney_pixel_square.ttf" id="4_w1lo6"]
+
+[node name="SelecaoDeFases" type="Control" unique_id=965448006]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oxl5e")
+
+[node name="B" type="TextureRect" parent="." unique_id=372732925]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_b686k")
+expand_mode = 1
+
+[node name="M" type="MarginContainer" parent="B" unique_id=2087368098]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(554, 420)
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="MenuOptions" type="VBoxContainer" parent="B/M" unique_id=685830567]
+custom_minimum_size = Vector2(500, 720)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+localize_numeral_system = false
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Mapa1" type="TextureButton" parent="B/M/MenuOptions" unique_id=668979846]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 1
+texture_normal = ExtResource("2_oxl5e")
+texture_pressed = ExtResource("3_wecd4")
+texture_hover = ExtResource("3_wecd4")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Mapa1Texto" type="Label" parent="B/M/MenuOptions/Mapa1" unique_id=1729926679]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -11.5
+offset_right = 52.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_w1lo6")
+theme_override_font_sizes/font_size = 36
+text = "MAPA 1"
+
+[node name="Mapa2" type="TextureButton" parent="B/M/MenuOptions" unique_id=1592826296]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 1
+texture_normal = ExtResource("2_oxl5e")
+texture_pressed = ExtResource("3_wecd4")
+texture_hover = ExtResource("3_wecd4")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Mapa2Texto" type="Label" parent="B/M/MenuOptions/Mapa2" unique_id=1081837732]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -11.5
+offset_right = 52.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_w1lo6")
+theme_override_font_sizes/font_size = 36
+text = "MAPA 2"
+
+[node name="Mapa3" type="TextureButton" parent="B/M/MenuOptions" unique_id=1187503412]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 1
+texture_normal = ExtResource("2_oxl5e")
+texture_pressed = ExtResource("3_wecd4")
+texture_hover = ExtResource("3_wecd4")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Mapa3Texto" type="Label" parent="B/M/MenuOptions/Mapa3" unique_id=1584397264]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -11.5
+offset_right = 52.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_w1lo6")
+theme_override_font_sizes/font_size = 36
+text = "MAPA 3"
+
+[connection signal="pressed" from="B/M/MenuOptions/Mapa1" to="B/M/MenuOptions/Mapa1" method="_on_map1_pressed"]

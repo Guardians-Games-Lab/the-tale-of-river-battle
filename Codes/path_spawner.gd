@@ -1,25 +1,30 @@
 extends Node2D
 
-# Dicionário tipado: obriga o Godot a aceitar apenas Cenas (PackedScene)
 @export var enemy_types: Dictionary[String, PackedScene] = {}
 @export var time_between_waves: float = 3.0
-
-# Define onde o arquivo JSON está guardado
 @export_file("*.json") var wave_file: String = "res://Data/waves_mapa1.json"
+@export var tempo_preparo_inicial: float = 5.0
 
 var waves: Array = []
 var current_wave := 0
-var enemies_spawned := 0
 var enemies_alive := 0
+
+# 👇 NOVA VARIÁVEL: A nossa "linha indiana" de inimigos
+var spawn_queue: Array = [] 
 
 @onready var path: Path2D = $Path2D
 @onready var spawn_timer: Timer = $SpawnTimer
 
 
 func _ready():
-	load_waves_from_json() # ⬅️ Carrega o arquivo antes de começar o jogo!
+	# Blindagem: Garante que o timer não fique repetindo loucamente sozinho
+	spawn_timer.one_shot = true 
 	
+	load_waves_from_json()
 	if waves.size() > 0:
+		# Pausa a execução deste script temporariamente
+		await get_tree().create_timer(tempo_preparo_inicial).timeout
+
 		start_wave()
 
 
@@ -28,68 +33,77 @@ func _ready():
 # =========================
 func load_waves_from_json():
 	if FileAccess.file_exists(wave_file):
-		# Abre o arquivo em modo de leitura
 		var file = FileAccess.open(wave_file, FileAccess.READ)
-		var content = file.get_as_text() # Pega todo o texto
-		
-		# Transforma o texto JSON em um Array nativo do Godot
+		var content = file.get_as_text()
 		var parsed_data = JSON.parse_string(content)
 		
 		if parsed_data != null and parsed_data is Array:
 			waves = parsed_data
-			print("🌊 Waves carregadas com sucesso! Total de ondas: ", waves.size())
+			print("🌊 Waves carregadas! Total de ondas: ", waves.size())
 		else:
 			print("❌ ERRO: O arquivo JSON está com o formato incorreto.")
 	else:
-		print("❌ ERRO: Arquivo JSON não encontrado em: ", wave_file)
+		print("❌ ERRO: Arquivo JSON não encontrado.")
 
 
 # =========================
-# 🚀 COMEÇA WAVE
+# 🚀 COMEÇA WAVE (MONTAR A FILA)
 # =========================
 func start_wave():
 	if current_wave >= waves.size():
-		print("Fim das ondas!")
+		print("🏆 Você venceu! Fim das ondas!")
 		return
 		
-	# AVISA O GAME.GD QUAL É A ONDA ATUAL (soma 1 para a UI não mostrar "Wave 0")
 	Game.set_wave(current_wave + 1)
-	
-	enemies_spawned = 0
 	enemies_alive = 0
+	spawn_queue.clear() # Limpa a fila da onda passada
 
-	spawn_timer.wait_time = waves[current_wave]["interval"]
-	spawn_timer.start()
+	# 👇 O SEGREDO: Pega os grupos da onda atual e coloca todo mundo na mesma fila
+	var grupos_da_wave = waves[current_wave]
+	for grupo in grupos_da_wave:
+		var qtd = grupo.get("quantity", 1)
+		for i in range(qtd):
+			spawn_queue.append({
+				"type": grupo.get("type", "base"),
+				"interval": grupo.get("interval", 1.0)
+			})
+
+	print("🚀 Wave ", current_wave + 1, " iniciada! Inimigos na fila: ", spawn_queue.size())
+
+	# Se tiver gente na fila, manda o primeiro nascer imediatamente!
+	if spawn_queue.size() > 0:
+		_on_spawn_timer_timeout()
 
 
 # =========================
-# 👾 SPAWN INIMIGO (MÚLTIPLOS TIPOS)
+# 👾 SPAWN INIMIGO (CHAMADO PELO TIMER)
 # =========================
 func _on_spawn_timer_timeout():
-	# 1. Pega os dados da wave atual e descobre o tipo
-	var wave_data = waves[current_wave]
-	var type = wave_data.get("type", "base") # "base" é o padrão se o JSON não tiver "type"
+	if spawn_queue.is_empty():
+		return # Fila vazia, não faz nada
 
-	# 2. Verifica se o tipo existe no dicionário e cria o inimigo
+	# 1. Tira o primeiro inimigo da fila
+	var next_enemy_data = spawn_queue.pop_front()
+
+	# 2. Cria o inimigo no mapa
+	var type = next_enemy_data["type"]
 	if enemy_types.has(type):
 		var enemy_scene = enemy_types[type]
 		var enemy = enemy_scene.instantiate()
 		path.add_child(enemy)
 		
-		enemies_spawned += 1
 		enemies_alive += 1
 
 		var body = enemy.get_node("Enemy")
-
-		# Conecta os sinais de morte e fuga
 		body.died.connect(_on_enemy_removed)
 		body.escaped.connect(_on_enemy_removed)
 	else:
-		print("❌ ERRO: Tipo de inimigo '", type, "' não foi adicionado no Inspetor do Spawner!")
+		print("❌ ERRO: Tipo '", type, "' não configurado no Inspetor do Spawner!")
 
-	# 3. Para o timer se já nasceram todos
-	if enemies_spawned >= wave_data["quantity"]:
-		spawn_timer.stop()
+	# 3. Se ainda sobrou gente na fila, liga o timer de novo!
+	if not spawn_queue.is_empty():
+		spawn_timer.wait_time = next_enemy_data["interval"]
+		spawn_timer.start()
 
 
 # =========================
@@ -100,9 +114,9 @@ func _on_enemy_removed():
 		return
 
 	enemies_alive -= 1
-	print("Inimigos vivos:", enemies_alive)
 
-	if enemies_alive == 0 and enemies_spawned >= waves[current_wave]["quantity"]:
+	# A onda só acaba quando a fila esvaziar E todos os inimigos do mapa morrerem/fugirem
+	if spawn_queue.is_empty() and enemies_alive == 0:
 		next_wave()
 
 
@@ -113,8 +127,8 @@ func next_wave():
 	current_wave += 1
 
 	if current_wave < waves.size():
-		print("Próxima wave:", current_wave)
+		print("⏳ Próxima wave em ", time_between_waves, " segundos...")
 		await get_tree().create_timer(time_between_waves).timeout
 		start_wave()
 	else:
-		print("Fim das ondas!")
+		print("🎉 Fim de todas as ondas!")

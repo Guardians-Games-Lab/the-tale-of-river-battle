@@ -51,15 +51,19 @@ signal health_changed
 signal game_over
 
 func take_damage(amount: int):
-	Health -= amount
+	Health -= amount 
 	print("💧 Dano recebido: ", amount, " | Vida atual da Lagoa: ", Health)
-	
-	health_changed.emit()
 	
 	if Health <= 0:
 		Health = 0
-		print("💀 GAME OVER! A lagoa foi totalmente poluída.")
 		game_over.emit()
+		print("💀 GAME OVER! A lagoa foi totalmente poluída.")
+
+	health_changed.emit()	
+
+	
+	
+	
 
 
 # =========================
@@ -114,3 +118,18 @@ signal wave_changed
 func set_wave(nova_wave: int):
 	Wave = nova_wave
 	wave_changed.emit()
+
+
+	
+func reset_stats():
+	Health = 100        # Coloque aqui a vida inicial do jogador
+	Gold = 20     # O dinheiro inicial para comprar a primeira torre
+	Score = 0      # Pontuação zerada
+	Wave = 1       # Volta para a onda 1
+	health_changed.emit()
+	gold_changed.emit()
+	score_changed.emit()
+	wave_changed.emit()
+	# Se você usa sinais para atualizar a UI, pode emitir eles aqui também
+	# hp_changed.emit(hp)
+	# gold_changed.emit(gold)

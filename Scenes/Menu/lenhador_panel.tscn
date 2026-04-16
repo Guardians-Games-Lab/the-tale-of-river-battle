@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dyqtiiihdi6po" path="res://Sprites/Towers/lenhador.png" id="1_8me8n"]
 [ext_resource type="Script" uid="uid://otg5d7bnfqvc" path="res://Codes/lenhador_panel.gd" id="1_mqrgk"]
 [ext_resource type="PackedScene" uid="uid://dsnrll5o5350l" path="res://Assets/Towers/lenhador.tscn" id="2_bugkg"]
-[ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/Kenney Pixel Square.ttf" id="4_8770l"]
+[ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/kenney_pixel_square.ttf" id="4_8770l"]
 
 [node name="LenhadorPanel" type="Panel" unique_id=1163742910]
 offset_right = 80.0

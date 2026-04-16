@@ -6,10 +6,40 @@ var selected_tower: PackedScene
 @onready var ground = get_tree().get_first_node_in_group("ground")
 @onready var exclusion = get_tree().get_first_node_in_group("exclusion")
 @onready var towers_node = get_node("Towers")
+@onready var botao_pausa = $CanvasLayerUI/PauseButton
+@onready var menu_pausa = $MenuPause
 
+# 👇 Puxando a tela de Game Over no seu padrão (Ajuste o caminho do $ se precisar!)
+@onready var menu_game_over = $MenuGameOver 
 
 func _ready():
 	add_to_group("game")
+	Game.reset_stats()
+	botao_pausa.pressed.connect(_on_pause_btn_pressed)  
+	
+	# Fica ouvindo o sinal do Autoload
+	Game.game_over.connect(_chamar_tela_game_over)
+
+
+# =========================
+# 💀 Game Over
+# =========================
+func _chamar_tela_game_over():
+	# Congela o jogo
+	get_tree().paused = true 
+	# 2. 🔒 O CADEADO: Desativa completamente o nó do menu de pausa
+	# Isso impede que ele abra, feche ou aceite qualquer clique/tecla.
+	if menu_pausa:
+		menu_pausa.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	# 3. Opcional: Esconde o botão se ele ainda estiver visível
+	if botao_pausa:
+		botao_pausa.visible = false
+	
+	
+	# Mostra a tela que já estava na árvore (escondida)
+	if menu_game_over:
+		menu_game_over.visible = true
 
 
 # =========================
@@ -145,3 +175,10 @@ func cancel_tower():
 		preview.queue_free()
 	preview = null
 	
+
+# =========================
+# ⏸️ Menu de Pausa
+# =========================
+func _on_pause_btn_pressed() -> void:
+	if menu_pausa:
+		menu_pausa._toggle_pause()
