@@ -53,4 +53,4 @@ func _on_menu_pressed():
 # =========================
 func _atualizar_textos_finais():
 	# Essa função só vai rodar na hora que a lagoa morrer!
-	label_pontuacao.text = "Pontuação: " + str(Game.Score)
+	label_pontuacao.text = "Pontuação Final:" + str(Game.Score)

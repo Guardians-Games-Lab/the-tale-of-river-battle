@@ -40,7 +40,7 @@ func _atualizar_texto_recorde():
 		texto_recorde.text = "🏆 Maior Pontuação: " + str(Game.Highscore)
 	else:
 		# Se for 0, mostra a frase padrão
-		texto_recorde.text = "🏆 Nenhum recorde registrado ainda!"
+		texto_recorde.text = "🏆 Nenhum recorde ainda!"
 		
 # =========================
 # 🖱️ CONEXÕES DOS BOTÕES
@@ -51,7 +51,7 @@ func _on_btn_continuar_pressed():
 
 func _on_btn_sair_pressed():
 	get_tree().paused = false # Importante: despausar antes de sair!
-	get_tree().change_scene_to_file("res://scene_handler.tscn")
+	get_tree().change_scene_to_file("res://main_menu.tscn")
 
 # Se você tem um botão de Pause na sua GUI principal, 
 # ele deve chamar a função _toggle_pause() deste script.

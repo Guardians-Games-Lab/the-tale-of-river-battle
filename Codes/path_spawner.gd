@@ -3,6 +3,7 @@ extends Node2D
 @export var enemy_types: Dictionary[String, PackedScene] = {}
 @export var time_between_waves: float = 3.0
 @export_file("*.json") var wave_file: String = "res://Data/waves_mapa1.json"
+@export var tempo_preparo_inicial: float = 5.0
 
 var waves: Array = []
 var current_wave := 0
@@ -21,6 +22,9 @@ func _ready():
 	
 	load_waves_from_json()
 	if waves.size() > 0:
+		# Pausa a execução deste script temporariamente
+		await get_tree().create_timer(tempo_preparo_inicial).timeout
+
 		start_wave()
 
 

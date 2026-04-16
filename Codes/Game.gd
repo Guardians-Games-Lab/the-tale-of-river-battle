@@ -58,9 +58,10 @@ func take_damage(amount: int):
 		Health = 0
 		game_over.emit()
 		print("💀 GAME OVER! A lagoa foi totalmente poluída.")
-	
 
-	health_changed.emit()
+	health_changed.emit()	
+
+	
 	
 	
 

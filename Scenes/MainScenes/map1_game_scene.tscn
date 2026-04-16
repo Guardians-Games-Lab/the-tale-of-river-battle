@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://drnq1ggmrocee"]
 
-[ext_resource type="Script" uid="uid://bid2yltp3m62e" path="res://Codes/game_scene.gd" id="1_2u2le"]
-[ext_resource type="PackedScene" uid="uid://3k02aa0vretn" path="res://Scenes/Maps/map_1.tscn" id="1_akvmk"]
-[ext_resource type="Script" uid="uid://b8wyf2dwkaaeh" path="res://Codes/path_spawner.gd" id="2_sewvy"]
-[ext_resource type="PackedScene" uid="uid://cw0d65ygi0anc" path="res://Assets/Enemy/enemy.tscn" id="3_8pq0b"]
-[ext_resource type="PackedScene" uid="uid://c54d4cjqay5sf" path="res://Scenes/Menu/lenhador_panel.tscn" id="4_3x1ga"]
-[ext_resource type="PackedScene" uid="uid://bpx2l8gb5u24" path="res://Assets/Enemy/enemy_tank.tscn" id="5_674w2"]
-[ext_resource type="PackedScene" uid="uid://bpihe5o3sj5jr" path="res://Assets/Enemy/enemy_fast.tscn" id="5_clpeu"]
-[ext_resource type="Script" uid="uid://dvlm5n3gpewsm" path="res://Codes/gui.gd" id="5_ibdpl"]
-[ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/kenney_pixel_square.ttf" id="6_g2kuy"]
-[ext_resource type="FontFile" uid="uid://bf57fsyphqmqm" path="res://Assets/Fonts/kenney_pixel.ttf" id="8_2usgn"]
-[ext_resource type="PackedScene" uid="uid://q2ctnxhbqhv3" path="res://Scenes/Menu/menu_pause.tscn" id="10_a0jnf"]
-[ext_resource type="PackedScene" uid="uid://dnsuw1m240v8j" path="res://Scenes/Menu/menu_game_over.tscn" id="12_m8rg1"]
+[ext_resource type="Script" uid="uid://bid2yltp3m62e" path="res://Codes/map1_game_scene.gd" id="1_tbc0f"]
+[ext_resource type="PackedScene" uid="uid://3k02aa0vretn" path="res://Scenes/Maps/map_1.tscn" id="2_co35u"]
+[ext_resource type="Script" uid="uid://b8wyf2dwkaaeh" path="res://Codes/path_spawner.gd" id="3_fm6u5"]
+[ext_resource type="PackedScene" uid="uid://cw0d65ygi0anc" path="res://Assets/Enemy/enemy.tscn" id="4_qxojp"]
+[ext_resource type="PackedScene" uid="uid://bpihe5o3sj5jr" path="res://Assets/Enemy/enemy_fast.tscn" id="5_6w7by"]
+[ext_resource type="PackedScene" uid="uid://bpx2l8gb5u24" path="res://Assets/Enemy/enemy_tank.tscn" id="6_bu4gh"]
+[ext_resource type="Script" uid="uid://dvlm5n3gpewsm" path="res://Codes/gui.gd" id="7_euyiv"]
+[ext_resource type="PackedScene" uid="uid://c54d4cjqay5sf" path="res://Scenes/Menu/lenhador_panel.tscn" id="8_51o7u"]
+[ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/kenney_pixel_square.ttf" id="9_5nqpc"]
+[ext_resource type="FontFile" uid="uid://bf57fsyphqmqm" path="res://Assets/Fonts/kenney_pixel.ttf" id="10_7kw3d"]
+[ext_resource type="PackedScene" uid="uid://q2ctnxhbqhv3" path="res://Scenes/Menu/menu_pause.tscn" id="11_jeg8y"]
+[ext_resource type="PackedScene" uid="uid://dnsuw1m240v8j" path="res://Scenes/Menu/menu_game_over.tscn" id="12_3aj7b"]
 
 [sub_resource type="Curve2D" id="Curve2D_8pq0b"]
 _data = {
@@ -25,10 +25,10 @@ bg_color = Color(0.6, 0.6, 0.6, 0.84313726)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_674w2"]
 bg_color = Color(0.9088105, 0, 0.108250044, 1)
 
-[node name="GameScene" type="Node2D" unique_id=629731469 groups=["game"]]
-script = ExtResource("1_2u2le")
+[node name="Map1GameScene" type="Node2D" unique_id=629731469 groups=["game"]]
+script = ExtResource("1_tbc0f")
 
-[node name="Map_1" parent="." unique_id=1311482498 instance=ExtResource("1_akvmk")]
+[node name="Map_1" parent="." unique_id=1311482498 instance=ExtResource("2_co35u")]
 position = Vector2(132, -223)
 metadata/_edit_lock_ = true
 
@@ -40,11 +40,11 @@ limit_enabled = false
 
 [node name="PathSpawner" type="Node2D" parent="." unique_id=452600707]
 position = Vector2(548, 231)
-script = ExtResource("2_sewvy")
+script = ExtResource("3_fm6u5")
 enemy_types = Dictionary[String, PackedScene]({
-"base": ExtResource("3_8pq0b"),
-"fast": ExtResource("5_clpeu"),
-"tank": ExtResource("5_674w2")
+"base": ExtResource("4_qxojp"),
+"fast": ExtResource("5_6w7by"),
+"tank": ExtResource("6_bu4gh")
 })
 metadata/_edit_lock_ = true
 
@@ -60,7 +60,7 @@ curve = SubResource("Curve2D_8pq0b")
 
 [node name="CanvasLayerUI" type="CanvasLayer" parent="." unique_id=1454958501]
 follow_viewport_enabled = true
-script = ExtResource("5_ibdpl")
+script = ExtResource("7_euyiv")
 
 [node name="Gui" type="Panel" parent="CanvasLayerUI" unique_id=1635158854]
 offset_left = 1204.0
@@ -86,7 +86,7 @@ theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 40
 last_wrap_alignment = 2
 
-[node name="Lenhador" parent="CanvasLayerUI/Gui/PainelDeCompra" unique_id=1163742910 instance=ExtResource("4_3x1ga")]
+[node name="Lenhador" parent="CanvasLayerUI/Gui/PainelDeCompra" unique_id=1163742910 instance=ExtResource("8_51o7u")]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 
@@ -105,12 +105,12 @@ alignment = 1
 
 [node name="TextoDinheiro" type="Label" parent="CanvasLayerUI/Gui/TextoDinheiro" unique_id=1553489291]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("6_g2kuy")
+theme_override_fonts/font = ExtResource("9_5nqpc")
 text = "Dinheiro"
 
 [node name="DinheiroTotal" type="Label" parent="CanvasLayerUI/Gui/TextoDinheiro" unique_id=821352449]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("6_g2kuy")
+theme_override_fonts/font = ExtResource("9_5nqpc")
 theme_override_font_sizes/font_size = 21
 text = "$0"
 
@@ -142,18 +142,18 @@ size_flags_vertical = 8
 
 [node name="TextoPontos" type="Label" parent="CanvasLayerUI/Gui/TextoPontosEWaves" unique_id=1008474700]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("6_g2kuy")
+theme_override_fonts/font = ExtResource("9_5nqpc")
 text = "Pontos:"
 
 [node name="PontosTotal" type="Label" parent="CanvasLayerUI/Gui/TextoPontosEWaves" unique_id=1363654504]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("6_g2kuy")
+theme_override_fonts/font = ExtResource("9_5nqpc")
 theme_override_font_sizes/font_size = 16
 text = "0 "
 
 [node name="WaveAtual" type="Label" parent="CanvasLayerUI/Gui/TextoPontosEWaves" unique_id=32400261]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("6_g2kuy")
+theme_override_fonts/font = ExtResource("9_5nqpc")
 text = "Wave: 1"
 
 [node name="VidaProgressBar" type="ProgressBar" parent="CanvasLayerUI" unique_id=1901477901]
@@ -171,7 +171,7 @@ offset_left = 6.0
 offset_top = -3.0
 offset_right = 81.0
 offset_bottom = 27.0
-theme_override_fonts/font = ExtResource("8_2usgn")
+theme_override_fonts/font = ExtResource("10_7kw3d")
 theme_override_font_sizes/font_size = 40
 text = "Life: 0"
 
@@ -186,10 +186,10 @@ text = "Cleber"
 
 [node name="Towers" type="Node2D" parent="." unique_id=346713245 groups=["exclusion"]]
 
-[node name="MenuPause" parent="." unique_id=663674318 instance=ExtResource("10_a0jnf")]
+[node name="MenuPause" parent="." unique_id=663674318 instance=ExtResource("11_jeg8y")]
 visible = false
 
-[node name="MenuGameOver" parent="." unique_id=1614034800 instance=ExtResource("12_m8rg1")]
+[node name="MenuGameOver" parent="." unique_id=1614034800 instance=ExtResource("12_3aj7b")]
 visible = false
 
 [connection signal="timeout" from="PathSpawner/WaveTimer" to="PathSpawner" method="_on_wave_timer_timeout"]
