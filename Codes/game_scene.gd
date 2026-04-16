@@ -27,6 +27,15 @@ func _ready():
 func _chamar_tela_game_over():
 	# Congela o jogo
 	get_tree().paused = true 
+	# 2. 🔒 O CADEADO: Desativa completamente o nó do menu de pausa
+	# Isso impede que ele abra, feche ou aceite qualquer clique/tecla.
+	if menu_pausa:
+		menu_pausa.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	# 3. Opcional: Esconde o botão se ele ainda estiver visível
+	if botao_pausa:
+		botao_pausa.visible = false
+	
 	
 	# Mostra a tela que já estava na árvore (escondida)
 	if menu_game_over:

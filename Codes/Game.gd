@@ -51,15 +51,18 @@ signal health_changed
 signal game_over
 
 func take_damage(amount: int):
-	Health -= amount
+	Health -= amount 
 	print("💧 Dano recebido: ", amount, " | Vida atual da Lagoa: ", Health)
-	
-	health_changed.emit()
 	
 	if Health <= 0:
 		Health = 0
-		print("💀 GAME OVER! A lagoa foi totalmente poluída.")
 		game_over.emit()
+		print("💀 GAME OVER! A lagoa foi totalmente poluída.")
+	
+
+	health_changed.emit()
+	
+	
 
 
 # =========================
