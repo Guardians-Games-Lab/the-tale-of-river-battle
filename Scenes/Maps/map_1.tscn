@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://c6vimkuaombr8" path="res://Sprites/Assets/treeBrown_large.png" id="2_cphd2"]
 [ext_resource type="Script" uid="uid://tquo5jgtl3l8" path="res://Scenes/Maps/ground.gd" id="2_m6jp7"]
 [ext_resource type="Texture2D" uid="uid://pwibftv1r6sq" path="res://Sprites/Assets/treeGreen_large.png" id="3_1efcw"]
-[ext_resource type="Texture2D" uid="uid://c3i8u0oco26u2" path="res://Sprites/Assets/crateMetal.png" id="4_04oj5"]
-[ext_resource type="Texture2D" uid="uid://b616v8cebsi4e" path="res://Sprites/Assets/crateWood.png" id="5_bawlw"]
-[ext_resource type="Texture2D" uid="uid://ciwdhanf2q8l7" path="res://Sprites/Assets/Rio.png" id="7_1efcw"]
+[ext_resource type="Texture2D" uid="uid://c3i8u0oco26u2" path="res://Sprites/Assets/crate_metal.png" id="4_04oj5"]
+[ext_resource type="Texture2D" uid="uid://b616v8cebsi4e" path="res://Sprites/Assets/crate_wood.png" id="5_bawlw"]
+[ext_resource type="Texture2D" uid="uid://ciwdhanf2q8l7" path="res://Sprites/Assets/rio.png" id="7_1efcw"]
 [ext_resource type="Script" uid="uid://c18vvm6pfqqq5" path="res://Scenes/Maps/tower_exclusion.gd" id="7_cphd2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_afmuf"]

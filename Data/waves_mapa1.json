@@ -1,112 +1,312 @@
 [
-  [
-	{ "type": "base", "quantity": 3, "interval": 1.5 }
-  ],
-  [
-	{ "type": "base", "quantity": 5, "interval": 1.2 }
-  ],
-  [
-	{ "type": "base", "quantity": 4, "interval": 1.0 },
-	{ "type": "fast", "quantity": 2, "interval": 0.8 }
-  ],
-  [
-	{ "type": "base", "quantity": 8, "interval": 1.0 }
-  ],
-  [
-	{ "type": "fast", "quantity": 5, "interval": 0.6 }
-  ],
-  [
-	{ "type": "base", "quantity": 6, "interval": 1.0 },
-	{ "type": "fast", "quantity": 4, "interval": 0.8 }
-  ],
-  [
-	{ "type": "base", "quantity": 10, "interval": 0.8 }
-  ],
-  [
-	{ "type": "tank", "quantity": 1, "interval": 3.0 },
-	{ "type": "base", "quantity": 5, "interval": 1.0 }
-  ],
-  [
-	{ "type": "fast", "quantity": 8, "interval": 0.5 }
-  ],
-  [
-	{ "type": "tank", "quantity": 1, "interval": 2.0 },
-	{ "type": "fast", "quantity": 6, "interval": 0.6 }
-  ],
-  [
-	{ "type": "base", "quantity": 12, "interval": 0.7 }
-  ],
-  [
-	{ "type": "tank", "quantity": 2, "interval": 2.5 },
-	{ "type": "base", "quantity": 8, "interval": 0.8 }
-  ],
-  [
-	{ "type": "fast", "quantity": 12, "interval": 0.4 }
-  ],
-  [
-	{ "type": "base", "quantity": 8, "interval": 0.8 },
-	{ "type": "tank", "quantity": 1, "interval": 2.0 },
-	{ "type": "fast", "quantity": 5, "interval": 0.5 }
-  ],
-  [
-	{ "type": "tank", "quantity": 3, "interval": 2.0 }
-  ],
-  [
-	{ "type": "fast", "quantity": 15, "interval": 0.3 }
-  ],
-  [
-	{ "type": "base", "quantity": 15, "interval": 0.6 },
-	{ "type": "tank", "quantity": 2, "interval": 2.0 }
-  ],
-  [
-	{ "type": "tank", "quantity": 2, "interval": 2.0 },
-	{ "type": "fast", "quantity": 10, "interval": 0.4 }
-  ],
-  [
-	{ "type": "base", "quantity": 20, "interval": 0.5 }
-  ],
-  [
-	{ "type": "tank", "quantity": 4, "interval": 2.0 },
-	{ "type": "base", "quantity": 10, "interval": 0.7 }
-  ],
-  [
-	{ "type": "fast", "quantity": 20, "interval": 0.3 }
-  ],
-  [
-	{ "type": "tank", "quantity": 2, "interval": 1.5 },
-	{ "type": "fast", "quantity": 15, "interval": 0.4 },
-	{ "type": "tank", "quantity": 1, "interval": 2.0 }
-  ],
-  [
-	{ "type": "base", "quantity": 25, "interval": 0.4 }
-  ],
-  [
-	{ "type": "tank", "quantity": 5, "interval": 1.8 },
-	{ "type": "fast", "quantity": 10, "interval": 0.3 }
-  ],
-  [
-	{ "type": "base", "quantity": 15, "interval": 0.5 },
-	{ "type": "fast", "quantity": 15, "interval": 0.3 }
-  ],
-  [
-	{ "type": "tank", "quantity": 3, "interval": 1.5 },
-	{ "type": "base", "quantity": 20, "interval": 0.4 }
-  ],
-  [
-	{ "type": "fast", "quantity": 30, "interval": 0.2 }
-  ],
-  [
-	{ "type": "tank", "quantity": 4, "interval": 1.5 },
-	{ "type": "fast", "quantity": 20, "interval": 0.3 },
-	{ "type": "base", "quantity": 10, "interval": 0.5 }
-  ],
-  [
-	{ "type": "tank", "quantity": 6, "interval": 1.2 },
-	{ "type": "base", "quantity": 20, "interval": 0.4 }
-  ],
-  [
-	{ "type": "tank", "quantity": 8, "interval": 1.5 },
-	{ "type": "fast", "quantity": 40, "interval": 0.15 },
-	{ "type": "tank", "quantity": 2, "interval": 1.0 }
-  ]
+	[
+		{
+			"type": "base",
+			"quantity": 3.0,
+			"interval": 1.5
+		}
+	],
+	[
+		{
+			"type": "base",
+			"quantity": 5.0,
+			"interval": 1.2
+		}
+	],
+	[
+		{
+			"type": "base",
+			"quantity": 4.0,
+			"interval": 1.0
+		},
+		{
+			"type": "fast",
+			"quantity": 2.0,
+			"interval": 0.8
+		}
+	],
+	[
+		{
+			"type": "base",
+			"quantity": 8.0,
+			"interval": 1.0
+		}
+	],
+	[
+		{
+			"type": "fast",
+			"quantity": 5.0,
+			"interval": 0.6
+		}
+	],
+	[
+		{
+			"type": "base",
+			"quantity": 6.0,
+			"interval": 1.0
+		},
+		{
+			"type": "fast",
+			"quantity": 4.0,
+			"interval": 0.8
+		}
+	],
+	[
+		{
+			"type": "base",
+			"quantity": 10.0,
+			"interval": 0.8
+		}
+	],
+	[
+		{
+			"type": "tank",
+			"quantity": 1.0,
+			"interval": 3.0
+		},
+		{
+			"type": "base",
+			"quantity": 5.0,
+			"interval": 1.0
+		}
+	],
+	[
+		{
+			"type": "fast",
+			"quantity": 8.0,
+			"interval": 0.5
+		}
+	],
+	[
+		{
+			"type": "tank",
+			"quantity": 1.0,
+			"interval": 2.0
+		},
+		{
+			"type": "fast",
+			"quantity": 6.0,
+			"interval": 0.6
+		}
+	],
+	[
+		{
+			"type": "base",
+			"quantity": 12.0,
+			"interval": 0.7
+		}
+	],
+	[
+		{
+			"type": "tank",
+			"quantity": 2.0,
+			"interval": 2.5
+		},
+		{
+			"type": "base",
+			"quantity": 8.0,
+			"interval": 0.8
+		}
+	],
+	[
+		{
+			"type": "fast",
+			"quantity": 12.0,
+			"interval": 0.4
+		}
+	],
+	[
+		{
+			"type": "base",
+			"quantity": 8.0,
+			"interval": 0.8
+		},
+		{
+			"type": "tank",
+			"quantity": 1.0,
+			"interval": 2.0
+		},
+		{
+			"type": "fast",
+			"quantity": 5.0,
+			"interval": 0.5
+		}
+	],
+	[
+		{
+			"type": "tank",
+			"quantity": 3.0,
+			"interval": 2.0
+		}
+	],
+	[
+		{
+			"type": "fast",
+			"quantity": 15.0,
+			"interval": 0.3
+		}
+	],
+	[
+		{
+			"type": "base",
+			"quantity": 15.0,
+			"interval": 0.6
+		},
+		{
+			"type": "tank",
+			"quantity": 2.0,
+			"interval": 2.0
+		}
+	],
+	[
+		{
+			"type": "tank",
+			"quantity": 2.0,
+			"interval": 2.0
+		},
+		{
+			"type": "fast",
+			"quantity": 10.0,
+			"interval": 0.4
+		}
+	],
+	[
+		{
+			"type": "base",
+			"quantity": 20.0,
+			"interval": 0.5
+		}
+	],
+	[
+		{
+			"type": "tank",
+			"quantity": 4.0,
+			"interval": 2.0
+		},
+		{
+			"type": "base",
+			"quantity": 10.0,
+			"interval": 0.7
+		}
+	],
+	[
+		{
+			"type": "fast",
+			"quantity": 20.0,
+			"interval": 0.3
+		}
+	],
+	[
+		{
+			"type": "tank",
+			"quantity": 2.0,
+			"interval": 1.5
+		},
+		{
+			"type": "fast",
+			"quantity": 15.0,
+			"interval": 0.4
+		},
+		{
+			"type": "tank",
+			"quantity": 1.0,
+			"interval": 2.0
+		}
+	],
+	[
+		{
+			"type": "base",
+			"quantity": 25.0,
+			"interval": 0.4
+		}
+	],
+	[
+		{
+			"type": "tank",
+			"quantity": 5.0,
+			"interval": 1.8
+		},
+		{
+			"type": "fast",
+			"quantity": 10.0,
+			"interval": 0.3
+		}
+	],
+	[
+		{
+			"type": "base",
+			"quantity": 15.0,
+			"interval": 0.5
+		},
+		{
+			"type": "fast",
+			"quantity": 15.0,
+			"interval": 0.3
+		}
+	],
+	[
+		{
+			"type": "tank",
+			"quantity": 3.0,
+			"interval": 1.5
+		},
+		{
+			"type": "base",
+			"quantity": 20.0,
+			"interval": 0.4
+		}
+	],
+	[
+		{
+			"type": "fast",
+			"quantity": 30.0,
+			"interval": 0.2
+		}
+	],
+	[
+		{
+			"type": "tank",
+			"quantity": 4.0,
+			"interval": 1.5
+		},
+		{
+			"type": "fast",
+			"quantity": 20.0,
+			"interval": 0.3
+		},
+		{
+			"type": "base",
+			"quantity": 10.0,
+			"interval": 0.5
+		}
+	],
+	[
+		{
+			"type": "tank",
+			"quantity": 6.0,
+			"interval": 1.2
+		},
+		{
+			"type": "base",
+			"quantity": 20.0,
+			"interval": 0.4
+		}
+	],
+	[
+		{
+			"type": "tank",
+			"quantity": 8.0,
+			"interval": 1.5
+		},
+		{
+			"type": "fast",
+			"quantity": 40.0,
+			"interval": 0.15
+		},
+		{
+			"type": "tank",
+			"quantity": 2.0,
+			"interval": 1.0
+		}
+	]
 ]

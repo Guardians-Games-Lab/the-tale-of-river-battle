@@ -52,7 +52,8 @@ bg_color = Color(0.7868436, 0, 0.03929279, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_on6pi"]
 bg_color = Color(0.059109785, 0.7251424, 0.16311216, 1)
 
-[node name="EnemyFast" type="PathFollow2D" unique_id=567044815]
+[node name="Enemy" type="PathFollow2D" unique_id=567044815]
+loop = false
 script = ExtResource("1_1kvtj")
 speed = 200.0
 

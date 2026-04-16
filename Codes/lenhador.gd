@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-var Bullet = preload("res://Assets/Towers/Machado.tscn")
+var Bullet = preload("res://Assets/Towers/machado.tscn")
 
 @export var fire_rate: float = 1.0
 @export var bullet_damage: int = 5

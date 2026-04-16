@@ -9,10 +9,29 @@ var selected_tower: PackedScene
 @onready var botao_pausa = $CanvasLayerUI/PauseButton
 @onready var menu_pausa = $MenuPause
 
+# 👇 Puxando a tela de Game Over no seu padrão (Ajuste o caminho do $ se precisar!)
+@onready var menu_game_over = $MenuGameOver 
+
 func _ready():
 	add_to_group("game")
 	Game.reset_stats()
-	botao_pausa.pressed.connect(_on_pause_btn_pressed)	
+	botao_pausa.pressed.connect(_on_pause_btn_pressed)  
+	
+	# Fica ouvindo o sinal do Autoload
+	Game.game_over.connect(_chamar_tela_game_over)
+
+
+# =========================
+# 💀 Game Over
+# =========================
+func _chamar_tela_game_over():
+	# Congela o jogo
+	get_tree().paused = true 
+	
+	# Mostra a tela que já estava na árvore (escondida)
+	if menu_game_over:
+		menu_game_over.visible = true
+
 
 # =========================
 # 🎯 Selecionar torre
@@ -148,7 +167,9 @@ func cancel_tower():
 	preview = null
 	
 
-
+# =========================
+# ⏸️ Menu de Pausa
+# =========================
 func _on_pause_btn_pressed() -> void:
 	if menu_pausa:
 		menu_pausa._toggle_pause()

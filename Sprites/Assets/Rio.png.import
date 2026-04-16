@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ciwdhanf2q8l7"
-path="res://.godot/imported/Rio.png-b688a161e92ef36bd780c1ce4ba27cd7.ctex"
+path="res://.godot/imported/rio.png-22d237d23a6e67d5eb2de3e7906f2ee4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Assets/Rio.png"
-dest_files=["res://.godot/imported/Rio.png-b688a161e92ef36bd780c1ce4ba27cd7.ctex"]
+source_file="res://Sprites/Assets/rio.png"
+dest_files=["res://.godot/imported/rio.png-22d237d23a6e67d5eb2de3e7906f2ee4.ctex"]
 
 [params]
 

@@ -3,14 +3,15 @@
 [ext_resource type="Script" uid="uid://bid2yltp3m62e" path="res://Codes/game_scene.gd" id="1_2u2le"]
 [ext_resource type="PackedScene" uid="uid://3k02aa0vretn" path="res://Scenes/Maps/map_1.tscn" id="1_akvmk"]
 [ext_resource type="Script" uid="uid://b8wyf2dwkaaeh" path="res://Codes/path_spawner.gd" id="2_sewvy"]
-[ext_resource type="PackedScene" uid="uid://cw0d65ygi0anc" path="res://Assets/Enemy/Enemy.tscn" id="3_8pq0b"]
+[ext_resource type="PackedScene" uid="uid://cw0d65ygi0anc" path="res://Assets/Enemy/enemy.tscn" id="3_8pq0b"]
 [ext_resource type="PackedScene" uid="uid://c54d4cjqay5sf" path="res://Scenes/Menu/lenhador_panel.tscn" id="4_3x1ga"]
-[ext_resource type="PackedScene" uid="uid://bpx2l8gb5u24" path="res://Assets/Enemy/EnemyTank.tscn" id="5_674w2"]
-[ext_resource type="PackedScene" uid="uid://bpihe5o3sj5jr" path="res://Assets/Enemy/EnemyFast.tscn" id="5_clpeu"]
+[ext_resource type="PackedScene" uid="uid://bpx2l8gb5u24" path="res://Assets/Enemy/enemy_tank.tscn" id="5_674w2"]
+[ext_resource type="PackedScene" uid="uid://bpihe5o3sj5jr" path="res://Assets/Enemy/enemy_fast.tscn" id="5_clpeu"]
 [ext_resource type="Script" uid="uid://dvlm5n3gpewsm" path="res://Codes/gui.gd" id="5_ibdpl"]
-[ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/Kenney Pixel Square.ttf" id="6_g2kuy"]
-[ext_resource type="FontFile" uid="uid://bf57fsyphqmqm" path="res://Assets/Fonts/Kenney Pixel.ttf" id="8_2usgn"]
+[ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/kenney_pixel_square.ttf" id="6_g2kuy"]
+[ext_resource type="FontFile" uid="uid://bf57fsyphqmqm" path="res://Assets/Fonts/kenney_pixel.ttf" id="8_2usgn"]
 [ext_resource type="PackedScene" uid="uid://q2ctnxhbqhv3" path="res://Scenes/Menu/menu_pause.tscn" id="10_a0jnf"]
+[ext_resource type="PackedScene" uid="uid://dnsuw1m240v8j" path="res://Scenes/Menu/menu_game_over.tscn" id="12_m8rg1"]
 
 [sub_resource type="Curve2D" id="Curve2D_8pq0b"]
 _data = {
@@ -186,6 +187,9 @@ text = "Cleber"
 [node name="Towers" type="Node2D" parent="." unique_id=346713245 groups=["exclusion"]]
 
 [node name="MenuPause" parent="." unique_id=663674318 instance=ExtResource("10_a0jnf")]
+visible = false
+
+[node name="MenuGameOver" parent="." unique_id=1614034800 instance=ExtResource("12_m8rg1")]
 visible = false
 
 [connection signal="timeout" from="PathSpawner/WaveTimer" to="PathSpawner" method="_on_wave_timer_timeout"]

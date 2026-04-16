@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c3u4x1nchfws" path="res://Codes/menu_pause.gd" id="1_bt4rq"]
 [ext_resource type="Texture2D" uid="uid://c6482ht5r64cl" path="res://Sprites/Menu/Nuvem.png" id="1_n1b7x"]
-[ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/Kenney Pixel Square.ttf" id="2_bt4rq"]
+[ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/kenney_pixel_square.ttf" id="2_bt4rq"]
 
 [node name="MenuPause" type="CanvasLayer" unique_id=663674318]
 process_mode = 3

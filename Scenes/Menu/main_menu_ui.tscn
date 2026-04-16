@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://bmxt51056n46p" path="res://Sprites/Menu/Background-teste.png" id="1_7jtkx"]
 [ext_resource type="Texture2D" uid="uid://c6482ht5r64cl" path="res://Sprites/Menu/Nuvem.png" id="1_bkwd7"]
-[ext_resource type="Texture2D" uid="uid://cuj1fkv0qldm5" path="res://Sprites/Menu/ButtomTemplate.png" id="2_gpijq"]
-[ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/Kenney Pixel Square.ttf" id="2_tself"]
-[ext_resource type="Texture2D" uid="uid://52hl0dcjofpr" path="res://Sprites/Menu/ShadowButtomTemplate.png" id="3_pn3xf"]
+[ext_resource type="Texture2D" uid="uid://cuj1fkv0qldm5" path="res://Sprites/Menu/buttom_template.png" id="2_gpijq"]
+[ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/kenney_pixel_square.ttf" id="2_tself"]
+[ext_resource type="Texture2D" uid="uid://52hl0dcjofpr" path="res://Sprites/Menu/shadow_buttom_template.png" id="3_pn3xf"]
 [ext_resource type="Texture2D" uid="uid://cfunvwghgwy67" path="res://Sprites/Menu/NuvemEscura.png" id="3_vmek6"]
 
 [node name="MainMenu" type="Control" unique_id=2039632068]
