@@ -17,6 +17,8 @@ config/features=PackedStringArray("4.6", "Mobile")
 [autoload]
 
 Game="*uid://vucx78s7buh8"
+SilentWolf="*uid://doi54o1hdlq0b"
+SilentWolfConfig="*uid://bmlxfapbuxdri"
 
 [display]
 
@@ -29,6 +31,10 @@ window/stretch/mode="canvas_items"
 [editor]
 
 version_control/autoload_on_startup=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/silent_wolf/plugin.cfg", "res://addons/silentwolf_plugin/plugin.cfg")
 
 [physics]
 

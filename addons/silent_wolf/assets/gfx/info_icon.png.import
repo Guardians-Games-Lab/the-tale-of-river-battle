@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciwdhanf2q8l7"
-path="res://.godot/imported/Rio.png-b688a161e92ef36bd780c1ce4ba27cd7.ctex"
+uid="uid://bex7pcjbbiqh8"
+path="res://.godot/imported/info_icon.png-75dcfef383fc397e1798b32243763c67.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Assets/Rio.png"
-dest_files=["res://.godot/imported/Rio.png-b688a161e92ef36bd780c1ce4ba27cd7.ctex"]
+source_file="res://addons/silent_wolf/assets/gfx/info_icon.png"
+dest_files=["res://.godot/imported/info_icon.png-75dcfef383fc397e1798b32243763c67.ctex"]
 
 [params]
 
