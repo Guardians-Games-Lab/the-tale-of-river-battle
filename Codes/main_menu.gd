@@ -36,4 +36,7 @@ func on_lanmode_pressed():
 		label.text = "Online"
 	else:
 		label.text = "Offline"
-	
+
+func _on_leaderboard_button_pressed():
+	# Troca para a cena do ranking
+	get_tree().change_scene_to_file("res://Leaderboard.tscn")

@@ -10,6 +10,16 @@ script = ExtResource("1_2l8oy")
 [node name="MainMenu" parent="." unique_id=2039632068 instance=ExtResource("2_60mib")]
 mouse_filter = 2
 
+[node name="LeaderboardButton" type="Button" parent="MainMenu" unique_id=1099964506]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 226.0
+offset_right = 465.0
+offset_bottom = 276.0
+text = "Ranking"
+
 [node name="SelecaoDeFases" parent="." unique_id=965448006 instance=ExtResource("3_fu7sn")]
 process_mode = 3
 visible = false
+
+[connection signal="pressed" from="MainMenu/LeaderboardButton" to="." method="_on_leaderboard_button_pressed"]

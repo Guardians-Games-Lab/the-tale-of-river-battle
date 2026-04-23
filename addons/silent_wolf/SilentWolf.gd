@@ -27,17 +27,17 @@ const SWLogger = preload("res://addons/silent_wolf/utils/SWLogger.gd")
 # See https://silentwolf.com for more details
 #
 var config = {
-	"api_key": "FmKF4gtm0Z2RbUAEU62kZ2OZoYLj4PYOURAPIKEY",
-	"game_id": "YOURGAMEID",
-	"log_level": 0
+	"api_key": "62EQjCaiVM3adHQ1eovki53EZLRkkq4lPszpOM49",
+	"game_id": "The tales of river battle",
+	"log_level": 1
 }
 
 var scores_config = {
-	"open_scene_on_close": "res://scenes/Splash.tscn"
+	"open_scene_on_close": "res://scenes/leaderboard.tscn" #splash
 }
 
 var auth_config = {
-	"redirect_to_scene": "res://scenes/Splash.tscn",
+	"redirect_to_scene": "res://scenes/leaderboard.tscn",
 	"login_scene": "res://addons/silent_wolf/Auth/Login.tscn",
 	"email_confirmation_scene": "res://addons/silent_wolf/Auth/ConfirmEmail.tscn",
 	"reset_password_scene": "res://addons/silent_wolf/Auth/ResetPassword.tscn",
