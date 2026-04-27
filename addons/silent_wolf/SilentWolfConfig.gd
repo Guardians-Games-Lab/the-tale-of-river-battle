@@ -2,7 +2,7 @@ extends Node
 
 func _ready():
     SilentWolf.configure({
-        "api_key": "SEU_API_KEY_AQUI",
+        "api_key": "62EQjCaiVM3adHQ1eovki53EZLRkkq4lPszpOM49",
         "game_id": "SEU_GAME_ID_AQUI",
         "game_version": "1.0",          # mude quando atualizar o jogo
         "log_level": 1
