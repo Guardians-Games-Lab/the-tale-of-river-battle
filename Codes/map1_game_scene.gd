@@ -8,39 +8,36 @@ var selected_tower: PackedScene
 @onready var towers_node = get_node("Towers")
 @onready var botao_pausa = $CanvasLayerUI/PauseButton
 @onready var menu_pausa = $MenuPause
-
-# 👇 Puxando a tela de Game Over no seu padrão (Ajuste o caminho do $ se precisar!)
 @onready var menu_game_over = $MenuGameOver 
+
+var jogo_acabou: bool = false 
 
 func _ready():
 	add_to_group("game")
 	Game.reset_stats()
 	botao_pausa.pressed.connect(_on_pause_btn_pressed)  
 	
-	# Fica ouvindo o sinal do Autoload
 	Game.game_over.connect(_chamar_tela_game_over)
-
 
 # =========================
 # 💀 Game Over
 # =========================
 func _chamar_tela_game_over():
-	# Congela o jogo
+	jogo_acabou = true
+	
+	# 👇 GATILHO DA REDE LOCAL: Envia a pontuação ao morrer
+	Game.submeter_score_lan()
+	
 	get_tree().paused = true 
-	# 2. 🔒 O CADEADO: Desativa completamente o nó do menu de pausa
-	# Isso impede que ele abra, feche ou aceite qualquer clique/tecla.
+	
 	if menu_pausa:
 		menu_pausa.process_mode = Node.PROCESS_MODE_DISABLED
 	
-	# 3. Opcional: Esconde o botão se ele ainda estiver visível
 	if botao_pausa:
 		botao_pausa.visible = false
 	
-	
-	# Mostra a tela que já estava na árvore (escondida)
 	if menu_game_over:
 		menu_game_over.visible = true
-
 
 # =========================
 # 🎯 Selecionar torre
@@ -58,7 +55,6 @@ func start_build_mode(scene):
 	preview.show_range = true
 	preview.clear_preview_state()
 
-
 # =========================
 # 🟡 Atualização
 # =========================
@@ -70,14 +66,12 @@ func _process(delta):
 		preview.global_position = ground.to_global(snapped_pos)
 		preview.set_preview_valid(is_valid_tile())
 
-
 # =========================
 # 🧱 Tile
 # =========================
 func get_tile_position():
 	var mouse_local = ground.to_local(get_global_mouse_position())
 	return ground.local_to_map(mouse_local)
-
 
 # =========================
 # ✔ Validação
@@ -101,7 +95,6 @@ func is_valid_tile() -> bool:
 		return false
 	
 	return true
-
 
 # =========================
 # 🔥 Detectar torre
@@ -127,13 +120,14 @@ func has_tower_on_position() -> bool:
 	
 	return false
 
-
 # =========================
-# 🖱️ Clique
+# 🖱️ Clique e Input
 # =========================
 func _input(event):
-	if preview and event is InputEventMouseButton and event.pressed:
+	if jogo_acabou or Game.Health <= 0:
+		return
 		
+	if preview and event is InputEventMouseButton and event.pressed:
 		if get_viewport().gui_get_hovered_control():
 			return
 		
@@ -141,7 +135,9 @@ func _input(event):
 			place_tower()
 		else:
 			cancel_tower()
-
+			
+	if event.is_action_pressed("ui_cancel"):
+		_on_pause_btn_pressed()
 
 # =========================
 # 🏗️ Colocar torre
@@ -166,7 +162,6 @@ func place_tower():
 	preview.queue_free()
 	preview = null
 
-
 # =========================
 # ❌ Cancelar
 # =========================
@@ -175,10 +170,12 @@ func cancel_tower():
 		preview.queue_free()
 	preview = null
 	
-
 # =========================
 # ⏸️ Menu de Pausa
 # =========================
 func _on_pause_btn_pressed() -> void:
+	if jogo_acabou:
+		return
+		
 	if menu_pausa:
 		menu_pausa._toggle_pause()
