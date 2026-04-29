@@ -90,27 +90,43 @@ func host_lan() -> String:
 	var erro = peer.create_server(PORT, 5) 
 	if erro == OK:
 		multiplayer.multiplayer_peer = peer
-		multiplayer.peer_connected.connect(_jogador_conectou)
 		
-		# Busca o IP real da rede (Ex: 192.168.0.10)
-		var meu_ip = "127.0.0.1"
+		if not multiplayer.peer_connected.is_connected(_jogador_conectou):
+			multiplayer.peer_connected.connect(_jogador_conectou)
+		
+		var ips_maquina = []
 		for ip in IP.get_local_addresses():
+			if not ":" in ip and ip != "127.0.0.1" and ip != "0.0.0.0":
+				ips_maquina.append(ip)
+				
+		print("🔎 IPs enxergados: ", ips_maquina)
+		
+		var meu_ip = "Erro: IP não encontrado" 
+		
+		# 1. TENTA ACHAR UM IP CLÁSSICO DE WI-FI (Garante o funcionamento no Android)
+		for ip in ips_maquina:
 			if ip.begins_with("192.168.") or ip.begins_with("10."):
+				# Ignora IPs de VirtualBox e afins (caso estejas no PC)
+				if ip.begins_with("192.168.56.") or ip.begins_with("192.168.137."): continue
+				meu_ip = ip
+				break # Achou o Wi-Fi, para de procurar!
+
+		# 2. PLANO B (Caso seja uma rede muito louca ou Radmin/Hamachi no PC)
+		if meu_ip == "Erro: IP não encontrado":
+			for ip in ips_maquina:
+				if ip.begins_with("169.254.") or ip.begins_with("172."): continue
 				meu_ip = ip
 				break
 				
 		print("✅ Servidor Hospedado! O IP é: ", meu_ip)
 		
-		# SÓ O HOST CARREGA A LISTA DO RANKING ANTIGO DELE!
 		_carregar_leaderboard_do_host() 
-		
-		# O Host submete os seus recordes atuais para a lista
 		submeter_score_lan()
 		
 		return meu_ip
 	else:
 		print("❌ Erro ao criar servidor: ", erro)
-		return "Erro de Porta"
+		return "Erro na Porta"
 
 func join_lan(ip_do_host: String):
 	var erro = peer.create_client(ip_do_host, PORT)
