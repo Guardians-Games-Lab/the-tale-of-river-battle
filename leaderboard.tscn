@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://52hl0dcjofpr" path="res://Sprites/Menu/shadow_buttom_template.png" id="3_h2hfu"]
 [ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/kenney_pixel_square.ttf" id="4_6c6j3"]
 
-[node name="Learderboard_menu" type="Control" unique_id=224603895]
+[node name="LearderboardMenu" type="Control" unique_id=224603895]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

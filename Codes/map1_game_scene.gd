@@ -1,31 +1,43 @@
 extends Node2D
 
+# =========================
+# 📂 REFERÊNCIAS
+# =========================
 var preview = null
 var selected_tower: PackedScene
 
 @onready var ground = get_tree().get_first_node_in_group("ground")
 @onready var exclusion = get_tree().get_first_node_in_group("exclusion")
-@onready var towers_node = get_node("Towers")
-@onready var botao_pausa = $CanvasLayerUI/PauseButton
-@onready var menu_pausa = $MenuPause
-@onready var menu_game_over = $MenuGameOver 
+@onready var towers_node = get_node_or_null("Towers")
+@onready var botao_pausa = get_node_or_null("CanvasLayerUI/PauseButton")
+@onready var menu_pausa = get_node_or_null("MenuPause")
+@onready var menu_game_over = get_node_or_null("MenuGameOver")
 
 var jogo_acabou: bool = false 
 
+# =========================
+# 🚀 INICIALIZAÇÃO
+# =========================
 func _ready():
 	add_to_group("game")
-	Game.reset_stats()
-	botao_pausa.pressed.connect(_on_pause_btn_pressed)  
 	
+	# 👇 AVISANDO O AUTOLOAD: Pontos desta partida vão para a tabela do Mapa 1!
+	Game.current_map = "mapa_1" 
+	
+	Game.reset_stats()
+	
+	if botao_pausa:
+		botao_pausa.pressed.connect(_on_pause_btn_pressed) 
+		
 	Game.game_over.connect(_chamar_tela_game_over)
 
 # =========================
-# 💀 Game Over
+# 💀 GAME OVER
 # =========================
 func _chamar_tela_game_over():
 	jogo_acabou = true
 	
-	# 👇 GATILHO DA REDE LOCAL: Envia a pontuação ao morrer
+	# 👇 GATILHO DA REDE LOCAL: Envia a pontuação para a sala ao morrer
 	Game.submeter_score_lan()
 	
 	get_tree().paused = true 
@@ -40,7 +52,7 @@ func _chamar_tela_game_over():
 		menu_game_over.visible = true
 
 # =========================
-# 🎯 Selecionar torre
+# 🎯 SELECIONAR TORRE
 # =========================
 func start_build_mode(scene):
 	selected_tower = scene
@@ -56,9 +68,9 @@ func start_build_mode(scene):
 	preview.clear_preview_state()
 
 # =========================
-# 🟡 Atualização
+# 🟡 ATUALIZAÇÃO (PREVIEW)
 # =========================
-func _process(delta):
+func _process(_delta):
 	if preview:
 		var tile_pos = get_tile_position()
 		var snapped_pos = ground.map_to_local(tile_pos)
@@ -67,14 +79,14 @@ func _process(delta):
 		preview.set_preview_valid(is_valid_tile())
 
 # =========================
-# 🧱 Tile
+# 🧱 TILE POSITION
 # =========================
 func get_tile_position():
 	var mouse_local = ground.to_local(get_global_mouse_position())
 	return ground.local_to_map(mouse_local)
 
 # =========================
-# ✔ Validação
+# ✔️ VALIDAÇÃO DE POSIÇÃO
 # =========================
 func is_valid_tile() -> bool:
 	if ground == null or exclusion == null:
@@ -97,7 +109,7 @@ func is_valid_tile() -> bool:
 	return true
 
 # =========================
-# 🔥 Detectar torre
+# 🔥 DETECTAR TORRE EXISTENTE
 # =========================
 func has_tower_on_position() -> bool:
 	var space = get_world_2d().direct_space_state
@@ -121,7 +133,7 @@ func has_tower_on_position() -> bool:
 	return false
 
 # =========================
-# 🖱️ Clique e Input
+# 🖱️ CLIQUE E INPUTS
 # =========================
 func _input(event):
 	if jogo_acabou or Game.Health <= 0:
@@ -140,11 +152,11 @@ func _input(event):
 		_on_pause_btn_pressed()
 
 # =========================
-# 🏗️ Colocar torre
+# 🏗️ COLOCAR TORRE
 # =========================
 func place_tower():
 	if towers_node == null:
-		print("ERRO: node Towers não encontrado")
+		print("❌ ERRO: node Towers não encontrado")
 		return
 	
 	var tower = selected_tower.instantiate()
@@ -163,7 +175,7 @@ func place_tower():
 	preview = null
 
 # =========================
-# ❌ Cancelar
+# ❌ CANCELAR
 # =========================
 func cancel_tower():
 	if preview:
@@ -171,7 +183,7 @@ func cancel_tower():
 	preview = null
 	
 # =========================
-# ⏸️ Menu de Pausa
+# ⏸️ MENU DE PAUSA
 # =========================
 func _on_pause_btn_pressed() -> void:
 	if jogo_acabou:
