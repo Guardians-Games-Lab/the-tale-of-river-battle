@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://byef7p6n4o4d0" path="res://Codes/main_menu.gd" id="1_2l8oy"]
 [ext_resource type="PackedScene" uid="uid://bitruprt70khu" path="res://Scenes/Menu/main_menu_ui.tscn" id="2_60mib"]
 [ext_resource type="PackedScene" uid="uid://52iata75lant" path="res://Scenes/Menu/selecao_de_fases.tscn" id="3_fu7sn"]
+[ext_resource type="PackedScene" uid="uid://ba4clenudta5u" path="res://leaderboard.tscn" id="4_jix8l"]
 
 [node name="MainMenu" type="Node" unique_id=100469525]
 script = ExtResource("1_2l8oy")
@@ -22,4 +23,5 @@ text = "Ranking"
 process_mode = 3
 visible = false
 
-[connection signal="pressed" from="MainMenu/LeaderboardButton" to="." method="_on_leaderboard_button_pressed"]
+[node name="LeaderboardMenu" parent="." unique_id=224603895 instance=ExtResource("4_jix8l")]
+visible = false
