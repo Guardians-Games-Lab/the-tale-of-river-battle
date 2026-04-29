@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciwdhanf2q8l7"
-path="res://.godot/imported/Rio.png-b688a161e92ef36bd780c1ce4ba27cd7.ctex"
+uid="uid://bgs8a50ilk5cj"
+path="res://.godot/imported/checkbox_unchecked.png-747244fa66895a7a282a8f1df36959ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Assets/Rio.png"
-dest_files=["res://.godot/imported/Rio.png-b688a161e92ef36bd780c1ce4ba27cd7.ctex"]
+source_file="res://addons/silent_wolf/assets/gfx/checkbox_unchecked.png"
+dest_files=["res://.godot/imported/checkbox_unchecked.png-747244fa66895a7a282a8f1df36959ae.ctex"]
 
 [params]
 
