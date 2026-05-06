@@ -143,14 +143,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
-[node name="IPHost" type="Label" parent="M/MatchMaking" unique_id=1229578344]
-layout_mode = 2
-text = "O seu IP aparecerá aqui"
-
-[node name="InputIP" type="LineEdit" parent="M/MatchMaking" unique_id=1488760964]
-layout_mode = 2
-placeholder_text = "Digite o IP do Host aqui"
-
 [node name="BotoesLAN" type="HBoxContainer" parent="M/MatchMaking" unique_id=195335621]
 layout_mode = 2
 
@@ -186,6 +178,7 @@ offset_bottom = 43.0
 text = "Entrar"
 
 [node name="BtnSair" type="TextureButton" parent="M/MatchMaking/BotoesLAN" unique_id=1945205053]
+visible = false
 layout_mode = 2
 texture_normal = ExtResource("2_gpijq")
 texture_pressed = ExtResource("3_pn3xf")
@@ -198,3 +191,11 @@ offset_top = 20.0
 offset_right = 92.0
 offset_bottom = 43.0
 text = "Sair"
+
+[node name="IPHost" type="Label" parent="M/MatchMaking" unique_id=1229578344]
+layout_mode = 2
+text = "O seu IP aparecerá aqui"
+
+[node name="InputIP" type="LineEdit" parent="M/MatchMaking" unique_id=1488760964]
+layout_mode = 2
+placeholder_text = "Digite o IP do Host aqui"
