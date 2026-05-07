@@ -1,0 +1,200 @@
+[gd_scene format=3 uid="uid://bwg07p0ijhfyo"]
+
+[ext_resource type="PackedScene" uid="uid://c1nqrkidcc7rw" path="res://Scenes/Maps/map_2.tscn" id="1_s57cc"]
+[ext_resource type="Script" uid="uid://bid2yltp3m62e" path="res://Codes/map1_game_scene.gd" id="1_u17mr"]
+[ext_resource type="Script" uid="uid://b8wyf2dwkaaeh" path="res://Codes/path_spawner.gd" id="2_u17mr"]
+[ext_resource type="PackedScene" uid="uid://cw0d65ygi0anc" path="res://Assets/Enemy/enemy.tscn" id="3_yc1iq"]
+[ext_resource type="PackedScene" uid="uid://bpihe5o3sj5jr" path="res://Assets/Enemy/enemy_fast.tscn" id="4_43e0q"]
+[ext_resource type="PackedScene" uid="uid://bpx2l8gb5u24" path="res://Assets/Enemy/enemy_tank.tscn" id="5_hhyaa"]
+[ext_resource type="Script" uid="uid://dvlm5n3gpewsm" path="res://Codes/gui.gd" id="6_274wp"]
+[ext_resource type="PackedScene" uid="uid://c54d4cjqay5sf" path="res://Scenes/Menu/lenhador_panel.tscn" id="7_bs66c"]
+[ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/kenney_pixel_square.ttf" id="8_jrhxd"]
+[ext_resource type="FontFile" uid="uid://bf57fsyphqmqm" path="res://Assets/Fonts/kenney_pixel.ttf" id="9_fx3ji"]
+[ext_resource type="PackedScene" uid="uid://q2ctnxhbqhv3" path="res://Scenes/Menu/menu_pause.tscn" id="10_xm0ai"]
+[ext_resource type="PackedScene" uid="uid://dnsuw1m240v8j" path="res://Scenes/Menu/menu_game_over.tscn" id="11_3j7n2"]
+
+[sub_resource type="Curve2D" id="Curve2D_u17mr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -541, -233, 0, 0, 0, 0, -257, -234, 0, 0, 0, 0, -259, -361, 0, 0, 0, 0, -125, -361, 0, 0, 0, 0, -125, -227, 0, 0, 0, 0, 1, -231, 0, 0, 0, 0, 0, -362, 0, 0, 0, 0, 252, -360, 0, 0, 0, 0, 255, -227, 0, 0, 0, 0, 381, -233, 0, 0, 0, 0, 380, -363, 0, 0, 0, 0, 510, -363, 0, 0, 0, 0, 511, -236, 0, 0, 0, 0, 799, -233)
+}
+point_count = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nvvy1"]
+bg_color = Color(0.6, 0.6, 0.6, 0.84313726)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qtpr"]
+bg_color = Color(0.9088105, 0, 0.108250044, 1)
+
+[node name="Map2GameScene" type="Node2D" unique_id=360251534]
+script = ExtResource("1_u17mr")
+current_map = "mapa_2"
+
+[node name="Map2" parent="." unique_id=1619975844 instance=ExtResource("1_s57cc")]
+position = Vector2(132, -223)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=542037370]
+position = Vector2(673, 0)
+ignore_rotation = false
+zoom = Vector2(0.96, 0.96)
+limit_enabled = false
+
+[node name="PathSpawner" type="Node2D" parent="." unique_id=165819091]
+position = Vector2(548, 231)
+script = ExtResource("2_u17mr")
+enemy_types = Dictionary[String, PackedScene]({
+"base": ExtResource("3_yc1iq"),
+"fast": ExtResource("4_43e0q"),
+"tank": ExtResource("5_hhyaa")
+})
+metadata/_edit_lock_ = true
+
+[node name="WaveTimer" type="Timer" parent="PathSpawner" unique_id=1320459792]
+wait_time = 3.0
+one_shot = true
+
+[node name="SpawnTimer" type="Timer" parent="PathSpawner" unique_id=802685343]
+autostart = true
+
+[node name="Path2D" type="Path2D" parent="PathSpawner" unique_id=2083936659]
+curve = SubResource("Curve2D_u17mr")
+
+[node name="CanvasLayerUI" type="CanvasLayer" parent="." unique_id=709109257]
+follow_viewport_enabled = true
+script = ExtResource("6_274wp")
+
+[node name="Gui" type="Panel" parent="CanvasLayerUI" unique_id=1087960907]
+offset_left = 1204.0
+offset_top = -375.00003
+offset_right = 1341.533
+offset_bottom = 357.75858
+scale = Vector2(1.0266448, 1.0221647)
+metadata/_edit_use_anchors_ = true
+
+[node name="PainelDeCompra" type="FlowContainer" parent="CanvasLayerUI/Gui" unique_id=1041102175]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.363403
+offset_top = -287.62485
+offset_right = 54.9375
+offset_bottom = 351.39957
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 40
+last_wrap_alignment = 2
+
+[node name="Lenhador" parent="CanvasLayerUI/Gui/PainelDeCompra" unique_id=1163742910 instance=ExtResource("7_bs66c")]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="TextoDinheiro" type="VBoxContainer" parent="CanvasLayerUI/Gui" unique_id=1070294449]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -61.94848
+offset_top = 8.894
+offset_right = 62.729523
+offset_bottom = 71.894
+grow_horizontal = 2
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="TextoDinheiro" type="Label" parent="CanvasLayerUI/Gui/TextoDinheiro" unique_id=25587209]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_jrhxd")
+text = "Dinheiro"
+
+[node name="DinheiroTotal" type="Label" parent="CanvasLayerUI/Gui/TextoDinheiro" unique_id=1557212243]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_jrhxd")
+theme_override_font_sizes/font_size = 21
+text = "$0"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayerUI/Gui/TextoDinheiro" unique_id=192637163]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="TextoPontosEWaves" type="VBoxContainer" parent="CanvasLayerUI/Gui" unique_id=1721949076]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -61.94812
+offset_top = -137.94257
+offset_right = 62.72986
+offset_bottom = -74.942566
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayerUI/Gui/TextoPontosEWaves" unique_id=1035233037]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="TextoPontos" type="Label" parent="CanvasLayerUI/Gui/TextoPontosEWaves" unique_id=559958905]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_jrhxd")
+text = "Pontos:"
+
+[node name="PontosTotal" type="Label" parent="CanvasLayerUI/Gui/TextoPontosEWaves" unique_id=1269317601]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_jrhxd")
+theme_override_font_sizes/font_size = 16
+text = "0 "
+
+[node name="WaveAtual" type="Label" parent="CanvasLayerUI/Gui/TextoPontosEWaves" unique_id=1466564994]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_jrhxd")
+text = "Wave: 1"
+
+[node name="VidaProgressBar" type="ProgressBar" parent="CanvasLayerUI" unique_id=1810471730]
+offset_left = 8.0
+offset_top = -338.0
+offset_right = 124.0
+offset_bottom = -311.0
+theme_override_styles/background = SubResource("StyleBoxFlat_nvvy1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3qtpr")
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="TextoVida" type="Label" parent="CanvasLayerUI/VidaProgressBar" unique_id=1158495523]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -3.0
+offset_right = 81.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("9_fx3ji")
+theme_override_font_sizes/font_size = 40
+text = "Life: 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="PauseButton" type="Button" parent="CanvasLayerUI" unique_id=1086381240]
+process_mode = 3
+offset_left = 6.0
+offset_top = -300.0
+offset_right = 70.0
+offset_bottom = -236.0
+mouse_filter = 1
+text = "Cleber"
+metadata/_edit_use_anchors_ = true
+
+[node name="Towers" type="Node2D" parent="." unique_id=1844957817 groups=["exclusion"]]
+
+[node name="MenuPause" parent="." unique_id=663674318 instance=ExtResource("10_xm0ai")]
+visible = false
+
+[node name="MenuGameOver" parent="." unique_id=1614034800 instance=ExtResource("11_3j7n2")]
+visible = false
+
+[connection signal="timeout" from="PathSpawner/WaveTimer" to="PathSpawner" method="_on_wave_timer_timeout"]
+[connection signal="timeout" from="PathSpawner/SpawnTimer" to="PathSpawner" method="_on_spawn_timer_timeout"]

@@ -5,6 +5,7 @@ extends Node2D
 # =========================
 var preview = null
 var selected_tower: PackedScene
+@export var current_map : String
 
 @onready var ground = get_tree().get_first_node_in_group("ground")
 @onready var exclusion = get_tree().get_first_node_in_group("exclusion")
@@ -22,7 +23,9 @@ func _ready():
 	add_to_group("game")
 	
 	# 👇 AVISANDO O AUTOLOAD: Pontos desta partida vão para a tabela do Mapa 1!
-	Game.current_map = "mapa_1" 
+	
+	
+	Game.current_map = current_map
 	
 	Game.reset_stats()
 	
