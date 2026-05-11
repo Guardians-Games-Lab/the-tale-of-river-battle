@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dh8fem1lgom04"
-path="res://.godot/imported/info_icon_small.png-8b621bcc49afb4260b6f80b5f252e0c7.ctex"
+uid="uid://ca4geadedekhg"
+path="res://.godot/imported/background_default.png-42018352054fe639dd9d94a44edc2f40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/silent_wolf/assets/gfx/info_icon_small.png"
-dest_files=["res://.godot/imported/info_icon_small.png-8b621bcc49afb4260b6f80b5f252e0c7.ctex"]
+source_file="res://Sprites/Menu/background_default.png"
+dest_files=["res://.godot/imported/background_default.png-42018352054fe639dd9d94a44edc2f40.ctex"]
 
 [params]
 

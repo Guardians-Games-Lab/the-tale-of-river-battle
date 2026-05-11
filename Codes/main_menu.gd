@@ -56,6 +56,8 @@ func on_host_pressed():
 	btn_join.hide()
 	btn_host.hide()
 	input_ip.hide()
+	btn_sair.show()
+
 	
 	# 4. Desabilita o botão para ele não clicar duas vezes (Como é TextureButton, ele não tem texto)
 	btn_host.disabled = true
@@ -74,6 +76,7 @@ func on_join_pressed():
 	btn_join.disabled = true
 	btn_join.hide()
 	btn_host.hide()
+	btn_sair.show()
 	print("🔄 Tentando entrar na sala: ", ip_alvo)
 
 # =========================
@@ -94,7 +97,8 @@ func on_leaderboard_pressed():
 func on_sair_pressed():
 	# 1. Desliga o servidor ou cliente no motor do jogo
 	Game.desconectar_rede()
-	
+	btn_sair.hide()
+
 	# 2. Restaura toda a UI da LAN para o estado original
 	if btn_join:
 		btn_join.disabled = false
