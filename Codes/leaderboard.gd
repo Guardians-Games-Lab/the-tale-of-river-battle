@@ -3,7 +3,7 @@ extends Control
 # =========================
 # 📂 REFERÊNCIAS DE UI
 # =========================
-@onready var scroll = $M/VBoxContainer/ScrollContainer
+@onready var scroll = $M/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer
 var container: VBoxContainer # Resolvido dinamicamente no _ready!
 
 @onready var btn_mapa1 = $M/VBoxContainer/HBoxContainer/Mapa

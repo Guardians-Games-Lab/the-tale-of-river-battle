@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bsexuchu3vdrs"]
 
 [ext_resource type="Script" uid="uid://bi7m6ayutloih" path="res://Codes/score_item.gd" id="1_fses6"]
+[ext_resource type="FontFile" uid="uid://bf57fsyphqmqm" path="res://Assets/Fonts/kenney_pixel.ttf" id="2_n1l0b"]
 
 [node name="ScoreItem" type="HBoxContainer" unique_id=207723268]
 anchors_preset = 15
@@ -12,9 +13,18 @@ script = ExtResource("1_fses6")
 
 [node name="Posicao" type="Label" parent="." unique_id=621569608]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n1l0b")
+theme_override_font_sizes/font_size = 45
+text = "1 "
 
 [node name="NomeJogador" type="Label" parent="." unique_id=1073209228]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n1l0b")
+theme_override_font_sizes/font_size = 45
+text = "Neymar"
 
 [node name="Pontuacao" type="Label" parent="." unique_id=994882238]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_n1l0b")
+theme_override_font_sizes/font_size = 45
+text = "5000"
