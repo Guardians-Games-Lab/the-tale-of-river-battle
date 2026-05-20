@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciwdhanf2q8l7"
-path="res://.godot/imported/Rio.png-b688a161e92ef36bd780c1ce4ba27cd7.ctex"
+uid="uid://y5473hcuhhb0"
+path="res://.godot/imported/lixeiro.png-6eed95494957b669849c2f608d66d0d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Assets/Rio.png"
-dest_files=["res://.godot/imported/Rio.png-b688a161e92ef36bd780c1ce4ba27cd7.ctex"]
+source_file="res://Sprites/Enemy/lixeiro.png"
+dest_files=["res://.godot/imported/lixeiro.png-6eed95494957b669849c2f608d66d0d9.ctex"]
 
 [params]
 

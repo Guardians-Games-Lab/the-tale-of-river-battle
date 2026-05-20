@@ -156,11 +156,12 @@ func submeter_score_lan():
 	# Envia os recordes de todos os mapas para a LAN
 	for mapa in Highscores.keys():
 		var pontos = Highscores[mapa]
-		if pontos > 0:
-			if multiplayer.is_server():
-				_processar_nova_pontuacao(nome_jogador, mapa, pontos)
-			else:
-				rpc_id(1, "_processar_nova_pontuacao", nome_jogador, mapa, pontos)
+		
+		# Tiramos o "if pontos > 0:" para que jogadores iniciantes também entrem na lista!
+		if multiplayer.is_server():
+			_processar_nova_pontuacao(nome_jogador, mapa, pontos)
+		else:
+			rpc_id(1, "_processar_nova_pontuacao", nome_jogador, mapa, pontos)
 
 # Esta função roda APENAS no computador/telemóvel do HOST
 @rpc("any_peer", "call_local", "reliable")

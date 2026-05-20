@@ -27,6 +27,7 @@ window/size/viewport_height=720
 window/size/resizable=false
 window/size/borderless=true
 window/stretch/mode="canvas_items"
+window/stretch/aspect="ignore"
 
 [editor]
 
@@ -45,3 +46,4 @@ enabled=PackedStringArray()
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

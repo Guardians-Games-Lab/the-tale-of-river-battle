@@ -40,7 +40,7 @@ func _ready():
 	if btn_mapa3: btn_mapa3.pressed.connect(func(): mudar_mapa("mapa_3"))
 	
 	if btn_voltar:
-		btn_voltar.pressed.connect(func(): get_tree().change_scene_to_file("res://main_menu.tscn"))
+		btn_voltar.pressed.connect(_ao_clicar_em_voltar)
 	
 	mudar_mapa("mapa_1")
 
@@ -93,3 +93,9 @@ func atualizar_lista():
 			item.configurar(i + 1, entrada.nome, entrada.score)
 		elif item.has_method("configurar_linha"):
 			item.configurar_linha(i + 1, entrada.nome, entrada.score)
+			
+
+
+func _ao_clicar_em_voltar():
+	self.hide() # Esconde a tela do Leaderboard
+	$"../MainMenu".show() # Mostra o Menu Principal
