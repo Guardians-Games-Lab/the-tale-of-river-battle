@@ -141,18 +141,23 @@ func has_tower_on_position() -> bool:
 func _input(event):
 	if jogo_acabou or Game.Health <= 0:
 		return
-		
-	if preview and event is InputEventMouseButton and event.pressed:
+
+	if event.is_action_pressed("ui_cancel"):
+		_on_pause_btn_pressed()
+
+	# Verifica se temos uma torre selecionada e se o jogador LEVANTOU o dedo da tela (not pressed)
+	if preview and (event is InputEventScreenTouch or event is InputEventMouseButton) and not event.pressed:
+
+	# Proteção: Se ele arrastar e soltar o dedo de volta no menu ou em cima de um botão, cancela a compra
 		if get_viewport().gui_get_hovered_control():
+			cancel_tower()
 			return
-		
+
+	# Valida a posição no rio/grade e tenta gastar o ouro
 		if is_valid_tile() and Game.spend_gold(20):
 			place_tower()
 		else:
-			cancel_tower()
-			
-	if event.is_action_pressed("ui_cancel"):
-		_on_pause_btn_pressed()
+			cancel_tower() # Se o local for inválido ou não tiver ouro, a torre some ao levantar o dedo
 
 # =========================
 # 🏗️ COLOCAR TORRE
