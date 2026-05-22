@@ -79,3 +79,4 @@ speed_scale = 3.0
 
 [node name="SomMachado" type="AudioStreamPlayer2D" parent="." unique_id=1024391557]
 stream = ExtResource("10_gq5lp")
+autoplay = true

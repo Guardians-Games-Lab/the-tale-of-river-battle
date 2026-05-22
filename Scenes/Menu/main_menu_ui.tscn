@@ -209,7 +209,7 @@ offset_bottom = 19.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 28
-text = "Entrar"
+text = "Entrar "
 
 [node name="BtnSair" type="TextureButton" parent="M/MatchMaking/BotoesLAN" unique_id=1945205053]
 visible = false
