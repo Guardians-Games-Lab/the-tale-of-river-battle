@@ -14,6 +14,7 @@ extends Node
 @onready var btn_host = $MainMenu/M/MatchMaking/BotoesLAN/BtnHost
 @onready var btn_join = $MainMenu/M/MatchMaking/BotoesLAN/BtnJoin
 @onready var btn_sair = $MainMenu/M/MatchMaking/BotoesLAN/BtnSair
+@onready var btn_online = $MainMenu/M/MatchMaking/BotoesLAN/BtnOnline
 
 # =========================
 # 📝 REFERÊNCIAS DO MENU DE NOME
@@ -47,6 +48,7 @@ func _ready():
 	if btn_host: btn_host.pressed.connect(on_host_pressed)
 	if btn_join: btn_join.pressed.connect(on_join_pressed)
 	if btn_sair: btn_sair.pressed.connect(on_sair_pressed)
+	if btn_sair: btn_online.pressed.connect(on_online_pressed)
 	
 	# 📝 SETUP DO SISTEMA DE NOME
 	if label_nome_dispositivo:
@@ -169,3 +171,10 @@ func _on_btn_som_pressed():
 	# Função para mudar o texto (ou ícone) do botão
 func _atualizar_visual_do_botao_som():
 	if not btn_som: return
+
+
+func on_online_pressed():
+	btn_online.hide()
+	btn_host.show()
+	btn_join.show()
+	input_ip.show()

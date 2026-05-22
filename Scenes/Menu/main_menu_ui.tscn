@@ -162,6 +162,7 @@ size_flags_vertical = 4
 layout_mode = 2
 
 [node name="BtnHost" type="TextureButton" parent="M/MatchMaking/BotoesLAN" unique_id=1438865536]
+visible = false
 custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
 texture_normal = ExtResource("2_gpijq")
@@ -188,6 +189,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BtnJoin" type="TextureButton" parent="M/MatchMaking/BotoesLAN" unique_id=1626256446]
+visible = false
 custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
 texture_normal = ExtResource("2_gpijq")
@@ -236,6 +238,32 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 28
 text = "Sair"
 
+[node name="BtnOnline" type="TextureButton" parent="M/MatchMaking/BotoesLAN" unique_id=2112071315]
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 2
+texture_normal = ExtResource("2_gpijq")
+texture_pressed = ExtResource("3_pn3xf")
+texture_hover = ExtResource("3_pn3xf")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="M/MatchMaking/BotoesLAN/BtnOnline" unique_id=1224529190]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -19.5
+offset_right = 64.5
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "Online"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="IPHost" type="Label" parent="M/MatchMaking" unique_id=1229578344]
 visible = false
 custom_minimum_size = Vector2(0, 60)
@@ -247,6 +275,7 @@ text = "O seu IP aparecerá aqui"
 vertical_alignment = 1
 
 [node name="InputIP" type="LineEdit" parent="M/MatchMaking" unique_id=1488760964]
+visible = false
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
@@ -257,21 +286,30 @@ virtual_keyboard_type = 2
 
 [node name="DeviceNameLabel" type="Label" parent="." unique_id=1948409738]
 layout_mode = 0
-offset_left = 42.0
+offset_left = 87.0
 offset_top = 55.0
-offset_right = 280.0
+offset_right = 325.0
 offset_bottom = 85.0
 mouse_filter = 1
 theme_override_fonts/font = ExtResource("5_ekrsa")
 theme_override_font_sizes/font_size = 40
 text = "Nome do Dispositivo"
 
-[node name="NicknameSwitcher" type="VBoxContainer" parent="." unique_id=812215149]
-visible = false
+[node name="DeviceNameLabel" type="Label" parent="DeviceNameLabel" unique_id=512517551]
 layout_mode = 0
-offset_left = 53.0
+offset_top = -25.0
+offset_right = 238.0
+offset_bottom = 5.0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("5_ekrsa")
+theme_override_font_sizes/font_size = 40
+text = "NickName"
+
+[node name="NicknameSwitcher" type="VBoxContainer" parent="." unique_id=812215149]
+layout_mode = 0
+offset_left = 93.0
 offset_top = 95.0
-offset_right = 214.0
+offset_right = 254.0
 offset_bottom = 206.0
 theme_override_constants/separation = 7
 
@@ -300,9 +338,9 @@ text = "Cancelar"
 
 [node name="MuteButton" type="Button" parent="." unique_id=526122684]
 layout_mode = 0
-offset_left = 41.0
+offset_left = 87.0
 offset_top = 635.0
-offset_right = 189.0
+offset_right = 235.0
 offset_bottom = 685.0
 theme_override_font_sizes/font_size = 30
 text = "Tirar Som"

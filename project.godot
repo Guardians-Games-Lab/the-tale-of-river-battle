@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="The Tale of River Battle"
-run/main_scene="uid://m8q6e7fc2d8c"
+run/main_scene="uid://iirthke3nnhx"
 config/features=PackedStringArray("4.6", "Mobile")
 
 [autoload]
