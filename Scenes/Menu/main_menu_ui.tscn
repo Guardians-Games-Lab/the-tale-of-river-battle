@@ -297,3 +297,12 @@ text = "Trocar"
 layout_mode = 2
 theme_override_font_sizes/font_size = 19
 text = "Cancelar"
+
+[node name="MuteButton" type="Button" parent="." unique_id=526122684]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 635.0
+offset_right = 189.0
+offset_bottom = 685.0
+theme_override_font_sizes/font_size = 30
+text = "Tirar Som"

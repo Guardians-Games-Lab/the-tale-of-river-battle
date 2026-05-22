@@ -7,6 +7,7 @@ extends Node
 @onready var game_instancia = $SelecaoDeFases
 @onready var learderboard = $LeaderboardMenu
 
+@onready var btn_som = $MainMenu/MuteButton
 @onready var container_matchmaking = $MainMenu/M/MatchMaking
 @onready var label_ip_host = $MainMenu/M/MatchMaking/IPHost
 @onready var input_ip = $MainMenu/M/MatchMaking/InputIP
@@ -39,7 +40,9 @@ func _ready():
 	get_node("MainMenu/M/MenuOptions/NovoJogo").pressed.connect(on_new_game_pressed)
 	get_node("MainMenu/M/MenuOptions/Sair").pressed.connect(on_exit_pressed)
 	get_node("MainMenu/M/MenuOptions/Leaderboard").pressed.connect(on_leaderboard_pressed)
-
+	if btn_som:
+		btn_som.pressed.connect(_on_btn_som_pressed)
+		_atualizar_visual_do_botao_som() # Ajusta o botão ao abrir a tela
 	# 🔌 Conexões da LAN
 	if btn_host: btn_host.pressed.connect(on_host_pressed)
 	if btn_join: btn_join.pressed.connect(on_join_pressed)
@@ -157,3 +160,12 @@ func on_sair_pressed():
 		
 	if label_ip_host:
 		label_ip_host.text = "IP da Sala: "
+
+
+func _on_btn_som_pressed():
+	Game.toggle_mute() # Manda o cérebro do jogo mutar/desmutar a mesa de som
+	_atualizar_visual_do_botao_som()
+
+	# Função para mudar o texto (ou ícone) do botão
+func _atualizar_visual_do_botao_som():
+	if not btn_som: return

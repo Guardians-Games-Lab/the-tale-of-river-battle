@@ -4,7 +4,7 @@ extends CanvasLayer
 # 📂 REFERÊNCIAS DE UI
 # =========================
 @onready var texto_recorde = get_node_or_null("MenuPause/MarginContainer/PontuacaoMaxima/TextoPontuacaoMaxima")
-
+@onready var btn_som = $MenuPause/MarginContainer/Itens/Mute
 # =========================
 # 🚀 INICIALIZAÇÃO
 # =========================
@@ -12,6 +12,11 @@ func _ready():
 	hide()
 	# Garante que este menu processe mesmo quando o resto do jogo parar
 	process_mode = Node.PROCESS_MODE_ALWAYS
+
+
+	if btn_som:
+		btn_som.pressed.connect(_on_btn_som_pressed)
+		_atualizar_visual_do_botao_som() # Ajusta o botão ao abrir a tela
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"): 
@@ -60,3 +65,11 @@ func _on_btn_sair_pressed():
 	
 	# 2. Muda de cena de forma segura e atrasada
 	get_tree().call_deferred("change_scene_to_file", "res://main_menu.tscn")
+
+func _on_btn_som_pressed():
+	Game.toggle_mute() # Manda o cérebro do jogo mutar/desmutar a mesa de som
+	_atualizar_visual_do_botao_som()
+
+	# Função para mudar o texto (ou ícone) do botão
+func _atualizar_visual_do_botao_som():
+	if not btn_som: return
