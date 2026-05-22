@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b1ws47pplwgqa" path="res://Codes/enemySystem.gd" id="2_vx6v1"]
 [ext_resource type="Texture2D" uid="uid://bqu15jqgttdh7" path="res://Sprites/Enemy/inimigo2.png" id="3_ds1vs"]
 [ext_resource type="Texture2D" uid="uid://qpy3qjlhmber" path="res://Sprites/Enemy/inimigo1.png" id="4_on6pi"]
-[ext_resource type="AudioStream" uid="uid://b0jdor8ij6lai" path="res://Assets/MusicsAndSounds/EnemyDeathSound.mp3" id="5_mkvia"]
+[ext_resource type="AudioStream" uid="uid://dwar76afo1lby" path="res://Assets/MusicsAndSounds/EnemyDeathSound.mp3" id="5_mkvia"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1kvtj"]
 radius = 17.029387
