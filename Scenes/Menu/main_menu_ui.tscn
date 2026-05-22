@@ -4,6 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://cuj1fkv0qldm5" path="res://Sprites/Menu/buttom_template.png" id="2_gpijq"]
 [ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/kenney_pixel_square.ttf" id="2_tself"]
 [ext_resource type="Texture2D" uid="uid://52hl0dcjofpr" path="res://Sprites/Menu/shadow_buttom_template.png" id="3_pn3xf"]
+[ext_resource type="FontFile" uid="uid://bf57fsyphqmqm" path="res://Assets/Fonts/kenney_pixel.ttf" id="5_ekrsa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6rewt"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.4392157)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.6666667)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [node name="MainMenu" type="Control" unique_id=2039632068]
 layout_mode = 3
@@ -147,55 +162,138 @@ size_flags_vertical = 4
 layout_mode = 2
 
 [node name="BtnHost" type="TextureButton" parent="M/MatchMaking/BotoesLAN" unique_id=1438865536]
+custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
 texture_normal = ExtResource("2_gpijq")
 texture_pressed = ExtResource("3_pn3xf")
 texture_hover = ExtResource("3_pn3xf")
+stretch_mode = 0
 
 [node name="Label" type="Label" parent="M/MatchMaking/BotoesLAN/BtnHost" unique_id=1091056974]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.312
-anchor_bottom = 0.35900003
-offset_left = 28.0
-offset_top = 19.0
-offset_right = 61.064
-offset_bottom = 19.023998
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -19.5
+offset_right = 64.5
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
 text = "Criar Sala"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BtnJoin" type="TextureButton" parent="M/MatchMaking/BotoesLAN" unique_id=1626256446]
+custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
 texture_normal = ExtResource("2_gpijq")
 texture_pressed = ExtResource("3_pn3xf")
 texture_hover = ExtResource("3_pn3xf")
+stretch_mode = 0
 
 [node name="Label" type="Label" parent="M/MatchMaking/BotoesLAN/BtnJoin" unique_id=637227235]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 20.0
-offset_right = 92.0
-offset_bottom = 43.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.5
+offset_top = -19.5
+offset_right = 42.5
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
 text = "Entrar"
 
 [node name="BtnSair" type="TextureButton" parent="M/MatchMaking/BotoesLAN" unique_id=1945205053]
 visible = false
+custom_minimum_size = Vector2(256, 128)
 layout_mode = 2
 texture_normal = ExtResource("2_gpijq")
 texture_pressed = ExtResource("3_pn3xf")
 texture_hover = ExtResource("3_pn3xf")
+stretch_mode = 0
 
 [node name="Label" type="Label" parent="M/MatchMaking/BotoesLAN/BtnSair" unique_id=45966541]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 20.0
-offset_right = 92.0
-offset_bottom = 43.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -19.5
+offset_right = 26.0
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
 text = "Sair"
 
 [node name="IPHost" type="Label" parent="M/MatchMaking" unique_id=1229578344]
+visible = false
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.75686276)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_6rewt")
 text = "O seu IP aparecerá aqui"
+vertical_alignment = 1
 
 [node name="InputIP" type="LineEdit" parent="M/MatchMaking" unique_id=1488760964]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 placeholder_text = "Digite o IP do Host aqui"
+max_length = 50
+emoji_menu_enabled = false
+virtual_keyboard_type = 2
+
+[node name="DeviceNameLabel" type="Label" parent="." unique_id=1948409738]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 55.0
+offset_right = 280.0
+offset_bottom = 85.0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("5_ekrsa")
+theme_override_font_sizes/font_size = 40
+text = "Nome do Dispositivo"
+
+[node name="NicknameSwitcher" type="VBoxContainer" parent="." unique_id=812215149]
+visible = false
+layout_mode = 0
+offset_left = 53.0
+offset_top = 95.0
+offset_right = 214.0
+offset_bottom = 206.0
+theme_override_constants/separation = 7
+
+[node name="Label" type="Label" parent="NicknameSwitcher" unique_id=1735274070]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Trocar Nickname"
+
+[node name="LineEdit" type="LineEdit" parent="NicknameSwitcher" unique_id=2092171845]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NicknameSwitcher" unique_id=1850845974]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="SwitchBtn" type="Button" parent="NicknameSwitcher/HBoxContainer" unique_id=2034944054]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Trocar"
+
+[node name="CancelBtn" type="Button" parent="NicknameSwitcher/HBoxContainer" unique_id=1879379169]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "Cancelar"
