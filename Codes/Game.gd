@@ -14,6 +14,9 @@ var Score: int = 0
 var Health: int = 100
 var Wave: int = 1
 
+
+
+
 # 🗺️ CONTROLE DE MAPAS E RECORDES
 var current_map: String = "mapa_1"
 
@@ -67,12 +70,26 @@ func desconectar_rede():
 	}
 	print("🔌 Desconectado da rede local.")
 
+
+
+# =========================
+# 🎵 SISTEMA DE ÁUDIO GLOBAL
+# =========================
+var tocador_audio = AudioStreamPlayer.new()
+var musica_menu = preload("res://Assets/MusicsAndSounds/MenuPrincipal.mp3")
+var musica_fase = preload("res://Assets/MusicsAndSounds/Fase.mp3")
+
 # =========================
 # ⚙️ INICIALIZAÇÃO
 # =========================
 func _ready():
 	_configurar_nome_dispositivo()
 	load_local_scores() 
+	# Configura e toca a música de fundo
+	# Inicializa o nó de áudio na árvore do jogo
+	add_child(tocador_audio)
+	tocar_musica("menu") # Começa com o som do menu
+
 
 func _configurar_nome_dispositivo():
 	nome_jogador = OS.get_model_name()
@@ -286,3 +303,39 @@ func set_wave(nova_wave: int):
 	Wave = nova_wave
 	wave_changed.emit()
 	print("🌊 Iniciando Wave: ", Wave)
+
+func tocar_musica(tipo: String):
+	var musica_alvo: AudioStream = null
+
+	if tipo == "menu":
+		musica_alvo = musica_menu
+	elif tipo == "fase":
+		musica_alvo = musica_fase
+		
+	# Só troca a música se a música nova for diferente da que já está tocando
+	# Isso impede que a música do menu reinicie do zero se você trocar de subtela no menu!
+	if tocador_audio.stream != musica_alvo:
+		tocador_audio.stop()
+		tocador_audio.stream = musica_alvo
+		tocador_audio.volume_db = -12.0 # Ajuste o volume geral por aqui
+		if musica_alvo != null:
+			tocador_audio.play()
+
+
+
+# =========================
+# 🔇 CONTROLE GERAL DE MUDO
+# =========================
+var is_muted: bool = false
+
+func toggle_mute() -> bool:
+	# Pega o índice do canal principal de áudio do Godot
+	var bus_idx = AudioServer.get_bus_index("Master")
+
+	# Inverte o estado atual (se estava mutado, desmuta, e vice-versa)
+	is_muted = not AudioServer.is_bus_mute(bus_idx)
+
+	# Aplica a alteração na mesa de som do motor
+	AudioServer.set_bus_mute(bus_idx, is_muted)
+
+	return is_muted

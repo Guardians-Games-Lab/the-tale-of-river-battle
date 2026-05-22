@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://m34nj2kchdd3" path="res://Sprites/Machado/machado6.png" id="7_2p2h7"]
 [ext_resource type="Texture2D" uid="uid://bjksdjchmc7be" path="res://Sprites/Machado/machado7.png" id="8_jxjxs"]
 [ext_resource type="Texture2D" uid="uid://l7u6dcq1cjjb" path="res://Sprites/Machado/machado8.png" id="9_vxo1a"]
+[ext_resource type="AudioStream" uid="uid://dsoj0onrogqik" path="res://Assets/MusicsAndSounds/MachadoTrowSound.mp3" id="10_gq5lp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yi7u8"]
 radius = 6.0
@@ -75,3 +76,6 @@ shape = SubResource("CircleShape2D_44mcw")
 libraries/ = SubResource("AnimationLibrary_oa7mh")
 autoplay = &"MachadoAnimation"
 speed_scale = 3.0
+
+[node name="SomMachado" type="AudioStreamPlayer2D" parent="." unique_id=1024391557]
+stream = ExtResource("10_gq5lp")

@@ -23,12 +23,12 @@ func _ready():
 	add_to_group("game")
 	
 	# 👇 AVISANDO O AUTOLOAD: Pontos desta partida vão para a tabela do Mapa 1!
-	
-	
 	Game.current_map = current_map
 	
 	Game.reset_stats()
 	
+	Game.tocar_musica("fase")
+
 	if botao_pausa:
 		botao_pausa.pressed.connect(_on_pause_btn_pressed) 
 		

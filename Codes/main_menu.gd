@@ -33,6 +33,8 @@ func _ready():
 	get_tree().paused = false
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
+	Game.tocar_musica("menu")
+
 	# 🔌 Conexão dos botões básicos
 	get_node("MainMenu/M/MenuOptions/NovoJogo").pressed.connect(on_new_game_pressed)
 	get_node("MainMenu/M/MenuOptions/Sair").pressed.connect(on_exit_pressed)
