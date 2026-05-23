@@ -19,3 +19,4 @@ func _on_gui_input(event):
 		var game = get_tree().get_first_node_in_group("game")
 		if game:
 			game.start_build_mode(tower_scene, tower_cost)
+	

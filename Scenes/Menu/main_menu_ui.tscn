@@ -166,6 +166,34 @@ size_flags_vertical = 4
 [node name="BotoesLAN" type="HBoxContainer" parent="M/MatchMaking" unique_id=195335621]
 layout_mode = 2
 
+[node name="BtnJoin" type="TextureButton" parent="M/MatchMaking/BotoesLAN" unique_id=433963835]
+visible = false
+custom_minimum_size = Vector2(256, 128)
+layout_mode = 2
+texture_normal = ExtResource("2_gpijq")
+texture_pressed = ExtResource("3_pn3xf")
+texture_hover = ExtResource("3_pn3xf")
+stretch_mode = 0
+script = ExtResource("4_d2do3")
+
+[node name="Label" type="Label" parent="M/MatchMaking/BotoesLAN/BtnJoin" unique_id=1489509325]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -19.5
+offset_right = 64.5
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "Entrar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BtnHost" type="TextureButton" parent="M/MatchMaking/BotoesLAN" unique_id=1438865536]
 visible = false
 custom_minimum_size = Vector2(256, 128)

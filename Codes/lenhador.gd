@@ -241,3 +241,5 @@ func ativar_torre():
 	btn_velocidade.pressed.connect(_on_btn_velocidade_pressed)
 	btn_range.pressed.connect(_on_btn_range_pressed)
 	atualizar_textos_upgrade()
+	
+	

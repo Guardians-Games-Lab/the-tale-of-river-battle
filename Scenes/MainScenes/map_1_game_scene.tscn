@@ -200,6 +200,7 @@ offset_top = -178.0
 offset_right = 1306.0
 offset_bottom = -147.0
 text = "Cancelar"
+script = ExtResource("11_qyv8w")
 
 [node name="Towers" type="Node2D" parent="." unique_id=346713245 groups=["exclusion"]]
 
