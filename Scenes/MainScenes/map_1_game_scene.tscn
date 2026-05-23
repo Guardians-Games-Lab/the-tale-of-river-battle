@@ -28,7 +28,6 @@ bg_color = Color(0.9088105, 0, 0.108250044, 1)
 
 [node name="Map1GameScene" type="Node2D" unique_id=629731469 groups=["game"]]
 script = ExtResource("1_tbc0f")
-current_map = "mapa_1"
 
 [node name="Map1" parent="." unique_id=1311482498 instance=ExtResource("2_co35u")]
 position = Vector2(132, -223)
@@ -70,6 +69,7 @@ offset_top = -375.00003
 offset_right = 1341.533
 offset_bottom = 357.75858
 scale = Vector2(1.0266448, 1.0221647)
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="PainelDeCompra" type="FlowContainer" parent="CanvasLayerUI/Gui" unique_id=1066825035]
@@ -85,6 +85,7 @@ offset_right = 54.9375
 offset_bottom = 351.39957
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 40
 last_wrap_alignment = 2
@@ -103,6 +104,7 @@ offset_top = 8.894
 offset_right = 62.729523
 offset_bottom = 71.894
 grow_horizontal = 2
+mouse_filter = 2
 theme_override_constants/separation = 1
 alignment = 1
 
@@ -186,12 +188,18 @@ offset_left = 6.0
 offset_top = -300.0
 offset_right = 70.0
 offset_bottom = -236.0
-mouse_filter = 1
 theme_override_font_sizes/font_size = 35
 text = "⚙️"
 flat = true
 script = ExtResource("11_qyv8w")
 metadata/_edit_use_anchors_ = true
+
+[node name="BtnCancel" type="Button" parent="CanvasLayerUI" unique_id=1347996092]
+offset_left = 1230.0
+offset_top = -178.0
+offset_right = 1306.0
+offset_bottom = -147.0
+text = "Cancelar"
 
 [node name="Towers" type="Node2D" parent="." unique_id=346713245 groups=["exclusion"]]
 
@@ -203,4 +211,4 @@ visible = false
 
 [connection signal="timeout" from="PathSpawner/WaveTimer" to="PathSpawner" method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="PathSpawner/SpawnTimer" to="PathSpawner" method="_on_spawn_timer_timeout"]
-[connection signal="pressed" from="CanvasLayerUI/PauseButton" to="." method="_on_pause_btn_pressed"]
+[connection signal="pressed" from="CanvasLayerUI/PauseButton" to="MenuPause" method="_on_pause_button_pressed"]

@@ -5,6 +5,7 @@ extends CanvasLayer
 # =========================
 @onready var texto_recorde = get_node_or_null("MenuPause/MarginContainer/PontuacaoMaxima/TextoPontuacaoMaxima")
 @onready var btn_som = $MenuPause/MarginContainer/Itens/Mute
+@onready var btn_pause = $"../CanvasLayerUI/PauseButton"
 # =========================
 # 🚀 INICIALIZAÇÃO
 # =========================
@@ -73,3 +74,14 @@ func _on_btn_som_pressed():
 	# Função para mudar o texto (ou ícone) do botão
 func _atualizar_visual_do_botao_som():
 	if not btn_som: return
+
+
+func _on_pause_button_pressed():
+	var novo_estado = !get_tree().paused
+	get_tree().paused = novo_estado
+	visible = novo_estado
+	
+	if novo_estado:
+		print("⏸️ Jogo Pausado")
+		_atualizar_texto_recorde()
+	

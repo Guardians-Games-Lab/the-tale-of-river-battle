@@ -1,186 +1,109 @@
 extends Node2D
 
-# =========================
-# 📂 REFERÊNCIAS
-# =========================
 var preview = null
-var selected_tower: PackedScene
-@export var current_map : String
+var selected_tower_scene: PackedScene = null
+var selected_tower_cost: int = 0
 
+# Variável para rastrear o dedo/mouse perfeitamente no celular
+var current_pointer_pos: Vector2 = Vector2.ZERO 
 @onready var ground = get_tree().get_first_node_in_group("ground")
 @onready var exclusion = get_tree().get_first_node_in_group("exclusion")
 @onready var towers_node = get_node_or_null("Towers")
-@onready var botao_pausa = get_node_or_null("CanvasLayerUI/PauseButton")
-@onready var menu_pausa = get_node_or_null("MenuPause")
-@onready var menu_game_over = get_node_or_null("MenuGameOver")
 
-var jogo_acabou: bool = false 
+var jogo_acabou: bool = false
 
-# =========================
-# 🚀 INICIALIZAÇÃO
-# =========================
 func _ready():
 	add_to_group("game")
-	
-	# 👇 AVISANDO O AUTOLOAD: Pontos desta partida vão para a tabela do Mapa 1!
-	Game.current_map = current_map
-	
-	Game.reset_stats()
-	
 	Game.tocar_musica("fase")
-
-	if botao_pausa:
-		botao_pausa.pressed.connect(_on_pause_btn_pressed) 
-		
-	Game.game_over.connect(_chamar_tela_game_over)
-
 # =========================
-# 💀 GAME OVER
+# 🎯 INICIAR MODO DE CONSTRUÇÃO
 # =========================
-func _chamar_tela_game_over():
-	jogo_acabou = true
-	
-	# 👇 GATILHO DA REDE LOCAL: Envia a pontuação para a sala ao morrer
-	Game.submeter_score_lan()
-	
-	get_tree().paused = true 
-	
-	if menu_pausa:
-		menu_pausa.process_mode = Node.PROCESS_MODE_DISABLED
-	
-	if botao_pausa:
-		botao_pausa.visible = false
-	
-	if menu_game_over:
-		menu_game_over.visible = true
-
-# =========================
-# 🎯 SELECIONAR TORRE
-# =========================
-func start_build_mode(scene):
-	selected_tower = scene
-	
+func start_build_mode(scene: PackedScene, cost: int):
 	if preview:
-		preview.queue_free()
+		cancel_tower()
 	
-	preview = selected_tower.instantiate()
+	selected_tower_scene = scene
+	selected_tower_cost = cost
+	
+	preview = scene.instantiate()
+	preview.can_attack = false
 	add_child(preview)
 	
-	preview.can_attack = false
 	preview.show_range = true
 	preview.clear_preview_state()
+	
+	# Puxa a posição inicial para o centro da tela para não nascer no canto
+	current_pointer_pos = get_canvas_transform().affine_inverse() * (get_viewport_rect().size / 2)
+	print("🛠️ Modo construção ativado")
 
 # =========================
-# 🟡 ATUALIZAÇÃO (PREVIEW)
+# 🟡 PREVIEW (MOVIMENTAÇÃO E VALIDAÇÃO)
 # =========================
 func _process(_delta):
-	if preview:
-		var tile_pos = get_tile_position()
-		var snapped_pos = ground.map_to_local(tile_pos)
-		
-		preview.global_position = ground.to_global(snapped_pos)
-		preview.set_preview_valid(is_valid_tile())
+	if not preview: 
+		return
+	
+	var tile_pos = get_tile_position(current_pointer_pos)
+	if tile_pos == Vector2i(-1, -1):
+		preview.hide() # Esconde se estiver totalmente fora do mapa
+		return
+	
+	preview.show()
+	var local_pos = ground.map_to_local(tile_pos)
+	preview.global_position = ground.to_global(local_pos)
+	
+	preview.set_preview_valid(is_valid_tile(tile_pos))
 
 # =========================
-# 🧱 TILE POSITION
+# 🖱️ INPUT - CLIQUE PARA COLOCAR (Rastreio Perfeito)
 # =========================
-func get_tile_position():
-	var mouse_local = ground.to_local(get_global_mouse_position())
-	return ground.local_to_map(mouse_local)
-
-# =========================
-# ✔️ VALIDAÇÃO DE POSIÇÃO
-# =========================
-func is_valid_tile() -> bool:
-	if ground == null or exclusion == null:
-		return false
-	
-	var tile_pos = get_tile_position()
-	
-	var ground_tile = ground.get_cell_atlas_coords(tile_pos)
-	var exclusion_tile = exclusion.get_cell_atlas_coords(tile_pos)
-	
-	if ground_tile == Vector2i(-1, -1):
-		return false
-	
-	if exclusion_tile != Vector2i(-1, -1):
-		return false
-	
-	if has_tower_on_position():
-		return false
-	
-	return true
-
-# =========================
-# 🔥 DETECTAR TORRE EXISTENTE
-# =========================
-func has_tower_on_position() -> bool:
-	var space = get_world_2d().direct_space_state
-	
-	var shape = CircleShape2D.new()
-	shape.radius = 12
-	
-	var query = PhysicsShapeQueryParameters2D.new()
-	query.shape = shape
-	query.transform = Transform2D(0, preview.global_position)
-	query.collide_with_bodies = true
-	
-	var result = space.intersect_shape(query)
-	
-	for r in result:
-		var obj = r.collider
-		
-		if obj != preview and obj.is_in_group("tower"):
-			return true
-	
-	return false
-
-# =========================
-# 🖱️ CLIQUE E INPUTS
-# =========================
-func _input(event):
+func _unhandled_input(event):
 	if jogo_acabou or Game.Health <= 0:
 		return
-
+	
 	if event.is_action_pressed("ui_cancel"):
-		_on_pause_btn_pressed()
+		cancel_tower()
+		return
 
-	# Verifica se temos uma torre selecionada e se o jogador LEVANTOU o dedo da tela (not pressed)
-	if preview and (event is InputEventScreenTouch or event is InputEventMouseButton) and not event.pressed:
+	if not preview:
+		return
 
-	# Proteção: Se ele arrastar e soltar o dedo de volta no menu ou em cima de um botão, cancela a compra
-		if get_viewport().gui_get_hovered_control():
-			cancel_tower()
-			return
+	# 1. RASTREIA A POSIÇÃO EXATA DO DEDO (Ignora UI e resolve o bug de offset)
+	if event is InputEventScreenDrag or event is InputEventScreenTouch or event is InputEventMouseMotion:
+		# Converte a coordenada da tela do celular para o mundo 2D
+		current_pointer_pos = get_canvas_transform().affine_inverse() * event.position
 
-	# Valida a posição no rio/grade e tenta gastar o ouro
-		if is_valid_tile() and Game.spend_gold(20):
-			place_tower()
-		else:
-			cancel_tower() # Se o local for inválido ou não tiver ouro, a torre some ao levantar o dedo
+	# 2. SE APERTOU A TELA, TENTA CONSTRUIR
+	var pressionado: bool = false
+	if event is InputEventScreenTouch and event.pressed:
+		pressionado = true
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		pressionado = true
 
+	if pressionado:
+		var tile_pos = get_tile_position(current_pointer_pos)
+		if is_valid_tile(tile_pos) and towers_node != null:  # ← verifica towers_node antes
+			if Game.spend_gold(selected_tower_cost):
+				place_tower(tile_pos)
 # =========================
 # 🏗️ COLOCAR TORRE
 # =========================
-func place_tower():
-	if towers_node == null:
-		print("❌ ERRO: node Towers não encontrado")
-		return
-	
-	var tower = selected_tower.instantiate()
-	
-	var tile_pos = get_tile_position()
-	var snapped_pos = ground.map_to_local(tile_pos)
-	
-	tower.global_position = ground.to_global(snapped_pos)
-	tower.can_attack = true
+func place_tower(tile_pos: Vector2i):
+	if towers_node == null: return
+		
+	var tower = selected_tower_scene.instantiate()
+	tower.can_attack = false
 	tower.show_range = false
-	tower.clear_preview_state()
-	
+
 	towers_node.add_child(tower)
-	
-	preview.queue_free()
-	preview = null
+
+	var snapped_pos = ground.map_to_local(tile_pos)
+	tower.global_position = ground.to_global(snapped_pos)
+	tower.clear_preview_state()
+
+	cancel_tower()
+	tower.call_deferred("ativar_torre")  # só isso, sem set_deferred
+	print("✅ Torre colocada em: ", tower.global_position)
 
 # =========================
 # ❌ CANCELAR
@@ -188,14 +111,38 @@ func place_tower():
 func cancel_tower():
 	if preview:
 		preview.queue_free()
-	preview = null
+		preview = null
+	selected_tower_scene = null
+	selected_tower_cost = 0
+
+# =========================
+# 🧭 FUNÇÕES AUXILIARES DE COORDENADAS
+# =========================
+func get_tile_position(world_pos: Vector2) -> Vector2i:
+	if not ground: return Vector2i(-1, -1)
+	var local_pos = ground.to_local(world_pos)
+	return ground.local_to_map(local_pos)
+
+func is_valid_tile(tile_pos: Vector2i) -> bool:
+	if ground == null or exclusion == null: return false
 	
-# =========================
-# ⏸️ MENU DE PAUSA
-# =========================
-func _on_pause_btn_pressed() -> void:
-	if jogo_acabou:
-		return
-		
-	if menu_pausa:
-		menu_pausa._toggle_pause()
+	if ground.get_cell_atlas_coords(tile_pos) == Vector2i(-1, -1): return false
+	if exclusion.get_cell_atlas_coords(tile_pos) != Vector2i(-1, -1): return false
+	
+	# Verifica colisão com outra torre na exata posição central do tile
+	var snapped_pos = ground.map_to_local(tile_pos)
+	var check_pos = ground.to_global(snapped_pos)
+	
+	var space = get_world_2d().direct_space_state
+	var query = PhysicsShapeQueryParameters2D.new()
+	query.shape = CircleShape2D.new()
+	query.shape.radius = 12
+	query.transform = Transform2D(0, check_pos)
+	query.collide_with_bodies = true
+	
+	var result = space.intersect_shape(query)
+	for r in result:
+		if r.collider != preview and r.collider.is_in_group("tower"):
+			return false
+			
+	return true

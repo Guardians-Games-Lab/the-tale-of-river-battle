@@ -27,9 +27,6 @@ corner_detail = 14
 collision_layer = 2
 input_pickable = true
 script = ExtResource("1_u318i")
-fire_rate = null
-bullet_damage = null
-base_cost = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=114037299]
 visible = false
@@ -62,13 +59,11 @@ offset_bottom = 91.0
 scale = Vector2(1.5, 1.5)
 size_flags_horizontal = 4
 size_flags_vertical = 4
-mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_u318i")
 
 [node name="MargemDoPainel" type="MarginContainer" parent="Upgrade/PainelDeUpgrade" unique_id=538453515]
 layout_mode = 2
 size_flags_horizontal = 3
-mouse_filter = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
@@ -77,12 +72,12 @@ theme_override_constants/margin_bottom = 5
 [node name="ContainerDosButoes" type="HBoxContainer" parent="Upgrade/PainelDeUpgrade/MargemDoPainel" unique_id=259614033]
 layout_mode = 2
 size_flags_stretch_ratio = 0.0
-mouse_filter = 2
 alignment = 2
 
 [node name="Control2" type="Control" parent="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes" unique_id=399731608]
 custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="BotaoVelocidade" type="Button" parent="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes" unique_id=1911355468]
 custom_minimum_size = Vector2(40, 40)
