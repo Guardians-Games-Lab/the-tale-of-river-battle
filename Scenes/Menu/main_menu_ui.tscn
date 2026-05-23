@@ -293,7 +293,6 @@ theme_override_font_sizes/font_size = 24
 placeholder_text = "Digite o IP do Host aqui"
 max_length = 50
 emoji_menu_enabled = false
-virtual_keyboard_type = 2
 
 [node name="DeviceNameLabel" type="Label" parent="." unique_id=1948409738]
 layout_mode = 0

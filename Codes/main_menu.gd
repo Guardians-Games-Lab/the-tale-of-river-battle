@@ -36,65 +36,71 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 	Game.tocar_musica("menu")
-
+	
 	# 🔌 Conexão dos botões básicos
 	get_node("MainMenu/M/MenuOptions/NovoJogo").pressed.connect(on_new_game_pressed)
 	get_node("MainMenu/M/MenuOptions/Sair").pressed.connect(on_exit_pressed)
 	get_node("MainMenu/M/MenuOptions/Leaderboard").pressed.connect(on_leaderboard_pressed)
+	
 	if btn_som:
 		btn_som.pressed.connect(_on_btn_som_pressed)
 		_atualizar_visual_do_botao_som() # Ajusta o botão ao abrir a tela
+		
 	# 🔌 Conexões da LAN
 	if btn_host: btn_host.pressed.connect(on_host_pressed)
 	if btn_join: btn_join.pressed.connect(on_join_pressed)
 	if btn_sair: btn_sair.pressed.connect(on_sair_pressed)
-	if btn_sair: btn_online.pressed.connect(on_online_pressed)
+	
+	# 👇 CORREÇÃO: Estava checando btn_sair antes!
+	if btn_online: btn_online.pressed.connect(on_online_pressed) 
+	
+	# 👇 CORREÇÃO PRO MOBILE: Força o teclado a abrir quando tocar no input de IP
+	if input_ip:
+		input_ip.gui_input.connect(_on_input_ip_gui_input)
 	
 	# 📝 SETUP DO SISTEMA DE NOME
 	if label_nome_dispositivo:
-		# Puxa o nome padrão que o Game.gd gerou ao abrir o jogo
 		label_nome_dispositivo.text = Game.nome_jogador
-		# Conecta o clique em cima do texto
 		label_nome_dispositivo.gui_input.connect(_on_label_nome_clicada)
 		
 	if painel_renomear:
-		painel_renomear.hide() # Garante que o menu comece invisível
+		painel_renomear.hide() 
 		
 	if btn_trocar_nome:
 		btn_trocar_nome.pressed.connect(_on_btn_trocar_nome_pressed)
 		
 	if btn_cancelar_nome:
-		# Uma função rápida (lambda) só para esconder o painel
 		btn_cancelar_nome.pressed.connect(func(): painel_renomear.hide())
 
 	get_node("MainMenu/M/MenuOptions/NovoJogo").grab_focus()
 
 # =========================
+# ⌨️ FORÇAR TECLADO NO IP (NOVO)
+# =========================
+func _on_input_ip_gui_input(event):
+	if (event is InputEventScreenTouch or event is InputEventMouseButton) and event.pressed:
+		input_ip.grab_focus()
+
+# =========================
 # 📝 LÓGICA DE TROCA DE NOME
 # =========================
 func _on_label_nome_clicada(event):
-	# Detecta o toque na tela ou o clique do mouse
 	if (event is InputEventScreenTouch or event is InputEventMouseButton) and event.pressed:
 		if painel_renomear:
 			painel_renomear.show()
 			if input_novo_nome:
-			# 🎯 O SEGREDO: Define o nick atual como texto de fundo (fofinho/cinza)
 				input_novo_nome.placeholder_text = Game.nome_jogador
-				# Garante que a caixa de texto comece completamente limpa para digitação direta
 				input_novo_nome.text = "" 
-				input_novo_nome.grab_focus() # Abre o teclado do celular automaticamente
+				input_novo_nome.grab_focus()
 
 func _on_btn_trocar_nome_pressed():
-	# Verifica se o jogador digitou algo e não deixou só espaços em branco
 	if input_novo_nome and input_novo_nome.text.strip_edges() != "":
 		var novo_nome = input_novo_nome.text.strip_edges()
-		
-		Game.nome_jogador = novo_nome # Atualiza no cérebro do jogo (Global)
+		Game.nome_jogador = novo_nome 
 		
 		if label_nome_dispositivo:
-			label_nome_dispositivo.text = novo_nome # Atualiza o texto na tela
+			label_nome_dispositivo.text = novo_nome 
 			
-	# Esconde o menuzinho de qualquer forma
 	if painel_renomear:
 		painel_renomear.hide()
 
@@ -163,15 +169,12 @@ func on_sair_pressed():
 	if label_ip_host:
 		label_ip_host.text = "IP da Sala: "
 
-
 func _on_btn_som_pressed():
-	Game.toggle_mute() # Manda o cérebro do jogo mutar/desmutar a mesa de som
+	Game.toggle_mute() 
 	_atualizar_visual_do_botao_som()
 
-	# Função para mudar o texto (ou ícone) do botão
 func _atualizar_visual_do_botao_som():
 	if not btn_som: return
-
 
 func on_online_pressed():
 	btn_online.hide()

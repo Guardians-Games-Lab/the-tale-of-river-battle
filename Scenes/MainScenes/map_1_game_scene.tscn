@@ -28,6 +28,7 @@ bg_color = Color(0.9088105, 0, 0.108250044, 1)
 
 [node name="Map1GameScene" type="Node2D" unique_id=629731469 groups=["game"]]
 script = ExtResource("1_tbc0f")
+current_map = "mapa_1"
 
 [node name="Map1" parent="." unique_id=1311482498 instance=ExtResource("2_co35u")]
 position = Vector2(132, -223)

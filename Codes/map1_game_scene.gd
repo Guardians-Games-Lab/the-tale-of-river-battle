@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var current_map: String
+
 var preview = null
 var selected_tower_scene: PackedScene = null
 var selected_tower_cost: int = 0
@@ -19,6 +21,7 @@ var jogo_acabou: bool = false
 # =========================
 func _ready():
 	add_to_group("game")
+	Game.current_map = current_map
 	Game.tocar_musica("fase")
 
 	if btn_cancel:
