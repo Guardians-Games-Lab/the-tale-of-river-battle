@@ -11,6 +11,7 @@
 [ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/kenney_pixel_square.ttf" id="9_5nqpc"]
 [ext_resource type="FontFile" uid="uid://bf57fsyphqmqm" path="res://Assets/Fonts/kenney_pixel.ttf" id="10_7kw3d"]
 [ext_resource type="PackedScene" uid="uid://q2ctnxhbqhv3" path="res://Scenes/Menu/menu_pause.tscn" id="11_jeg8y"]
+[ext_resource type="Script" uid="uid://2s3v717pgu5o" path="res://Codes/btn_touch.gd" id="11_qyv8w"]
 [ext_resource type="PackedScene" uid="uid://dnsuw1m240v8j" path="res://Scenes/Menu/menu_game_over.tscn" id="12_3aj7b"]
 
 [sub_resource type="Curve2D" id="Curve2D_8pq0b"]
@@ -189,6 +190,7 @@ mouse_filter = 1
 theme_override_font_sizes/font_size = 35
 text = "⚙️"
 flat = true
+script = ExtResource("11_qyv8w")
 metadata/_edit_use_anchors_ = true
 
 [node name="Towers" type="Node2D" parent="." unique_id=346713245 groups=["exclusion"]]

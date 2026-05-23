@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cuj1fkv0qldm5" path="res://Sprites/Menu/buttom_template.png" id="2_oxl5e"]
 [ext_resource type="Texture2D" uid="uid://52hl0dcjofpr" path="res://Sprites/Menu/shadow_buttom_template.png" id="3_wecd4"]
 [ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/kenney_pixel_square.ttf" id="4_w1lo6"]
+[ext_resource type="Script" uid="uid://j24yubqmtrg6" path="res://Codes/txt_btn_touch.gd" id="5_wecd4"]
 
 [node name="SelecaoDeFases" type="Control" unique_id=965448006]
 layout_mode = 3
@@ -59,6 +60,7 @@ texture_pressed = ExtResource("3_wecd4")
 texture_hover = ExtResource("3_wecd4")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("5_wecd4")
 
 [node name="Mapa1Texto" type="Label" parent="B/M/MenuOptions/Mapa1" unique_id=1729926679]
 layout_mode = 1
@@ -87,6 +89,7 @@ texture_pressed = ExtResource("3_wecd4")
 texture_hover = ExtResource("3_wecd4")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("5_wecd4")
 
 [node name="Mapa2Texto" type="Label" parent="B/M/MenuOptions/Mapa2" unique_id=1081837732]
 layout_mode = 1
@@ -115,6 +118,7 @@ texture_pressed = ExtResource("3_wecd4")
 texture_hover = ExtResource("3_wecd4")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("5_wecd4")
 
 [node name="Mapa3Texto" type="Label" parent="B/M/MenuOptions/Mapa3" unique_id=1584397264]
 layout_mode = 1

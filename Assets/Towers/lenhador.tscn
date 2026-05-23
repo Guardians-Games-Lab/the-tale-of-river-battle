@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dyqtiiihdi6po" path="res://Sprites/Towers/lenhador.png" id="1_6pgoe"]
 [ext_resource type="Script" uid="uid://bewnd5e26orwl" path="res://Codes/lenhador.gd" id="1_u318i"]
+[ext_resource type="Script" uid="uid://2s3v717pgu5o" path="res://Codes/btn_touch.gd" id="3_ijkvk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6pgoe"]
 size = Vector2(29, 19)
@@ -26,6 +27,9 @@ corner_detail = 14
 collision_layer = 2
 input_pickable = true
 script = ExtResource("1_u318i")
+fire_rate = null
+bullet_damage = null
+base_cost = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=114037299]
 visible = false
@@ -87,6 +91,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 10
 text = "$15"
+script = ExtResource("3_ijkvk")
 
 [node name="BotaoRange" type="Button" parent="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes" unique_id=1082213196]
 custom_minimum_size = Vector2(40, 40)
@@ -95,6 +100,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 10
 text = "Range"
+script = ExtResource("3_ijkvk")
 
 [node name="Control" type="Control" parent="Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes" unique_id=894645117]
 custom_minimum_size = Vector2(60, 0)
@@ -107,6 +113,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 10
 text = "Vender"
+script = ExtResource("3_ijkvk")
 
 [connection signal="body_entered" from="TowerRange" to="." method="_on_tower_range_body_entered"]
 [connection signal="body_exited" from="TowerRange" to="." method="_on_tower_range_body_exited"]

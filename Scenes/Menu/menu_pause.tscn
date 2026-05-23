@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c3u4x1nchfws" path="res://Codes/menu_pause.gd" id="1_bt4rq"]
 [ext_resource type="Texture2D" uid="uid://c6482ht5r64cl" path="res://Sprites/Menu/Nuvem.png" id="1_n1b7x"]
 [ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/kenney_pixel_square.ttf" id="2_bt4rq"]
+[ext_resource type="Script" uid="uid://2s3v717pgu5o" path="res://Codes/btn_touch.gd" id="3_gwjme"]
 
 [node name="MenuPause" type="CanvasLayer" unique_id=663674318]
 process_mode = 3
@@ -52,6 +53,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 14
 text = "MUTAR"
+script = ExtResource("3_gwjme")
 
 [node name="Continue" type="Button" parent="MenuPause/MarginContainer/Itens" unique_id=2104944407]
 layout_mode = 2
@@ -59,6 +61,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 14
 text = "CONTINUE"
+script = ExtResource("3_gwjme")
 
 [node name="Sair" type="Button" parent="MenuPause/MarginContainer/Itens" unique_id=1748968298]
 layout_mode = 2
@@ -66,6 +69,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 14
 text = "SAIR"
+script = ExtResource("3_gwjme")
 
 [node name="PontuacaoMaxima" type="HBoxContainer" parent="MenuPause/MarginContainer" unique_id=1800200855]
 custom_minimum_size = Vector2(0, 70)

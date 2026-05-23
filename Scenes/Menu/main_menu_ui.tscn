@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://cuj1fkv0qldm5" path="res://Sprites/Menu/buttom_template.png" id="2_gpijq"]
 [ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/kenney_pixel_square.ttf" id="2_tself"]
 [ext_resource type="Texture2D" uid="uid://52hl0dcjofpr" path="res://Sprites/Menu/shadow_buttom_template.png" id="3_pn3xf"]
+[ext_resource type="Script" uid="uid://j24yubqmtrg6" path="res://Codes/txt_btn_touch.gd" id="4_d2do3"]
 [ext_resource type="FontFile" uid="uid://bf57fsyphqmqm" path="res://Assets/Fonts/kenney_pixel.ttf" id="5_ekrsa"]
+[ext_resource type="Script" uid="uid://2s3v717pgu5o" path="res://Codes/btn_touch.gd" id="5_wrgyf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6rewt"]
 content_margin_left = 4.0
@@ -73,6 +75,7 @@ texture_pressed = ExtResource("3_pn3xf")
 texture_hover = ExtResource("3_pn3xf")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("4_d2do3")
 
 [node name="Label" type="Label" parent="M/MenuOptions/NovoJogo" unique_id=915938388]
 layout_mode = 1
@@ -101,6 +104,7 @@ texture_pressed = ExtResource("3_pn3xf")
 texture_hover = ExtResource("3_pn3xf")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("4_d2do3")
 
 [node name="Label" type="Label" parent="M/MenuOptions/Leaderboard" unique_id=1632876019]
 layout_mode = 1
@@ -134,6 +138,7 @@ texture_pressed = ExtResource("3_pn3xf")
 texture_hover = ExtResource("3_pn3xf")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("4_d2do3")
 
 [node name="Label" type="Label" parent="M/MenuOptions/Sair" unique_id=1428876166]
 layout_mode = 1
@@ -169,6 +174,7 @@ texture_normal = ExtResource("2_gpijq")
 texture_pressed = ExtResource("3_pn3xf")
 texture_hover = ExtResource("3_pn3xf")
 stretch_mode = 0
+script = ExtResource("4_d2do3")
 
 [node name="Label" type="Label" parent="M/MatchMaking/BotoesLAN/BtnHost" unique_id=1091056974]
 layout_mode = 1
@@ -188,31 +194,6 @@ text = "Criar Sala"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BtnJoin" type="TextureButton" parent="M/MatchMaking/BotoesLAN" unique_id=1626256446]
-visible = false
-custom_minimum_size = Vector2(256, 128)
-layout_mode = 2
-texture_normal = ExtResource("2_gpijq")
-texture_pressed = ExtResource("3_pn3xf")
-texture_hover = ExtResource("3_pn3xf")
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="M/MatchMaking/BotoesLAN/BtnJoin" unique_id=637227235]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -42.5
-offset_top = -19.5
-offset_right = 42.5
-offset_bottom = 19.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 28
-text = "Entrar "
-
 [node name="BtnSair" type="TextureButton" parent="M/MatchMaking/BotoesLAN" unique_id=1945205053]
 visible = false
 custom_minimum_size = Vector2(256, 128)
@@ -221,6 +202,7 @@ texture_normal = ExtResource("2_gpijq")
 texture_pressed = ExtResource("3_pn3xf")
 texture_hover = ExtResource("3_pn3xf")
 stretch_mode = 0
+script = ExtResource("4_d2do3")
 
 [node name="Label" type="Label" parent="M/MatchMaking/BotoesLAN/BtnSair" unique_id=45966541]
 layout_mode = 1
@@ -245,6 +227,7 @@ texture_normal = ExtResource("2_gpijq")
 texture_pressed = ExtResource("3_pn3xf")
 texture_hover = ExtResource("3_pn3xf")
 stretch_mode = 0
+script = ExtResource("4_d2do3")
 
 [node name="Label" type="Label" parent="M/MatchMaking/BotoesLAN/BtnOnline" unique_id=1224529190]
 layout_mode = 1
@@ -306,6 +289,7 @@ theme_override_font_sizes/font_size = 40
 text = "NickName"
 
 [node name="NicknameSwitcher" type="VBoxContainer" parent="." unique_id=812215149]
+visible = false
 layout_mode = 0
 offset_left = 93.0
 offset_top = 95.0
@@ -330,11 +314,13 @@ size_flags_vertical = 8
 layout_mode = 2
 theme_override_font_sizes/font_size = 19
 text = "Trocar"
+script = ExtResource("5_wrgyf")
 
 [node name="CancelBtn" type="Button" parent="NicknameSwitcher/HBoxContainer" unique_id=1879379169]
 layout_mode = 2
 theme_override_font_sizes/font_size = 19
 text = "Cancelar"
+script = ExtResource("5_wrgyf")
 
 [node name="MuteButton" type="Button" parent="." unique_id=526122684]
 layout_mode = 0
@@ -344,3 +330,4 @@ offset_right = 235.0
 offset_bottom = 685.0
 theme_override_font_sizes/font_size = 30
 text = "Tirar Som"
+script = ExtResource("5_wrgyf")
