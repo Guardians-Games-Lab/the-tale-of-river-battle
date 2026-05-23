@@ -51,15 +51,15 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 14
-text = "MUTAR"
+theme_override_font_sizes/font_size = 13
+text = "Tirar Som"
 script = ExtResource("3_gwjme")
 
 [node name="Continue" type="Button" parent="MenuPause/MarginContainer/Itens" unique_id=2104944407]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 13
 text = "CONTINUE"
 script = ExtResource("3_gwjme")
 
@@ -67,7 +67,7 @@ script = ExtResource("3_gwjme")
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 13
 text = "SAIR"
 script = ExtResource("3_gwjme")
 

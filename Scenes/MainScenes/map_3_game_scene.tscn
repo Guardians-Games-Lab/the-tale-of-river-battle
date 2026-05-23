@@ -202,12 +202,20 @@ flat = true
 script = ExtResource("13_66oco")
 metadata/_edit_use_anchors_ = true
 
-[node name="BtnCancel" type="Button" parent="CanvasLayerUI" unique_id=325721121]
+[node name="BtnCancel" type="Button" parent="CanvasLayerUI" unique_id=572658179]
 offset_left = 1230.0
-offset_top = -178.0
+offset_top = -122.0
 offset_right = 1306.0
-offset_bottom = -147.0
+offset_bottom = -91.0
 text = "Cancelar"
+script = ExtResource("13_66oco")
+
+[node name="BtnConfirm" type="Button" parent="CanvasLayerUI" unique_id=1502112128]
+offset_left = 1229.0
+offset_top = -170.0
+offset_right = 1309.0
+offset_bottom = -139.0
+text = "Confimar"
 script = ExtResource("13_66oco")
 
 [connection signal="timeout" from="PathSpawner/WaveTimer" to="PathSpawner" method="_on_wave_timer_timeout"]

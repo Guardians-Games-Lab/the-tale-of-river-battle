@@ -9,7 +9,8 @@ var current_pointer_pos: Vector2 = Vector2.ZERO
 @onready var ground = get_tree().get_first_node_in_group("ground")
 @onready var exclusion = get_tree().get_first_node_in_group("exclusion")
 @onready var towers_node = get_node_or_null("Towers")
-@onready var btn_cancel = get_node_or_null("CanvasLayerUI/BtnCancel") # 👈 sem o $
+@onready var btn_cancel = get_node_or_null("CanvasLayerUI/BtnCancel")
+@onready var btn_confirm = get_node_or_null("CanvasLayerUI/BtnConfirm")
 
 var jogo_acabou: bool = false
 
@@ -19,9 +20,14 @@ var jogo_acabou: bool = false
 func _ready():
 	add_to_group("game")
 	Game.tocar_musica("fase")
+
 	if btn_cancel:
 		btn_cancel.hide()
 		btn_cancel.pressed.connect(cancel_tower)
+
+	if btn_confirm:
+		btn_confirm.hide()
+		btn_confirm.pressed.connect(confirm_tower)
 
 # =========================
 # 🎯 INICIAR MODO DE CONSTRUÇÃO
@@ -39,11 +45,12 @@ func start_build_mode(scene: PackedScene, cost: int):
 	preview.show_range = true
 	preview.clear_preview_state()
 
-	# Posição inicial no centro da tela
 	current_pointer_pos = get_canvas_transform().affine_inverse() * (get_viewport_rect().size / 2)
 
 	if btn_cancel:
 		btn_cancel.show()
+	if btn_confirm:
+		btn_confirm.show()
 	print("🛠️ Modo construção ativado")
 
 # =========================
@@ -56,11 +63,18 @@ func _process(_delta):
 	var tile_pos = get_tile_position(current_pointer_pos)
 	if tile_pos == Vector2i(-1, -1):
 		preview.hide()
+		if btn_confirm:
+			btn_confirm.disabled = true
 		return
 
 	preview.show()
 	preview.global_position = ground.to_global(ground.map_to_local(tile_pos))
-	preview.set_preview_valid(is_valid_tile(tile_pos))
+
+	var valido = is_valid_tile(tile_pos)
+	preview.set_preview_valid(valido)
+
+	if btn_confirm:
+		btn_confirm.disabled = not valido
 
 # =========================
 # 🖱️ INPUT
@@ -76,24 +90,34 @@ func _unhandled_input(event):
 	if not preview:
 		return
 
-	# Rastreia posição do dedo durante o arrasto
-	if event is InputEventScreenDrag or event is InputEventMouseMotion:
+	# Toque/clique posiciona o preview, arrasto e mouse também
+	if event is InputEventScreenTouch and event.pressed:
+		current_pointer_pos = get_canvas_transform().affine_inverse() * event.position
+	elif event is InputEventMouseButton and event.pressed:
 		current_pointer_pos = get_canvas_transform().affine_inverse() * event.position
 
-	# Coloca a torre no RELEASE (evita vazar o toque do Panel)
-	var soltou: bool = false
-	if event is InputEventScreenTouch and not event.pressed:
-		soltou = true
-	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
-		soltou = true
+	# Desktop: clique direito cancela
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		cancel_tower()
 
-	if soltou:
-		get_viewport().set_input_as_handled()
-		var tile_pos = get_tile_position(current_pointer_pos)
-		if is_valid_tile(tile_pos) and Game.spend_gold(selected_tower_cost):
-			place_tower(tile_pos)
-		else:
-			cancel_tower()
+# =========================
+# ✅ CONFIRMAR COLOCAÇÃO
+# =========================
+func confirm_tower():
+	if not preview:
+		return
+
+	var tile_pos = get_tile_position(current_pointer_pos)
+
+	if not is_valid_tile(tile_pos):
+		print("⚠️ Posição inválida!")
+		return
+
+	if not Game.spend_gold(selected_tower_cost):
+		print("⚠️ Sem ouro suficiente!")
+		return
+
+	place_tower(tile_pos)
 
 # =========================
 # 🏗️ COLOCAR TORRE
@@ -109,7 +133,6 @@ func place_tower(tile_pos: Vector2i):
 	towers_node.add_child(tower)
 	tower.global_position = ground.to_global(ground.map_to_local(tile_pos))
 	tower.clear_preview_state()
-	tower.set_deferred("can_attack", true)
 
 	cancel_tower()
 	print("✅ Torre colocada em: ", tower.global_position)
@@ -126,6 +149,9 @@ func cancel_tower():
 
 	if btn_cancel:
 		btn_cancel.hide()
+	if btn_confirm:
+		btn_confirm.hide()
+		btn_confirm.disabled = false
 	print("❌ Construção cancelada")
 
 # =========================
