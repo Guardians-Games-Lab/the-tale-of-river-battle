@@ -14,13 +14,9 @@ var show_range: bool = false
 var sell_value: int = 0
 var mouse_na_torre: bool = false
 
-# =========================
-# ⬆️ SISTEMA DE UPGRADES
-# =========================
 var nivel_velocidade: int = 0
 var nivel_range: int = 0
 const MAX_UPGRADES: int = 3
-
 var custo_velocidade_base: int = 25
 var custo_range_base: int = 20
 
@@ -32,12 +28,10 @@ var custo_range_base: int = 20
 @onready var btn_range: Button = $Upgrade/PainelDeUpgrade/MargemDoPainel/ContainerDosButoes/BotaoRange
 
 func _ready():
-	# =========================
-	# 👻 PREVIEW / FANTASMA
-	# =========================
 	recem_colocada = true
-	get_tree().process_frame.connect(func() : recem_colocada = false, CONNECT_ONE_SHOT)
-	
+	get_tree().process_frame.connect(func(): recem_colocada = false, CONNECT_ONE_SHOT)
+
+	# Preview — inicialização mínima, sem sinais
 	if not can_attack:
 		input_pickable = false
 		menu_upgrade.hide()
@@ -45,8 +39,8 @@ func _ready():
 		set_process_unhandled_input(false)
 		return
 
-	# Torre real — bloqueia input no frame que nasceu
-	input_pickable = false
+	# Torre real
+	input_pickable = false  # bloqueia o toque que colocou a torre
 
 	range_area.body_entered.connect(_on_tower_range_body_entered)
 	range_area.body_exited.connect(_on_tower_range_body_exited)
@@ -61,7 +55,7 @@ func _ready():
 	btn_range.pressed.connect(_on_btn_range_pressed)
 	atualizar_textos_upgrade()
 
-	# Só libera o input no próximo frame, quando o toque de colocação já passou
+	# Libera input só no próximo frame
 	await get_tree().process_frame
 	input_pickable = true
 
@@ -73,7 +67,7 @@ func _process(_delta):
 	if targets.is_empty(): return
 
 	var target: Node2D = targets[0]
-	if target == null: return
+	if not is_instance_valid(target): return
 
 	var dir = target.global_position - global_position
 	rotation = dir.angle()
@@ -84,23 +78,14 @@ func _process(_delta):
 		shoot(target)
 
 # =========================
-# 🖱️ CLIQUE / TOQUE NA TORRE
+# 🖱️ _input_event — APENAS para desktop (mouse)
 # =========================
 func _input_event(viewport, event, shape_idx):
 	if recem_colocada: return
 	var game = get_tree().get_first_node_in_group("game")
+	if game and game.preview != null: return
 
-	# Trava: se estiver colocando torre no mapa, não abre o menu
-	if game and game.preview != null:
-		return
-
-	var pressionado: bool = (
-		event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed
-	) or (
-		event is InputEventScreenTouch and event.pressed
-	)
-
-	if pressionado:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		get_viewport().set_input_as_handled()
 		if menu_upgrade.visible:
 			deselecionar()
@@ -108,30 +93,34 @@ func _input_event(viewport, event, shape_idx):
 			selecionar_torre()
 
 # =========================
-# 🌍 TOQUE FORA (FECHAR MENU)
+# 👆 _unhandled_input — toque (celular) + fechar menu
 # =========================
 func _unhandled_input(event):
 	if not can_attack: return
+	if recem_colocada: return
 
-	var pressionado: bool = false
-	if event is InputEventScreenTouch and event.pressed:
-		pressionado = true
-	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		pressionado = true
+	var game = get_tree().get_first_node_in_group("game")
+	if game and game.preview != null: return
 
-	if pressionado and menu_upgrade.visible:
-		var touch_pos: Vector2
-		if event is InputEventScreenTouch or event is InputEventMouseButton:
-			touch_pos = get_canvas_transform().affine_inverse() * event.position
-		
-		var distancia = global_position.distance_to(touch_pos)
-		var raio = 64
-		if distancia > raio:
+	var pressionado: bool = event is InputEventScreenTouch and event.pressed
+	if not pressionado: return
+
+	var touch_pos = get_canvas_transform().affine_inverse() * event.position
+	var distancia = global_position.distance_to(touch_pos)
+
+	if distancia <= 40:
+		# Toque em cima da torre
+		get_viewport().set_input_as_handled()
+		if menu_upgrade.visible:
 			deselecionar()
+		else:
+			selecionar_torre()
+	elif menu_upgrade.visible:
+		# Toque fora — fecha o menu
+		deselecionar()
 
-		
 # =========================
-# 🎨 DESENHOS E PREVIEW
+# 🎨 DESENHO E PREVIEW
 # =========================
 func _draw():
 	if not show_range: return
@@ -152,7 +141,7 @@ func clear_preview_state() -> void:
 			child.modulate = Color(1, 1, 1, 1)
 
 # =========================
-# 🔫 ATAQUE E MECÂNICAS
+# 🔫 ATAQUE
 # =========================
 func shoot(target):
 	if not is_instance_valid(target): return
@@ -207,8 +196,7 @@ func _on_btn_velocidade_pressed():
 	var custo_atual = custo_velocidade_base * (nivel_velocidade + 1)
 	if Game.spend_gold(custo_atual):
 		nivel_velocidade += 1
-		fire_rate -= 0.2
-		if fire_rate < 0.1: fire_rate = 0.1
+		fire_rate = max(fire_rate - 0.2, 0.1)
 		base_cost += custo_atual
 		sell_value = int(base_cost / 2.0)
 		atualizar_textos_upgrade()
@@ -218,28 +206,8 @@ func _on_btn_range_pressed():
 	var custo_atual = custo_range_base * (nivel_range + 1)
 	if Game.spend_gold(custo_atual):
 		nivel_range += 1
-		var shape = $TowerRange/CollisionShape2D.shape as CircleShape2D
-		shape.radius += 30.0
+		($TowerRange/CollisionShape2D.shape as CircleShape2D).radius += 30.0
 		base_cost += custo_atual
 		sell_value = int(base_cost / 2.0)
 		atualizar_textos_upgrade()
 		queue_redraw()
-
-func ativar_torre():
-	can_attack = true
-	input_pickable = true
-	add_to_group("tower")
-
-	range_area.body_entered.connect(_on_tower_range_body_entered)
-	range_area.body_exited.connect(_on_tower_range_body_exited)
-	menu_upgrade.hide()
-
-	sell_value = int(base_cost / 2.0)
-	$TowerRange/CollisionShape2D.shape = $TowerRange/CollisionShape2D.shape.duplicate()
-
-	btn_vender.pressed.connect(_on_btn_vender_pressed)
-	btn_velocidade.pressed.connect(_on_btn_velocidade_pressed)
-	btn_range.pressed.connect(_on_btn_range_pressed)
-	atualizar_textos_upgrade()
-	
-	

@@ -103,7 +103,7 @@ func place_tower(tile_pos: Vector2i):
 		return
 
 	var tower = selected_tower_scene.instantiate()
-	tower.can_attack = false
+	tower.can_attack = true
 	tower.show_range = false
 
 	towers_node.add_child(tower)

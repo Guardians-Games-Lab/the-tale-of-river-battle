@@ -97,3 +97,4 @@ metadata/_edit_use_anchors_ = true
 
 [node name="SomMorte" type="AudioStreamPlayer2D" parent="Enemy" unique_id=780326010]
 stream = ExtResource("5_driln")
+volume_db = -3.0

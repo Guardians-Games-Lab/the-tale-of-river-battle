@@ -12,6 +12,7 @@
 [ext_resource type="FontFile" uid="uid://bf57fsyphqmqm" path="res://Assets/Fonts/kenney_pixel.ttf" id="10_ukoov"]
 [ext_resource type="PackedScene" uid="uid://q2ctnxhbqhv3" path="res://Scenes/Menu/menu_pause.tscn" id="11_1itih"]
 [ext_resource type="PackedScene" uid="uid://dnsuw1m240v8j" path="res://Scenes/Menu/menu_game_over.tscn" id="12_jqll0"]
+[ext_resource type="Script" uid="uid://2s3v717pgu5o" path="res://Codes/btn_touch.gd" id="13_66oco"]
 
 [sub_resource type="Curve2D" id="Curve2D_nwrh7"]
 _data = {
@@ -19,15 +20,14 @@ _data = {
 }
 point_count = 11
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hgw78"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ysgip"]
 bg_color = Color(0.6, 0.6, 0.6, 0.84313726)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7njp"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mhcs"]
 bg_color = Color(0.9088105, 0, 0.108250044, 1)
 
 [node name="Map3GameScene" type="Node2D" unique_id=2057263737]
 script = ExtResource("1_nwrh7")
-current_map = "mapa_3"
 
 [node name="Map3" parent="." unique_id=834976587 instance=ExtResource("2_66oco")]
 position = Vector2(132, -223)
@@ -59,19 +59,28 @@ autostart = true
 [node name="Path2D" type="Path2D" parent="PathSpawner" unique_id=867835601]
 curve = SubResource("Curve2D_nwrh7")
 
-[node name="CanvasLayerUI" type="CanvasLayer" parent="." unique_id=959300208]
+[node name="Towers" type="Node2D" parent="." unique_id=1272364356 groups=["exclusion"]]
+
+[node name="MenuPause" parent="." unique_id=663674318 instance=ExtResource("11_1itih")]
+visible = false
+
+[node name="MenuGameOver" parent="." unique_id=1614034800 instance=ExtResource("12_jqll0")]
+visible = false
+
+[node name="CanvasLayerUI" type="CanvasLayer" parent="." unique_id=1683183590]
 follow_viewport_enabled = true
 script = ExtResource("7_ulndc")
 
-[node name="Gui" type="Panel" parent="CanvasLayerUI" unique_id=1513273065]
+[node name="Gui" type="Panel" parent="CanvasLayerUI" unique_id=1195982646]
 offset_left = 1204.0
 offset_top = -375.00003
 offset_right = 1341.533
 offset_bottom = 357.75858
 scale = Vector2(1.0266448, 1.0221647)
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="PainelDeCompra" type="FlowContainer" parent="CanvasLayerUI/Gui" unique_id=99450485]
+[node name="PainelDeCompra" type="FlowContainer" parent="CanvasLayerUI/Gui" unique_id=1330250811]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -84,6 +93,7 @@ offset_right = 54.9375
 offset_bottom = 351.39957
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 40
 last_wrap_alignment = 2
@@ -92,7 +102,7 @@ last_wrap_alignment = 2
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 
-[node name="TextoDinheiro" type="VBoxContainer" parent="CanvasLayerUI/Gui" unique_id=1361913898]
+[node name="TextoDinheiro" type="VBoxContainer" parent="CanvasLayerUI/Gui" unique_id=518393296]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -102,26 +112,27 @@ offset_top = 8.894
 offset_right = 62.729523
 offset_bottom = 71.894
 grow_horizontal = 2
+mouse_filter = 2
 theme_override_constants/separation = 1
 alignment = 1
 
-[node name="TextoDinheiro" type="Label" parent="CanvasLayerUI/Gui/TextoDinheiro" unique_id=1956356837]
+[node name="TextoDinheiro" type="Label" parent="CanvasLayerUI/Gui/TextoDinheiro" unique_id=76036543]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("9_5o56f")
 text = "Dinheiro"
 
-[node name="DinheiroTotal" type="Label" parent="CanvasLayerUI/Gui/TextoDinheiro" unique_id=517931621]
+[node name="DinheiroTotal" type="Label" parent="CanvasLayerUI/Gui/TextoDinheiro" unique_id=1598103930]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("9_5o56f")
 theme_override_font_sizes/font_size = 21
 text = "$0"
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayerUI/Gui/TextoDinheiro" unique_id=2044392780]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayerUI/Gui/TextoDinheiro" unique_id=932774833]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="TextoPontosEWaves" type="VBoxContainer" parent="CanvasLayerUI/Gui" unique_id=1251356852]
+[node name="TextoPontosEWaves" type="VBoxContainer" parent="CanvasLayerUI/Gui" unique_id=1929176131]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -137,38 +148,38 @@ grow_vertical = 0
 theme_override_constants/separation = 1
 alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayerUI/Gui/TextoPontosEWaves" unique_id=852067198]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayerUI/Gui/TextoPontosEWaves" unique_id=415640214]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="TextoPontos" type="Label" parent="CanvasLayerUI/Gui/TextoPontosEWaves" unique_id=217284210]
+[node name="TextoPontos" type="Label" parent="CanvasLayerUI/Gui/TextoPontosEWaves" unique_id=1557560535]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("9_5o56f")
 text = "Pontos:"
 
-[node name="PontosTotal" type="Label" parent="CanvasLayerUI/Gui/TextoPontosEWaves" unique_id=1591407330]
+[node name="PontosTotal" type="Label" parent="CanvasLayerUI/Gui/TextoPontosEWaves" unique_id=82283098]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("9_5o56f")
 theme_override_font_sizes/font_size = 16
 text = "0 "
 
-[node name="WaveAtual" type="Label" parent="CanvasLayerUI/Gui/TextoPontosEWaves" unique_id=2119654732]
+[node name="WaveAtual" type="Label" parent="CanvasLayerUI/Gui/TextoPontosEWaves" unique_id=1201477233]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("9_5o56f")
 text = "Wave: 1"
 
-[node name="VidaProgressBar" type="ProgressBar" parent="CanvasLayerUI" unique_id=1435541839]
+[node name="VidaProgressBar" type="ProgressBar" parent="CanvasLayerUI" unique_id=1557883848]
 offset_left = 8.0
 offset_top = -338.0
 offset_right = 124.0
 offset_bottom = -311.0
-theme_override_styles/background = SubResource("StyleBoxFlat_hgw78")
-theme_override_styles/fill = SubResource("StyleBoxFlat_q7njp")
+theme_override_styles/background = SubResource("StyleBoxFlat_ysgip")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7mhcs")
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="TextoVida" type="Label" parent="CanvasLayerUI/VidaProgressBar" unique_id=2066797990]
+[node name="TextoVida" type="Label" parent="CanvasLayerUI/VidaProgressBar" unique_id=839445411]
 layout_mode = 0
 offset_left = 6.0
 offset_top = -3.0
@@ -179,25 +190,26 @@ theme_override_font_sizes/font_size = 40
 text = "Life: 0"
 metadata/_edit_use_anchors_ = true
 
-[node name="PauseButton" type="Button" parent="CanvasLayerUI" unique_id=92146900]
+[node name="PauseButton" type="Button" parent="CanvasLayerUI" unique_id=104808778]
 process_mode = 3
 offset_left = 6.0
 offset_top = -300.0
 offset_right = 70.0
 offset_bottom = -236.0
-mouse_filter = 1
 theme_override_font_sizes/font_size = 35
 text = "⚙️"
 flat = true
+script = ExtResource("13_66oco")
 metadata/_edit_use_anchors_ = true
 
-[node name="Towers" type="Node2D" parent="." unique_id=1272364356 groups=["exclusion"]]
-
-[node name="MenuPause" parent="." unique_id=663674318 instance=ExtResource("11_1itih")]
-visible = false
-
-[node name="MenuGameOver" parent="." unique_id=1614034800 instance=ExtResource("12_jqll0")]
-visible = false
+[node name="BtnCancel" type="Button" parent="CanvasLayerUI" unique_id=325721121]
+offset_left = 1230.0
+offset_top = -178.0
+offset_right = 1306.0
+offset_bottom = -147.0
+text = "Cancelar"
+script = ExtResource("13_66oco")
 
 [connection signal="timeout" from="PathSpawner/WaveTimer" to="PathSpawner" method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="PathSpawner/SpawnTimer" to="PathSpawner" method="_on_spawn_timer_timeout"]
+[connection signal="pressed" from="CanvasLayerUI/PauseButton" to="MenuPause" method="_on_pause_button_pressed"]
