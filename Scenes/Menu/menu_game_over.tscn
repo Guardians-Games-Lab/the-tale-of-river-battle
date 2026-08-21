@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bonkvgpf0qclv" path="res://Codes/menu_game_over.gd" id="1_bh5kw"]
 [ext_resource type="FontFile" uid="uid://bf57fsyphqmqm" path="res://Assets/Fonts/kenney_pixel.ttf" id="2_bh5kw"]
 [ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/kenney_pixel_square.ttf" id="2_em4hf"]
+[ext_resource type="Script" uid="uid://2s3v717pgu5o" path="res://Codes/btn_touch.gd" id="4_1okdx"]
 
 [node name="MenuGameOver" type="CanvasLayer" unique_id=1614034800]
 script = ExtResource("1_bh5kw")
@@ -71,6 +72,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 10
 text = "New Game"
+script = ExtResource("4_1okdx")
 
 [node name="Sair" type="Button" parent="MenuGameOver/MarginContainer/Itens" unique_id=1688580860]
 layout_mode = 2
@@ -78,6 +80,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 10
 text = "SAIR"
+script = ExtResource("4_1okdx")
 
 [node name="Pontuacao" type="HBoxContainer" parent="MenuGameOver/MarginContainer" unique_id=1048547107]
 custom_minimum_size = Vector2(0, 50)

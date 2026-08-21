@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciwdhanf2q8l7"
-path="res://.godot/imported/Rio.png-b688a161e92ef36bd780c1ce4ba27cd7.ctex"
+uid="uid://bcs27807lp1tp"
+path="res://.godot/imported/logo_jogo.png-b87c84b78b5aa5461dd8496d7ee03127.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Assets/Rio.png"
-dest_files=["res://.godot/imported/Rio.png-b688a161e92ef36bd780c1ce4ba27cd7.ctex"]
+source_file="res://Sprites/Menu/logo_jogo.png"
+dest_files=["res://.godot/imported/logo_jogo.png-b87c84b78b5aa5461dd8496d7ee03127.ctex"]
 
 [params]
 

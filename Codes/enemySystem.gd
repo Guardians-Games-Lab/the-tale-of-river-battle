@@ -6,6 +6,10 @@ extends CharacterBody2D
 signal died
 signal escaped
 
+
+@onready var som_morte = $SomMorte
+
+
 # =========================
 # ❤️ ATRIBUTOS DO INIMIGO
 # =========================
@@ -73,14 +77,29 @@ func _atualizar_texto_vida():
 func die():
 	if removed: return
 	removed = true
-	
-	# Recompensas para o jogador! 💰📈
-	
+
+	# 1. Recompensas para o jogador! 💰📈
 	Game.add_gold(gold_dropped) 
 	Game.add_score(deathPoints) 
-	
+
+	# 2. DESLIGAMENTO IMEDIATO (Evita o inimigo zumbi)
+	hide() # Fica invisível na hora
+	set_process(false) # Para de rodar lógicas de update
+	set_physics_process(false) # Para de tentar se mover
+
+	# Desativa a caixa de colisão para as torres pararem de mirar nele
+	if has_node("CollisionShape2D"):
+		$CollisionShape2D.set_deferred("disabled", true)
+
+	# 3. Avisa o Spawner IMEDIATAMENTE que ele morreu para a Wave continuar
 	died.emit()
-	get_parent().queue_free() # Destrói o "carrinho" (PathFollow2D) que carrega o inimigo
+
+	# 4. Toca o som e espera em segurança
+	som_morte.play()    
+	await som_morte.finished
+
+	# 5. Finaliza a existência dele no mapa
+	get_parent().queue_free()
 
 
 # =========================

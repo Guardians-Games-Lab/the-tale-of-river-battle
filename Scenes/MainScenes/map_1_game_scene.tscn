@@ -11,6 +11,7 @@
 [ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/kenney_pixel_square.ttf" id="9_5nqpc"]
 [ext_resource type="FontFile" uid="uid://bf57fsyphqmqm" path="res://Assets/Fonts/kenney_pixel.ttf" id="10_7kw3d"]
 [ext_resource type="PackedScene" uid="uid://q2ctnxhbqhv3" path="res://Scenes/Menu/menu_pause.tscn" id="11_jeg8y"]
+[ext_resource type="Script" uid="uid://2s3v717pgu5o" path="res://Codes/btn_touch.gd" id="11_qyv8w"]
 [ext_resource type="PackedScene" uid="uid://dnsuw1m240v8j" path="res://Scenes/Menu/menu_game_over.tscn" id="12_3aj7b"]
 
 [sub_resource type="Curve2D" id="Curve2D_8pq0b"]
@@ -69,6 +70,7 @@ offset_top = -375.00003
 offset_right = 1341.533
 offset_bottom = 357.75858
 scale = Vector2(1.0266448, 1.0221647)
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="PainelDeCompra" type="FlowContainer" parent="CanvasLayerUI/Gui" unique_id=1066825035]
@@ -84,6 +86,7 @@ offset_right = 54.9375
 offset_bottom = 351.39957
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 40
 last_wrap_alignment = 2
@@ -102,6 +105,7 @@ offset_top = 8.894
 offset_right = 62.729523
 offset_bottom = 71.894
 grow_horizontal = 2
+mouse_filter = 2
 theme_override_constants/separation = 1
 alignment = 1
 
@@ -185,9 +189,27 @@ offset_left = 6.0
 offset_top = -300.0
 offset_right = 70.0
 offset_bottom = -236.0
-mouse_filter = 1
-text = "Cleber"
+theme_override_font_sizes/font_size = 35
+text = "⚙️"
+flat = true
+script = ExtResource("11_qyv8w")
 metadata/_edit_use_anchors_ = true
+
+[node name="BtnCancel" type="Button" parent="CanvasLayerUI" unique_id=1347996092]
+offset_left = 1233.0
+offset_top = -122.0
+offset_right = 1309.0
+offset_bottom = -91.0
+text = "Cancelar"
+script = ExtResource("11_qyv8w")
+
+[node name="BtnConfirm" type="Button" parent="CanvasLayerUI" unique_id=1769181937]
+offset_left = 1232.0
+offset_top = -170.0
+offset_right = 1312.0
+offset_bottom = -139.0
+text = "Confimar"
+script = ExtResource("11_qyv8w")
 
 [node name="Towers" type="Node2D" parent="." unique_id=346713245 groups=["exclusion"]]
 
@@ -199,4 +221,4 @@ visible = false
 
 [connection signal="timeout" from="PathSpawner/WaveTimer" to="PathSpawner" method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="PathSpawner/SpawnTimer" to="PathSpawner" method="_on_spawn_timer_timeout"]
-[connection signal="pressed" from="CanvasLayerUI/PauseButton" to="." method="_on_pause_btn_pressed"]
+[connection signal="pressed" from="CanvasLayerUI/PauseButton" to="MenuPause" method="_on_pause_button_pressed"]

@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://iirthke3nnhx"]
+
+[ext_resource type="Script" uid="uid://dv5676fadvxub" path="res://Codes/splash_screen.gd" id="1_2r1dq"]
+[ext_resource type="Texture2D" uid="uid://bcs27807lp1tp" path="res://Sprites/Menu/logo_jogo.png" id="2_wl21e"]
+
+[node name="SplashScreen" type="Control" unique_id=692431073]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2r1dq")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=322125283]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect" unique_id=1226052986]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -424.75
+offset_top = -263.25
+offset_right = 424.75
+offset_bottom = 263.25
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wl21e")
+
+[node name="Timer" type="Timer" parent="." unique_id=694696430]
+wait_time = 1.5
+one_shot = true

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b1ws47pplwgqa" path="res://Codes/enemySystem.gd" id="2_ds4r4"]
 [ext_resource type="Texture2D" uid="uid://qpy3qjlhmber" path="res://Sprites/Enemy/inimigo1.png" id="3_ds4r4"]
 [ext_resource type="Texture2D" uid="uid://bqu15jqgttdh7" path="res://Sprites/Enemy/inimigo2.png" id="3_oqe0u"]
+[ext_resource type="AudioStream" uid="uid://dwar76afo1lby" path="res://Assets/MusicsAndSounds/EnemyDeathSound.mp3" id="5_driln"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c3fr5"]
 radius = 17.029387
@@ -93,3 +94,7 @@ theme_override_font_sizes/font_size = 8
 text = "0/0"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="SomMorte" type="AudioStreamPlayer2D" parent="Enemy" unique_id=780326010]
+stream = ExtResource("5_driln")
+volume_db = -3.0

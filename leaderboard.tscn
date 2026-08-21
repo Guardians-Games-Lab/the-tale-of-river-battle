@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cuj1fkv0qldm5" path="res://Sprites/Menu/buttom_template.png" id="2_qjw78"]
 [ext_resource type="Texture2D" uid="uid://52hl0dcjofpr" path="res://Sprites/Menu/shadow_buttom_template.png" id="3_h2hfu"]
 [ext_resource type="FontFile" uid="uid://b5fpedjmfnk1p" path="res://Assets/Fonts/kenney_pixel_square.ttf" id="4_6c6j3"]
+[ext_resource type="Script" uid="uid://j24yubqmtrg6" path="res://Codes/txt_btn_touch.gd" id="5_h2hfu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qjw78"]
 bg_color = Color(0.015686275, 0.015686275, 0.015686275, 0.5254902)
@@ -67,6 +68,7 @@ texture_pressed = ExtResource("3_h2hfu")
 texture_hover = ExtResource("3_h2hfu")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("5_h2hfu")
 
 [node name="Label" type="Label" parent="M/VBoxContainer/HBoxContainer/Voltar" unique_id=1747611970]
 layout_mode = 1
@@ -95,6 +97,7 @@ texture_pressed = ExtResource("3_h2hfu")
 texture_hover = ExtResource("3_h2hfu")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("5_h2hfu")
 
 [node name="Label" type="Label" parent="M/VBoxContainer/HBoxContainer/Mapa" unique_id=706009221]
 layout_mode = 1
@@ -123,6 +126,7 @@ texture_pressed = ExtResource("3_h2hfu")
 texture_hover = ExtResource("3_h2hfu")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("5_h2hfu")
 
 [node name="Label" type="Label" parent="M/VBoxContainer/HBoxContainer/Mapa2" unique_id=1052047807]
 layout_mode = 1
@@ -151,6 +155,7 @@ texture_pressed = ExtResource("3_h2hfu")
 texture_hover = ExtResource("3_h2hfu")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("5_h2hfu")
 
 [node name="Label" type="Label" parent="M/VBoxContainer/HBoxContainer/Mapa3" unique_id=583605724]
 layout_mode = 1
@@ -170,7 +175,7 @@ theme_override_font_sizes/font_size = 36
 text = "Mapa 3"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="M/VBoxContainer" unique_id=1185723334]
-custom_minimum_size = Vector2(0, 500)
+custom_minimum_size = Vector2(1000, 500)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_qjw78")
